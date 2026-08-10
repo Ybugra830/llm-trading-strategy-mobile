@@ -3,32 +3,50 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
 .venv/
 venv/
 env/
 
-# Environment secrets
+# Ortam değişkenleri ve secrets
 .env
+.env.*
 *.env
+!**/.env.example
 
 # Flutter / Dart
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
+.pub-cache/
+.pub/
 build/
+coverage/
+*.iml
 
 # IDE
 .idea/
 .vscode/
+*.ipr
+*.iws
 
-# OS
+# İşletim sistemi
 .DS_Store
 Thumbs.db
+Desktop.ini
 
-# Logs
+# Loglar ve geçici dosyalar
 *.log
+*.swp
+*.tmp
 
-# Generated data
+# Yerel ve üretilen veriler
 backend/generated/
 backend/data/reports/
