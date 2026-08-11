@@ -1,53 +1,48 @@
 # Sistem Mimarisi
 
-## Amaç
+## Mevcut uygulama
 
-LLM Trading Strategy Mobile; kullanıcının teknik analiz stratejisi oluşturma,
-doğrulama ve geçmiş veriler üzerinde değerlendirme süreçlerini mobil cihazdan
-yönetebilmesini hedefler. Mevcut aşama yalnızca uygulama sınırlarını ve
-çalıştırılabilir iskeleti tanımlar.
+Bu aşamada yalnızca aşağıdaki parçalar vardır:
 
-## Bileşenler
+- Android ve iOS hedefli Flutter uygulama kabuğu
+- FastAPI uygulama kabuğu
+- `GET /health` sağlık endpoint'i
+- Backend ve Flutter testleri
+- Türkçe proje dokümantasyonu
 
-### Flutter mobil uygulaması
+Mobil uygulama backend'e bağlanmaz. LLM, piyasa verisi, teknik indikatör,
+strateji doğrulama ve backtest işlevleri henüz yoktur.
 
-- Android ve iOS kullanıcı arayüzünü sağlar.
-- İleride strateji girdilerini backend'e iletir ve sonuçları gösterir.
-- API anahtarı veya Azure OpenAI kimlik bilgisi saklamaz.
+## Planlanan mimari
 
-### FastAPI backend
+```text
+Flutter Mobile
+      ↓ HTTPS
+FastAPI Backend
+      ↓
+LLM Provider (planlanan: Azure OpenAI)
+      ↓
+Strateji doğrulama
+      ↓
+Piyasa verisi
+      ↓
+Backtest
+      ↓
+Sonuçların Flutter'a döndürülmesi
+```
 
-- Mobile uygulaması için HTTP API katmanı olacaktır.
-- Azure OpenAI, piyasa verisi, teknik analiz ve backtest işlemlerini ileride
-  ayrı servis/modül sınırlarıyla yönetecektir.
-- İlk aşamada yalnızca `GET /health` sağlık kontrolünü sunar.
+Planlanan yapıda Flutter kullanıcı arayüzünü sunacak ve backend ile HTTPS
+üzerinden iletişim kuracaktır. Sağlayıcı kimlik bilgileri mobil uygulamada
+tutulmayacaktır. FastAPI; LLM sağlayıcısı, doğrulama, piyasa verisi ve backtest
+süreçlerinin sunucu tarafındaki giriş noktası olacaktır.
 
-### Planlanan harici bileşenler
+Azure OpenAI, `yfinance`, `ta`, `backtesting.py`, Docker, Nginx ve VPS dağıtımı
+yalnızca planlanmaktadır; bu aşamada bağımlılık veya uygulama kodu olarak
+eklenmemiştir.
 
-- Azure OpenAI: Strateji taslağı üretimi ve doğal dil etkileşimi
-- `yfinance`: Geçmiş piyasa verilerinin alınması
-- `ta`: Teknik indikatörlerin hesaplanması
-- `backtesting.py`: Stratejilerin geçmiş verilerle değerlendirilmesi
-- Docker ve Nginx: Ubuntu VPS üzerinde paketleme, ters proxy ve yayınlama
+## Planlanan güvenlik ilkeleri
 
-Bu bileşenler henüz bağımlılık veya uygulama kodu olarak eklenmemiştir.
-
-## Planlanan veri akışı
-
-1. Kullanıcı mobile uygulamasında strateji isteğini oluşturur.
-2. Mobile uygulaması isteği FastAPI backend'e gönderir.
-3. Backend girdiyi doğrular ve gerekli piyasa verisini alır.
-4. Azure OpenAI strateji taslağını üretir.
-5. Backend taslağı güvenli ve çalıştırılabilir bir strateji modeline dönüştürür.
-6. Teknik analiz ve backtest katmanları sonucu hesaplar.
-7. Özet sonuç backend üzerinden mobile uygulamasına döner.
-
-Bu akış hedef mimariyi gösterir; mevcut iskelette yalnızca sağlık kontrolü
-çalışır.
-
-## Güvenlik ilkeleri
-
-- Secrets yalnızca sunucu tarafındaki ortam değişkenlerinden okunacaktır.
+- Gizli değerler yalnızca sunucu tarafındaki ortam değişkenlerinde tutulacaktır.
 - Gerçek `.env` dosyaları ve API anahtarları Git'e eklenmeyecektir.
-- Mobile uygulamasına sağlayıcı kimlik bilgisi gömülmeyecektir.
-- LLM çıktısı doğrudan güvenilir veya çalıştırılabilir kod kabul edilmeyecektir.
+- LLM çıktıları güvenilir veya doğrudan çalıştırılabilir kod kabul edilmeyecektir.
+- Üretilen kod, çalıştırılmadan önce doğrulama ve güvenlik sınırlarından geçecektir.

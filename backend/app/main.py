@@ -2,10 +2,14 @@
 
 from fastapi import FastAPI
 
+from app.api.strategy_routes import router as strategy_router
+
 app = FastAPI(
     title="LLM Trading Strategy API",
     version="0.1.0",
 )
+
+app.include_router(strategy_router)
 
 
 @app.get("/health")

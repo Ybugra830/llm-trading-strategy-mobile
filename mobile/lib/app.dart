@@ -17,7 +17,14 @@ class TradingStrategyApp extends StatelessWidget {
           title: const Text('LLM Trading Strategy'),
         ),
         body: const Center(
-          child: Text('Proje iskeleti hazır'),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('LLM Trading Strategy Mobile'),
+              SizedBox(height: 8),
+              Text('Proje altyapısı hazır.'),
+            ],
+          ),
         ),
       ),
     );

@@ -1,51 +1,61 @@
-# Staj Projesi Geliştirme Planı
+# Staj Projesi Uygulama Planı
 
-## 1. Proje iskeleti
+Bu belge hedeflenen aşamaları gösterir. Bu teslim yalnızca Faz 1'i kapsar;
+sonraki fazların hiçbiri henüz uygulanmamıştır.
 
-- Backend, mobile ve dokümantasyon sınırlarını oluşturma
-- FastAPI sağlık endpoint'i ve temel test
-- Android/iOS Flutter başlangıç ekranı ve widget testi
-- Depo temizliği ve secrets koruması
+## Faz 1: Proje altyapısı
 
-## 2. API sözleşmesi ve veri modelleri
+- FastAPI ve Flutter uygulama kabukları
+- Sağlık endpoint'i ve başlangıç testleri
+- Depo temizliği ve Türkçe dokümantasyon
 
-- Strateji isteği ve sonuç modellerini tanımlama
-- Girdi doğrulama ve tutarlı hata yanıtları
-- Mobile-backend iletişim sözleşmesini belgeleme
+## Faz 2: Backend şemaları ve uygulama yapılandırması
 
-## 3. Piyasa verisi ve teknik analiz
+- İstek/yanıt şemaları
+- Ortam tabanlı yapılandırma
+- Tutarlı hata yanıtları
 
-- `yfinance` veri erişim katmanı
-- Veri temizleme ve tarih aralığı doğrulama
-- `ta` ile kontrollü indikatör hesaplama
-- Birim testleri ve hata senaryoları
+## Faz 3: Piyasa verisi / OHLCV altyapısı
 
-## 4. Azure OpenAI entegrasyonu
+- Piyasa verisi erişimi
+- OHLCV veri modeli ve veri doğrulama
+- Tarih aralığı ve hata senaryoları
 
-- Sunucu tarafı yapılandırma ve secrets yönetimi
-- Yapılandırılmış strateji çıktısı
-- LLM çıktısı doğrulama ve güvenlik sınırları
-- Başarısızlık ve yeniden deneme davranışları
+## Faz 4: Teknik indikatörler
 
-## 5. Backtest
+- Kontrollü indikatör hesaplamaları
+- Birim testleri ve veri sınırları
 
-- Doğrulanmış stratejiyi `backtesting.py` ile çalıştırma
+## Faz 5: Backtest altyapısı
+
+- Tekrarlanabilir backtest akışı
 - Performans metrikleri ve sonuç modeli
-- Tekrarlanabilir test verileri ve senaryolar
 
-## 6. Mobile deneyimi
+## Faz 6: LLM entegrasyonu
 
-- Strateji oluşturma formu
-- Yükleniyor, hata ve boş durum ekranları
-- Backtest özet ve detay görünümleri
-- Backend entegrasyon testleri
+- Azure OpenAI entegrasyonu
+- Yapılandırılmış strateji çıktısı
+- Sağlayıcı hata yönetimi
 
-## 7. Dağıtım ve teslim
+## Faz 7: Üretilen kodun doğrulanması ve güvenlik
+
+- İzin verilen yapıların doğrulanması
+- Güvenli yürütme sınırları
+- Kötü niyetli veya geçersiz çıktı testleri
+
+## Faz 8: Flutter-backend entegrasyonu
+
+- API istemcisi ve yapılandırması
+- Yükleniyor, hata ve boş durumları
+- Entegrasyon testleri
+
+## Faz 9: Sonuç görselleştirme
+
+- Backtest özeti ve ayrıntıları
+- Grafikler ve performans metrikleri
+
+## Faz 10: Docker, Nginx ve VPS dağıtımı
 
 - Backend Docker imajı
-- Nginx ters proxy ve HTTPS hazırlığı
-- Ubuntu VPS kurulum dokümantasyonu
-- Son testler, izleme ve proje sunumu
-
-Her aşama küçük, test edilebilir teslimlere ayrılacak; bir sonraki aşamaya
-geçmeden önce ilgili dokümantasyon ve testler güncellenecektir.
+- Nginx ters proxy ve HTTPS yapılandırması
+- VPS kurulum ve işletim dokümantasyonu

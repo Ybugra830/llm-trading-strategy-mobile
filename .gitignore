@@ -1,26 +1,34 @@
-# Python
+# Python bytecode and caches
 __pycache__/
-*.py[cod]
+*.pyc
 *.pyo
 *.pyd
 *.egg-info/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-.coverage
-coverage.xml
-htmlcov/
+
+# Python virtual environments
 .venv/
 venv/
 env/
+ENV/
 
-# Ortam değişkenleri ve secrets
+# Coverage outputs
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+coverage/
+
+# Local environment files and secrets
 .env
 .env.*
 *.env
+*.env.*
 !**/.env.example
 
-# Flutter / Dart
+# Flutter and Dart generated files
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
@@ -28,25 +36,31 @@ env/
 .pub-cache/
 .pub/
 build/
-coverage/
 *.iml
 
-# IDE
+# IDE settings
 .idea/
 .vscode/
 *.ipr
 *.iws
 
-# İşletim sistemi
+# Operating system files
 .DS_Store
 Thumbs.db
 Desktop.ini
 
-# Loglar ve geçici dosyalar
+# Logs and temporary files
 *.log
 *.swp
+*.swo
 *.tmp
+*.temp
+tmp/
+temp/
 
-# Yerel ve üretilen veriler
-backend/generated/
-backend/data/reports/
+# Generated reports and local outputs
+reports/
+generated/
+
+# pubspec.lock is intentionally tracked for the Flutter application.
+!mobile/pubspec.lock
