@@ -5,14 +5,15 @@ Python koduna dönüştürmek ve ilerleyen aşamalarda doğrulayıp geçmiş piy
 verileri üzerinde test etmek amacıyla geliştirilen mobil uygulama ve backend
 projesidir.
 
-> **Mevcut durum:** Backend, NVIDIA NIM üzerinden ilk strateji kodu üretim
-> endpoint'ini sunar. Üretilen kod henüz doğrulanmaz, çalıştırılmaz veya backtest
-> edilmez. Flutter uygulaması halen başlangıç kabuğu aşamasındadır.
+> **Mevcut durum:** Backend, NVIDIA NIM üzerinden strateji kodu üretim endpoint'i
+> ve AST tabanlı statik doğrulama endpoint'i sunar. Üretilen kod hiçbir aşamada
+> çalıştırılmaz veya backtest edilmez. Flutter uygulaması halen başlangıç kabuğu
+> aşamasındadır.
 
 ## Depo yapısı
 
 ```text
-backend/  FastAPI uygulaması, NVIDIA NIM entegrasyonu ve backend testleri
+backend/  FastAPI, NVIDIA NIM, statik doğrulama ve backend testleri
 mobile/   Android ve iOS hedefli Flutter uygulama iskeleti
 docs/     Türkçe mimari ve staj dokümantasyonu
 ```
@@ -42,9 +43,12 @@ uvicorn app.main:app --reload
 - Sağlık kontrolü: `http://127.0.0.1:8000/health`
 - Swagger arayüzü: `http://127.0.0.1:8000/docs`
 - Strateji üretimi: `POST /api/v1/strategies/generate`
+- Statik doğrulama: `POST /api/v1/strategies/validate`
 
-Swagger'da strateji üretim endpoint'ini açıp **Try it out** seçeneğiyle doğal
-dilde bir strateji isteği gönderebilirsiniz.
+Swagger'da üretim ve doğrulama endpoint'lerini **Try it out** seçeneğiyle
+deneyebilirsiniz. Güvensiz veya geçersiz kaynak kodu normal sonuç olarak HTTP
+200 ve `valid=false` döndürür; boş ya da 20.000 karakterden uzun `code` alanı
+HTTP 422 döndürür.
 
 ## Backend testleri
 
@@ -75,9 +79,12 @@ flutter test
 
 ## Mevcut sınırlar ve sonraki aşamalar
 
-Bu aşamada LLM çıktısı yalnızca metin olarak döndürülür. AST doğrulaması, güvenli
-kod çalıştırma, `ta`, `backtesting.py`, `yfinance`, piyasa verisi ve backtest
-henüz uygulanmamıştır. Docker, Nginx ve VPS dağıtımı da sonraki aşamalardadır.
+LLM çıktısı güvenilir uygulama kodu değildir. Mevcut AST doğrulaması riski azaltan
+statik bir filtredir; tam bir sandbox değildir. Bu aşamada üretilen kod
+çalıştırılmamaktadır. Güvenli kod çalıştırma, `ta`, `backtesting.py`, `yfinance`,
+piyasa verisi ve backtest henüz uygulanmamıştır. Docker, Nginx ve VPS dağıtımı da
+sonraki aşamalardadır.
 
 Ayrıntılı backend kullanımı için [backend/README.md](backend/README.md), hedef
-mimari için [docs/architecture.md](docs/architecture.md) dosyasına bakın.
+mimari için [docs/architecture.md](docs/architecture.md), AST teknik notu için
+[docs/ast-validation.md](docs/ast-validation.md) dosyasına bakın.

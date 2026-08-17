@@ -3,6 +3,7 @@
 from fastapi import FastAPI
 
 from app.api.strategy_routes import router as strategy_router
+from app.api.validation_routes import router as validation_router
 
 app = FastAPI(
     title="LLM Trading Strategy API",
@@ -10,6 +11,7 @@ app = FastAPI(
 )
 
 app.include_router(strategy_router)
+app.include_router(validation_router)
 
 
 @app.get("/health")

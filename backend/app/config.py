@@ -1,16 +1,20 @@
 """Uygulama yapılandırması."""
 
 from functools import lru_cache
+from pathlib import Path
 
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+BACKEND_ENV_FILE = Path(__file__).resolve().parents[1] / ".env"
+ROOT_ENV_FILE = Path(__file__).resolve().parents[2] / ".env"
 
 
 class Settings(BaseSettings):
     """Ortam değişkenlerinden yüklenen uygulama ayarları."""
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=(ROOT_ENV_FILE, BACKEND_ENV_FILE),
         env_file_encoding="utf-8",
         extra="ignore",
     )
@@ -25,3 +29,15 @@ class Settings(BaseSettings):
 def get_settings() -> Settings:
     """Ayarları süreç boyunca yeniden kullanılmak üzere yükle."""
     return Settings()
+
+
+def get_nvidia_config_summary(settings: Settings) -> dict[str, bool | int | str]:
+    """Gizli değeri açığa çıkarmadan NVIDIA yapılandırmasını özetle."""
+    api_key = settings.nvidia_api_key.get_secret_value().strip()
+    return {
+        "api_key_present": bool(api_key),
+        "api_key_length": len(api_key),
+        "base_url": settings.nvidia_base_url,
+        "model": settings.nvidia_model,
+        "max_tokens": settings.nvidia_max_tokens,
+    }
