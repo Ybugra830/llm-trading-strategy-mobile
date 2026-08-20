@@ -1,6 +1,7 @@
 """Uygulama servisleri."""
 
+from app.services.backtest_service import BacktestService
 from app.services.strategy_service import StrategyService
 from app.services.validation_service import ValidationService
 
-__all__ = ["StrategyService", "ValidationService"]
+__all__ = ["BacktestService", "StrategyService", "ValidationService"]

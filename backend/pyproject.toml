@@ -8,10 +8,15 @@ version = "0.1.0"
 description = "LLM Trading Strategy Mobile FastAPI backend iskeleti"
 requires-python = ">=3.11"
 dependencies = [
+    "backtesting>=0.6.4,<1.0",
     "fastapi>=0.115,<1.0",
+    "numpy>=1.26,<3.0",
     "openai>=1.60,<3.0",
+    "pandas>=2.2,<4.0",
     "pydantic-settings>=2.7,<3.0",
+    "ta>=0.11,<1.0",
     "uvicorn[standard]>=0.30,<1.0",
+    "yfinance>=0.2.54,<2.0",
 ]
 
 [project.optional-dependencies]
@@ -22,4 +27,4 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-q"
+addopts = "-q --basetemp=.pytest_tmp"

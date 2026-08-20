@@ -64,3 +64,4 @@ generated/
 
 # pubspec.lock is intentionally tracked for the Flutter application.
 !mobile/pubspec.lock
+.pytest_tmp/
