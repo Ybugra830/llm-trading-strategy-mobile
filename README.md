@@ -6,10 +6,9 @@ verileri üzerinde test etmek amacıyla geliştirilen mobil uygulama ve backend
 projesidir.
 
 > **Mevcut durum:** Backend; NVIDIA NIM strateji üretimi, AST tabanlı statik
-> doğrulama ve tamamlanmış günlük BIST verisinde güvenilir referans stratejiyle
-> backtest endpoint'leri sunar. LLM tarafından üretilen kod çalıştırılmaz veya
-> Day 4 backtest motoruna bağlanmaz. Flutter uygulaması halen başlangıç kabuğu
-> aşamasındadır.
+> doğrulama, tamamlanmış günlük BIST verisinde trusted backtest ve generated
+> stratejiler için Docker-isolated Strategy Lab akışı sunar. Generated source
+> FastAPI Python sürecinde çalıştırılmaz. Flutter halen başlangıç kabuğudur.
 
 ## Depo yapısı
 
@@ -46,6 +45,8 @@ uvicorn app.main:app --reload
 - Strateji üretimi: `POST /api/v1/strategies/generate`
 - Statik doğrulama: `POST /api/v1/strategies/validate`
 - BIST backtest: `POST /api/v1/backtests/bist`
+- Strategy Lab: `POST /api/v1/strategy-lab/run`
+- Flutter capability metadata: `GET /api/v1/strategy-lab/capabilities`
 
 Swagger'da üretim ve doğrulama endpoint'lerini **Try it out** seçeneğiyle
 deneyebilirsiniz. Güvensiz veya geçersiz kaynak kodu normal sonuç olarak HTTP
@@ -83,6 +84,31 @@ pytest
 
 Backend testleri gerçek NVIDIA API anahtarı, Yahoo Finance veya dış ağ kullanmaz.
 
+## Day 5 Strategy Lab sandbox
+
+Generated strateji yalnızca özel Docker image içinde çalışır. Image'i oluşturmak
+için Docker Desktop/daemon çalışırken:
+
+```powershell
+cd backend
+docker build -f sandbox/Dockerfile -t llm-strategy-sandbox:dev sandbox
+python scripts/check_sandbox.py
+```
+
+Örnek istek:
+
+```powershell
+Invoke-RestMethod -Method Post `
+  -Uri http://127.0.0.1:8000/api/v1/strategy-lab/run `
+  -ContentType "application/json" `
+  -Body '{"prompt":"RSI 35 altında al ve RSI 70 üzerinde sat.","symbol":"THYAO","initial_cash":100000,"commission":0.002}'
+```
+
+Repair yalnızca statik validation ve deterministik smoke testinde yapılabilir.
+Smoke sonrasında strateji frozen olur; held-out son altı aylık BIST backtest'i
+repair için NVIDIA'ya bilgi göndermez. Supported-indicator contract SMA, EMA,
+RSI, MACD, Bollinger Bands, Stochastic ve ATR değerleriyle sınırlıdır.
+
 ## Flutter kurulumu ve çalıştırma
 
 Flutter 3.35.x gereklidir.
@@ -103,11 +129,12 @@ flutter test
 
 ## Mevcut sınırlar ve sonraki aşamalar
 
-LLM çıktısı güvenilir uygulama kodu değildir. Mevcut AST doğrulaması riski azaltan
-statik bir filtredir; tam bir sandbox değildir. Day 4, piyasa verisi ve backtest
-altyapısını yalnızca güvenilir repository-owned kodla doğrular. Üretilen LLM
-kodu çalıştırılmamaktadır. Runtime/sandbox köprüsü, indikatör referans
-karşılaştırması, Flutter API entegrasyonu ve deployment sonraki aşamalardadır.
+LLM çıktısı güvenilir uygulama kodu değildir. AST doğrulaması statik filtredir;
+generated runtime yalnızca network-disabled, read-only ve kaynak sınırlı Docker
+sandbox'da gerçekleşir. Kapsamlı indikatör sayısal karşılaştırması, Flutter API
+entegrasyonu ve deployment sonraki aşamalardadır. Strategy Lab MVP isteği uzun
+sürebilir; production/mobile sürümünde job-id ve polling tabanlı asenkron iş
+mimarisi değerlendirilecektir.
 
 Yahoo Finance verisi için gerçek zaman veya kesintisiz erişim garantisi yoktur.
 `yfinance`, Yahoo tarafından desteklenen resmî bir istemci değildir ve kullanım
@@ -118,4 +145,6 @@ garanti etmez.
 Ayrıntılı backend kullanımı için [backend/README.md](backend/README.md), hedef
 mimari için [docs/architecture.md](docs/architecture.md), AST teknik notu için
 [docs/ast-validation.md](docs/ast-validation.md), Day 4 açıklaması için
-[docs/day4-bist-backtest.md](docs/day4-bist-backtest.md) dosyasına bakın.
+[docs/day4-bist-backtest.md](docs/day4-bist-backtest.md), Day 5 güvenli runtime
+için [docs/day5-safe-runtime-and-strategy-lab.md](docs/day5-safe-runtime-and-strategy-lab.md)
+dosyasına bakın.

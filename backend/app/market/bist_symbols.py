@@ -4,21 +4,22 @@ from typing import Final
 
 from app.market.errors import UnsupportedBistSymbolError
 
+SUPPORTED_BIST_SYMBOL_ORDER: Final[tuple[str, ...]] = (
+    "THYAO",
+    "ASELS",
+    "TUPRS",
+    "BIMAS",
+    "EREGL",
+    "KCHOL",
+    "GARAN",
+    "AKBNK",
+    "SISE",
+    "SAHOL",
+    "FROTO",
+    "TOASO",
+)
 SUPPORTED_BIST_SYMBOLS: Final[frozenset[str]] = frozenset(
-    {
-        "THYAO",
-        "ASELS",
-        "TUPRS",
-        "BIMAS",
-        "EREGL",
-        "KCHOL",
-        "GARAN",
-        "AKBNK",
-        "SISE",
-        "SAHOL",
-        "FROTO",
-        "TOASO",
-    }
+    SUPPORTED_BIST_SYMBOL_ORDER
 )
 
 

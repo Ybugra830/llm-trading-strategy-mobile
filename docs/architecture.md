@@ -2,117 +2,105 @@
 
 ## Mevcut uygulama
 
-Projenin mevcut aşamasında aşağıdaki parçalar vardır:
+Repository şu bileşenleri içerir:
 
-- Android ve iOS hedefli Flutter uygulama kabuğu
-- FastAPI backend uygulaması
-- `GET /health` sağlık endpoint'i
-- `POST /api/v1/strategies/generate` NVIDIA NIM kod üretim endpoint'i
-- `POST /api/v1/strategies/validate` AST tabanlı statik doğrulama endpoint'i
-- `POST /api/v1/backtests/bist` güvenilir referans strateji backtest endpoint'i
-- Yahoo Finance günlük BIST verisi, OHLCV temizliği ve kronolojik split
-- Ağdan bağımsız backend testleri ve Türkçe dokümantasyon
+- Android/iOS hedefli, henüz backend'e bağlanmamış Flutter kabuğu
+- FastAPI ve `GET /health`
+- NVIDIA NIM `POST /api/v1/strategies/generate`
+- AST tabanlı `POST /api/v1/strategies/validate`
+- Trusted repository-owned `POST /api/v1/backtests/bist`
+- Docker-isolated `POST /api/v1/strategy-lab/run`
+- Flutter metadata `GET /api/v1/strategy-lab/capabilities`
+- Yahoo Finance, OHLCV temizliği ve kronolojik son-altı-ay split'i
+- Ağ, NVIDIA, Yahoo ve Docker gerektirmeyen pytest paketi
 
-Mobil uygulama henüz backend'e bağlanmaz. Day 4 backtest'i yalnızca repository
-içindeki güvenilir stratejiyi kullanır; LLM kodu yürütme, indikatör referans
-karşılaştırması ve güvenli runtime henüz yoktur.
+## İki ayrı execution yolu
 
-## Mevcut kod üretim ve doğrulama akışı
-
-```text
-Doğal dil strateji isteği
-        ↓
-FastAPI /generate
-        ↓
-NVIDIA NIM
-        ↓
-Python kaynak kodu (güvenilmeyen metin)
-        ↓
-FastAPI /validate
-        ↓
-Kod temizleme
-        ↓
-ast.parse()
-        ↓
-Import + güvenlik + interface + basit look-ahead kontrolleri
-        ↓
-ValidationResponse
-```
-
-Doğrulama endpoint'i üretim endpoint'ini otomatik çağırmaz. İstemci, üretilen
-metni ayrı bir istekle doğrulamaya gönderir. Bu ayrım mevcut iki adımı açık ve
-bağımsız tutar.
-
-## Day 4 piyasa verisi ve backtest akışı
+### TRUSTED HOST PATH
 
 ```text
-BIST sembolü
-      ↓ allowlist + .IS
-Yahoo Finance / yfinance
-      ↓ yaklaşık 3 yıl, tamamlanmış günlük barlar
-OHLCV Cleaner
-      ↓
-Kronolojik Split
-      ↓ son 6 takvim ayı
-ReferenceSmaCrossStrategy
-      ↓
-backtesting.py
-      ↓ finalize_trades=True
-JSON-safe performans metrikleri
-      ↓
-POST /api/v1/backtests/bist
+BIST symbol → Yahoo → clean/split → ReferenceSmaCrossStrategy
+→ host backtesting.py → metrics → /api/v1/backtests/bist
 ```
 
-Yahoo isteğinin exclusive bitişi BIST takvimindeki bugündür; potansiyel olarak
-tamamlanmamış güncel mum istenmez. Backtest yalnızca son altı aylık test
-DataFrame'ini alır. Test penceresi sonunda açık kalan trusted-strategy pozisyonu,
-tarihsel rapora katılması için son barda finalize edilir.
+Bu Day 4 tanı yolu yalnızca repository-owned sınıfı çalıştırır. Günlük Yahoo
+isteğinin exclusive bitişi BIST takvimindeki bugündür; tamamlanmamış güncel mum
+istenmez. Son altı aylık pencerede açık kalan pozisyon raporlama için
+`finalize_trades=True` ile final barda kapatılır.
 
-## Statik doğrulama güvenlik sınırı
-
-`ast.parse()` kaynak kodunu bir Abstract Syntax Tree'ye dönüştürür ve normal
-Python ifadelerini çalıştırmaz. Sistem, izin verilen import köklerini, belirli
-yasaklı çağrıları, `GeneratedStrategy` arayüzünü ve açık negatif `.shift(-N)`
-kalıplarını kontrol eder.
-
-LLM çıktısı güvenilir uygulama kodu değildir. AST doğrulaması yalnızca bilinen
-bazı riskleri tespit eder; alias çözümü, kapsamlı veri akışı analizi veya eksiksiz
-look-ahead tespiti yapmaz ve tam bir sandbox değildir. Bu aşamada üretilen kod
-çalıştırılmamaktadır.
-
-## Sonraki fazlarda tamamlanacak mimari
+### UNTRUSTED GENERATED CODE SANDBOX PATH
 
 ```text
-Flutter Mobile
-      ↓ HTTPS
-FastAPI Backend
-      ↓
-LLM Provider (mevcut: NVIDIA NIM)
-      ↓
-Statik doğrulama
-      ↓
-İzole runtime / sandbox testi
-      ↓
-İndikatör referans karşılaştırması
-      ↓
-Doğrulanmış LLM stratejisi + piyasa verisi
-      ↓
-Güvenli backtest köprüsü
-      ↓
-Sonuçların Flutter'a döndürülmesi
+Prompt → NVIDIA → Generated source → static validation
+→ bounded pre-test repair → deterministic sandbox smoke
+→ strategy freeze → Yahoo → clean/split → held-out final six months
+→ frozen strategy sandbox backtest → metrics → /api/v1/strategy-lab/run
 ```
 
-`yfinance`, `ta` ve `backtesting.py` runtime dependency olarak eklenmiştir;
-ancak `ta` Day 4 SMA stratejisinde kullanılmaz. Güvenli LLM yürütme ortamı,
-indikatör karşılaştırması, Docker, Nginx ve VPS dağıtımı sonraki fazlardadır.
+Generated source FastAPI sürecinde import edilmez. Host, kodu read-only geçici
+input mount'uyla Docker worker'a aktarır. Dinamik import yalnızca network-disabled,
+read-only, non-root ve kaynak sınırlı konteyner içinde yapılır. Sandbox yoksa
+yerel fallback bulunmaz.
 
-## Güvenlik ilkeleri
+## Static validation ve supported-indicator contract
 
-- Gizli değerler yalnızca sunucu tarafındaki ortam değişkenlerinde tutulur.
-- Gerçek `.env` dosyaları ve API anahtarları Git'e eklenmez.
-- Sağlayıcı hata ayrıntıları public API yanıtlarına taşınmaz.
-- LLM çıktısı hiçbir zaman doğrudan çalıştırılabilir veya güvenilir kabul edilmez.
-- Day 4 backtest endpoint'i kaynak kod kabul etmez; yalnızca sabit trusted
-  strategy sınıfını kullanır.
-- Gelecekteki yürütme aşaması, statik doğrulamadan ayrı bir izolasyon katmanı
-  gerektirir.
+`ast.parse()` kodu çalıştırmadan syntax tree üretir. Import allowlist, yasaklı
+çağrılar, `GeneratedStrategy` interface'i ve açık negatif shift kontrol edilir.
+Bu filtre alias/data-flow analizinin tamamını yapmadığından sandbox yerine geçmez.
+
+Supported indicators SMA, EMA, RSI, MACD, Bollinger Bands, Stochastic ve ATR'dir.
+Standart hesaplar `ta.trend`, `ta.momentum` ve `ta.volatility` implementasyonlarına
+yönlendirilir. Bu bir supported-indicator contract'tır; keyfî özel formüllerin
+tam sayısal doğrulaması değildir. Kapsamlı reference comparison gelecek fazdır.
+
+## Repair, freeze ve held-out izolasyonu
+
+En fazla üç toplam strateji sürümü vardır. Repair yalnızca statik hata veya
+deterministik smoke failure için kullanılabilir. NVIDIA; özgün prompt, mevcut kod
+ve güvenli pre-test bulgularından başka bilgi almaz.
+
+Validation ve smoke geçtiğinde kaynak SHA-256 ile frozen olur. Market verisi bu
+noktadan sonra indirilir. Worker smoke ve gerçek backtest kaynak hash'lerini
+doğrular. Held-out altı aylık verideki hata repair başlatmaz; OHLCV, tarih,
+runtime bulgusu veya metrik NVIDIA'ya gönderilmez.
+
+## Docker sınırı
+
+Worker protokolü `schema_version=1` tek JSON mesajıdır. Konteynerde network,
+IPC, Linux capability ve privilege escalation kapalıdır; root filesystem
+read-only, kullanıcı non-root, `/tmp` 32 MB ve CPU/bellek/PID/time/output/open-file
+limitlidir. Yalnızca `strategy.py`, `data.csv` ve `request.json` taşıyan input
+dizini read-only mount edilir. Repository, `.env`, home, Docker socket ve secret
+mount edilmez.
+
+Altı aylık günlük OHLCV küçük olduğu için worker interchange formatı CSV'dir.
+Gelecekte büyük intraday veri için Parquet yalnızca ölçüm sonrasında
+değerlendirilebilir.
+
+## Flutter ve gelecek mimari
+
+Flutter yalnızca FastAPI ile HTTPS/JSON üzerinden konuşacak; NVIDIA key, Yahoo
+mantığı veya Python execution taşımayacaktır. Mevcut Strategy Lab MVP'si istemci
+açısından uzun süren request/response modelidir. Flutter bilinçli timeout ve
+loading/progress state kullanmalıdır.
+
+Production/mobile ölçeğinde şu job-resource modeli değerlendirilebilir:
+
+```text
+POST /strategy-lab/jobs → 202 + job_id
+→ background execution
+→ GET /strategy-lab/jobs/{id}
+```
+
+Gerçek bidirectional olay ihtiyacı yoksa polling, WebSocket'ten önce tercih
+edilmelidir. Day 5 job altyapısı, Redis, Celery, database, SSE veya WebSocket
+uygulamaz.
+
+## Güvenlik ve sonraki fazlar
+
+- Secret'lar yalnızca backend environment'ında tutulur.
+- Provider/worker traceback ve internal çıktıları public API'ye taşınmaz.
+- Generated code host sürece hiçbir zaman alınmaz.
+- Day 4 trusted endpoint'i generated source kabul etmez.
+- Full indicator numerical comparison, Flutter networking/UI, auth, database,
+  production deployment ve live trading sonraki fazlardır.

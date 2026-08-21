@@ -2,12 +2,12 @@
 
 Bu dizin, projenin Python 3.11+ ve FastAPI tabanlı backend uygulamasıdır.
 Mevcut aşamada sağlık kontrolü, NVIDIA NIM üzerinden Python strateji kodu
-üretimi, AST tabanlı statik kod doğrulaması ve güvenilir repository-owned
-stratejiyle BIST tarihsel backtest'i bulunur.
+üretimi, AST tabanlı doğrulama, trusted BIST backtest'i ve Docker-isolated
+generated-strategy Strategy Lab akışı bulunur.
 
-> LLM çıktısı güvenilir uygulama kodu değildir. Bu aşamada üretilen kod
-> çalıştırılmamaktadır. AST kontrolü bir sandbox değildir. Day 4 backtest'i
-> yalnızca backend içinde tanımlanmış güvenilir referans stratejiyi çalıştırır.
+> LLM çıktısı güvenilir uygulama kodu değildir. AST kontrolü sandbox değildir.
+> Generated source FastAPI Python sürecinde çalıştırılmaz; yalnızca Day 5 Docker
+> worker'ında yüklenir. Day 4 endpoint'i trusted referans stratejiyi korur.
 
 ## Kurulum ve ortam yapılandırması
 
@@ -160,6 +160,47 @@ runtime dependency'dir. Day 4 güvenilir SMA stratejisi `ta` kullanmaz.
 Day 4, tam LLM → backtest entegrasyonunun son aşaması değildir. Day 4'te yalnızca
 güvenilir repository-owned referans stratejisi çalıştırılır. LLM tarafından
 üretilen Python kodu Day 4 FastAPI sürecinde çalıştırılmaz.
+
+## Day 5 Strategy Lab
+
+`POST /api/v1/strategy-lab/run`; prompt, BIST sembolü, başlangıç bakiyesi ve
+komisyonu tek akışta işler. `GET /api/v1/strategy-lab/capabilities`, Flutter için
+sıralı sembolleri, supported indicators ve public input limitlerini döndürür.
+
+Sandbox image'i:
+
+```powershell
+docker build -f sandbox/Dockerfile -t llm-strategy-sandbox:dev sandbox
+python scripts/check_sandbox.py
+```
+
+Docker worker network olmadan, read-only root, non-root user, capability drop,
+no-new-privileges, CPU/bellek/PID/zaman/çıktı, IPC ve open-file sınırlarıyla
+çalışır. Docker kullanılamıyorsa HTTP 503 döner; local execution fallback yoktur.
+
+```powershell
+Invoke-RestMethod -Method Post `
+  -Uri http://127.0.0.1:8000/api/v1/strategy-lab/run `
+  -ContentType "application/json" `
+  -Body '{"prompt":"RSI 35 altında al ve RSI 70 üzerinde sat.","symbol":"THYAO","initial_cash":100000,"commission":0.002}'
+```
+
+En fazla üç toplam strateji sürümü vardır. Repair yalnızca statik validation veya
+deterministik smoke failure için yapılır. Smoke geçince kod SHA-256 kimliğiyle
+frozen olur. Yahoo ve held-out son altı aylık veri bundan sonra alınır; gerçek
+BIST failure NVIDIA'ya gönderilmez ve repair başlatmaz.
+
+Supported-indicator contract: SMA, EMA, RSI, MACD, Bollinger Bands, Stochastic
+ve ATR. Standart hesaplarda onaylı `ta` modülleri tercih edilir; keyfî özel
+formüllerin matematiksel doğrulandığı iddia edilmez.
+
+Günlük altı aylık veri sandbox'a CSV ile aktarılır. Büyük intraday veri için
+Parquet ileride ölçümle değerlendirilebilir; Day 5 binary dependency eklemez.
+
+MVP endpoint'i istemci açısından uzun süren request/response modelidir. Flutter
+ileride bilinçli timeout ve loading state kullanmalıdır. Production sürümünde
+`POST job → 202 + job_id → GET job` polling modeli değerlendirilebilir; Day 5
+Redis, Celery, WebSocket veya job endpoint'i içermez.
 
 ## NVIDIA bağlantı tanısı
 

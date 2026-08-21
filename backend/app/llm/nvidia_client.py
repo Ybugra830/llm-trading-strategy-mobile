@@ -17,7 +17,7 @@ from openai import (
 )
 
 from app.config import Settings
-from app.llm.prompt_builder import build_strategy_messages
+from app.llm.prompt_builder import build_repair_messages, build_strategy_messages
 
 logger = logging.getLogger(__name__)
 
@@ -90,6 +90,21 @@ class NvidiaNimClient:
 
     async def generate_code(self, prompt: str) -> str:
         """Doğal dil strateji isteğini Python koduna dönüştür."""
+        return await self._complete(build_strategy_messages(prompt))
+
+    async def repair_code(
+        self,
+        original_prompt: str,
+        current_code: str,
+        safe_errors: list[str],
+    ) -> str:
+        """Mevcut stratejiyi güvenli teknik bulgularla sınırlı biçimde onart."""
+        return await self._complete(
+            build_repair_messages(original_prompt, current_code, safe_errors)
+        )
+
+    async def _complete(self, messages: list) -> str:
+        """OpenAI uyumlu NVIDIA completion çağrısını güvenli biçimde çalıştır."""
         api_key = self._settings.nvidia_api_key.get_secret_value().strip()
         if not api_key:
             logger.error("NVIDIA NIM request skipped: API key is not configured.")
@@ -102,7 +117,7 @@ class NvidiaNimClient:
             ) as client:
                 completion = await client.chat.completions.create(
                     model=self._settings.nvidia_model,
-                    messages=build_strategy_messages(prompt),
+                    messages=messages,
                     max_tokens=self._settings.nvidia_max_tokens,
                     temperature=0.1,
                 )

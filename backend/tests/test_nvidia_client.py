@@ -96,6 +96,29 @@ def test_generate_code_uses_expected_nvidia_parameters(monkeypatch) -> None:
     ]
 
 
+def test_repair_code_sends_only_supplied_prompt_code_and_safe_errors(monkeypatch) -> None:
+    fake_client = FakeAsyncOpenAI()
+    monkeypatch.setattr(
+        "app.llm.nvidia_client.AsyncOpenAI",
+        lambda **kwargs: _capture_client(fake_client, kwargs),
+    )
+
+    result = asyncio.run(
+        NvidiaNimClient(build_settings()).repair_code(
+            "RSI düşükken al.",
+            "class GeneratedStrategy: pass",
+            ["GeneratedStrategy arayüzü eksik."],
+        )
+    )
+
+    assert result == "generated code"
+    content = fake_client.create_kwargs["messages"][1]["content"]
+    assert "RSI düşükken al." in content
+    assert "class GeneratedStrategy: pass" in content
+    assert "GeneratedStrategy arayüzü eksik." in content
+    assert "Yahoo" not in content
+
+
 def _capture_client(fake_client: FakeAsyncOpenAI, kwargs: dict) -> FakeAsyncOpenAI:
     fake_client.client_kwargs = kwargs
     return fake_client

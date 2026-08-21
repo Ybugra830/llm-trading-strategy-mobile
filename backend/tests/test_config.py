@@ -1,5 +1,8 @@
 """Uygulama yapılandırması testleri."""
 
+import pytest
+from pydantic import ValidationError
+
 from app.config import Settings, get_nvidia_config_summary
 
 
@@ -36,3 +39,31 @@ def test_config_summary_never_contains_api_key() -> None:
     assert summary["api_key_present"] is True
     assert summary["api_key_length"] == len(api_key)
     assert api_key not in repr(summary)
+
+
+def test_sandbox_defaults_use_three_total_strategy_versions() -> None:
+    settings = Settings(_env_file=None)
+
+    assert settings.sandbox_image == "llm-strategy-sandbox:dev"
+    assert settings.sandbox_timeout_seconds == 10
+    assert settings.sandbox_memory == "256m"
+    assert settings.sandbox_cpus == 1
+    assert settings.sandbox_pids_limit == 64
+    assert settings.sandbox_max_output_bytes == 1_048_576
+    assert settings.max_strategy_versions == 3
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("sandbox_timeout_seconds", 0),
+        ("sandbox_memory", "unlimited"),
+        ("sandbox_cpus", 0),
+        ("sandbox_pids_limit", 1),
+        ("sandbox_max_output_bytes", 100),
+        ("max_strategy_versions", 4),
+    ],
+)
+def test_invalid_sandbox_limits_are_rejected(field: str, value: object) -> None:
+    with pytest.raises(ValidationError):
+        Settings(_env_file=None, **{field: value})

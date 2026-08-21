@@ -812,7 +812,31 @@ Günlük veri isteğinde BIST yerel takvimindeki bugün exclusive `end` olarak
 kullanılır. Böylece potansiyel olarak tamamlanmamış güncel günlük bar tarihsel
 backtest verisine dahil edilmez.
 
-> Day 4 güvenlik sınırı: `/generate` çıktısındaki keyfi LLM kaynak kodu doğrudan bu endpoint'e verilmez ve FastAPI sürecinde `exec/eval` ile çalıştırılmaz. LLM stratejisini backtest motoruna bağlayacak runtime/sandbox köprüsü sonraki fazdır.
+> Day 4 güvenlik sınırı: `/generate` çıktısındaki keyfi LLM kaynak kodu doğrudan
+> bu endpoint'e verilmez. Bu endpoint yalnızca trusted repository-owned stratejiyi
+> host üzerinde çalıştırmaya devam eder. Generated source için ayrı Day 5 Docker
+> sandbox yolu kullanılır.
+
+### Strategy Lab
+
+```http
+POST /api/v1/strategy-lab/run
+```
+
+Day 5 endpoint'i prompt, BIST sembolü, cash ve commission değerini alır. NVIDIA
+üretimi, statik validation, en fazla üç toplam sürümlü pre-test repair,
+deterministik Docker smoke testi, strategy freeze, Yahoo split ve frozen
+generated-strategy sandbox backtest'ini tek response'ta birleştirir.
+
+Gerçek altı aylık test dönemi held-out kalır. Bu verideki runtime failure repair
+başlatmaz ve NVIDIA'ya OHLCV, tarih, hata veya metrik gönderilmez.
+
+```http
+GET /api/v1/strategy-lab/capabilities
+```
+
+Flutter için desteklenen sıralı BIST sembollerini, supported-indicator contract'ı,
+default cash/commission ve prompt limitlerini secret içermeden döndürür.
 
 ### Planlanan Yerel CSV Backtest
 
@@ -894,18 +918,23 @@ Maksimum düzeltme denemesi:
 - JSON-safe performans metrikleri
 - `POST /api/v1/backtests/bist`
 
-### Sonraki Faz — Runtime Test / Sandbox Köprüsü
-- AST'den geçen LLM kodunu ana FastAPI sürecinde doğrudan çalıştırmama
-- Ayrı süreç veya Docker sandbox
-- Ağ erişimini kapatma
-- Süre, bellek ve çıktı sınırı
-- Runtime test
-- Doğrulanmış LLM stratejisini backtest motoruna kontrollü bağlama
+### Gün 5 — Güvenli Runtime ve Strategy Lab ✅
+- Generated source'u FastAPI sürecinde çalıştırmama
+- Network-disabled, read-only, non-root Docker sandbox
+- Süre, bellek, CPU, PID, output, IPC ve open-file sınırları
+- Versiyonlu worker JSON protokolü
+- Deterministik runtime smoke testi
+- En fazla üç toplam sürümlü pre-test repair
+- Supported-indicator contract
+- SHA-256 strategy freeze point
+- Held-out son altı ayda repair olmadan tek değerlendirme
+- `POST /api/v1/strategy-lab/run`
+- `GET /api/v1/strategy-lab/capabilities`
 
-### Sonraki Faz — İndikatör Referans Doğrulaması ve Repair
+### Sonraki Faz — Kapsamlı İndikatör Referans Doğrulaması
 - RSI/SMA/EMA/MACD/Bollinger/Stochastic/ATR sonuçlarını `ta` referansıyla karşılaştırma
 - Tolerans kontrolleri
-- Sınırlı LLM repair döngüsü
+- Keyfî özel formüllerin açık matematiksel doğrulaması
 
 ### Sonraki Faz — Flutter API Entegrasyonu
 - Backend base URL
@@ -1168,14 +1197,15 @@ Bu belge Codex/AI coding agent tarafından okunacaksa aşağıdaki sınırlar ko
 
 - Mevcut backend davranışları sebepsiz yere yeniden yazılmamalıdır.
 - Day 1–3 endpoint'leri korunmalıdır.
-- `mobile/` Day 4 backend çalışmasında değiştirilmemelidir.
+- `mobile/` Day 4–5 backend çalışmasında değiştirilmemelidir.
 - Day 4'te LLM kaynak kodu backtest motorunda çalıştırılmamalıdır.
 - Yahoo Finance bağlantısı yalnızca backend'de olmalıdır.
 - Flutter istemci Yahoo/NVIDIA'ya doğrudan bağlanmamalıdır.
 - `.env` ve secret'lar Git'e eklenmemelidir.
-- `pytest` internet/NVIDIA/Yahoo bağlantısına bağımlı olmamalıdır.
+- `pytest` internet/NVIDIA/Yahoo/Docker bağlantısına bağımlı olmamalıdır.
 - Gerçek Yahoo testi manuel yapılmalı; unit/API testlerinde provider mock/fake edilmelidir.
-- Sandbox/runtime fazı tamamlanmadan `exec`, `eval`, dinamik import veya keyfi LLM kodu yürütülmemelidir.
+- Generated source FastAPI sürecinde hiçbir zaman `exec`, `eval`, `compile` veya
+  dinamik import ile yürütülmemelidir; yalnızca izole worker bunu yükleyebilir.
 
 ### Day 4 başlangıç kabulü
 

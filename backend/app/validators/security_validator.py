@@ -15,6 +15,7 @@ FORBIDDEN_DIRECT_CALLS = frozenset(
         "setattr",
         "delattr",
         "__import__",
+        "print",
     }
 )
 FORBIDDEN_ATTRIBUTE_CALLS = frozenset(

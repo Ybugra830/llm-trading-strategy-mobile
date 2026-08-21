@@ -25,6 +25,10 @@ dev = [
     "pytest>=8,<9",
 ]
 
+[tool.setuptools.packages.find]
+include = ["app*"]
+exclude = ["sandbox*", "scripts*", "tests*"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q --basetemp=.pytest_tmp"
