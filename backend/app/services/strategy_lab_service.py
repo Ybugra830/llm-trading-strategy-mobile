@@ -2,6 +2,7 @@
 
 import asyncio
 import hashlib
+import logging
 from dataclasses import dataclass
 from typing import Protocol
 
@@ -28,11 +29,18 @@ from app.schemas.strategy_lab import (
 from app.services.strategy_service import StrategyService
 from app.services.validation_service import ValidationService
 
+logger = logging.getLogger(__name__)
+
 SAFE_SMOKE_ERRORS = {
     SandboxErrorCode.STRATEGY_IMPORT_ERROR: "GeneratedStrategy modülü güvenli runtime testinde yüklenemedi.",
     SandboxErrorCode.STRATEGY_CLASS_MISSING: "Gerekli GeneratedStrategy sınıfı güvenli runtime testinde bulunamadı.",
     SandboxErrorCode.STRATEGY_INTERFACE_ERROR: "GeneratedStrategy arayüzü güvenli runtime testiyle uyumlu değil.",
-    SandboxErrorCode.STRATEGY_RUNTIME_ERROR: "GeneratedStrategy güvenli runtime testinde çalıştırılamadı.",
+    SandboxErrorCode.STRATEGY_RUNTIME_ERROR: (
+        "GeneratedStrategy güvenli runtime testinde çalıştırılamadı. "
+        "ta indikatörlerini backtesting veri dizilerine doğrudan uygulama; init() "
+        "içinde self.I ile kaydet, helper içinde girdiyi pandas.Series'e çevir, "
+        "NumPy dizisi döndür ve next() içinde son değeri [-1] ile oku."
+    ),
     SandboxErrorCode.STRATEGY_TIMEOUT: "GeneratedStrategy güvenli runtime testinde süre sınırını aştı.",
     SandboxErrorCode.STRATEGY_RESOURCE_LIMIT: "GeneratedStrategy güvenli runtime testinde kaynak sınırını aştı.",
 }
@@ -70,9 +78,21 @@ class StrategyLabService:
         yahoo_symbol = to_yahoo_symbol(symbol)
         generated = await self._strategy_service.generate(request.prompt)
         attempt_count = 1
+        logger.info(
+            "Strategy Lab generated attempt=%s model=%s",
+            attempt_count,
+            generated.model,
+        )
 
         while True:
             prepared = self._validation_service.prepare(generated.code)
+            logger.info(
+                "Strategy Lab static validation attempt=%s model=%s valid=%s errors=%s",
+                attempt_count,
+                generated.model,
+                prepared.validation.valid,
+                prepared.validation.errors,
+            )
             if not prepared.validation.valid:
                 generated, attempt_count = await self._repair_or_fail(
                     request.prompt,
@@ -83,12 +103,26 @@ class StrategyLabService:
                 continue
 
             code_hash = hashlib.sha256(prepared.code.encode("utf-8")).hexdigest()
+            logger.info(
+                "Strategy Lab sandbox request attempt=%s stage=smoke code_hash_prefix=%s",
+                attempt_count,
+                code_hash[:12],
+            )
             smoke = await asyncio.to_thread(
                 self._sandbox_executor.run_smoke,
                 prepared.code,
                 code_hash,
                 request.initial_cash,
                 request.commission,
+            )
+            logger.info(
+                "Strategy Lab sandbox result attempt=%s stage=%s success=%s "
+                "error_code=%s error_message=%s",
+                attempt_count,
+                smoke.stage,
+                smoke.success,
+                smoke.error_code,
+                smoke.error_message,
             )
             if not smoke.success:
                 safe_error = SAFE_SMOKE_ERRORS.get(smoke.error_code)
@@ -109,9 +143,21 @@ class StrategyLabService:
                 attempt_count=attempt_count,
                 validation=prepared.validation,
             )
+            logger.info(
+                "Strategy Lab strategy frozen attempt=%s model=%s code_hash_prefix=%s",
+                attempt_count,
+                generated.model,
+                code_hash[:12],
+            )
             break
 
+        logger.info("Strategy Lab market data request yahoo_symbol=%s", yahoo_symbol)
         market = await asyncio.to_thread(self._prepare_market_data, yahoo_symbol)
+        logger.info(
+            "Strategy Lab sandbox request stage=backtest code_hash_prefix=%s test_rows=%s",
+            frozen.sha256[:12],
+            len(market.split.test_data),
+        )
         result = await asyncio.to_thread(
             self._sandbox_executor.run_backtest,
             frozen.code,
@@ -119,6 +165,14 @@ class StrategyLabService:
             market.split.test_data,
             request.initial_cash,
             request.commission,
+        )
+        logger.info(
+            "Strategy Lab sandbox result stage=%s success=%s error_code=%s "
+            "error_message=%s",
+            result.stage,
+            result.success,
+            result.error_code,
+            result.error_message,
         )
         if not result.success:
             if result.error_code in SAFE_SMOKE_ERRORS:
@@ -154,11 +208,28 @@ class StrategyLabService:
         attempt_count: int,
     ):
         if attempt_count >= self._max_strategy_versions:
+            logger.warning(
+                "Strategy Lab pretest exhausted attempt=%s max_versions=%s errors=%s",
+                attempt_count,
+                self._max_strategy_versions,
+                safe_errors,
+            )
             raise StrategyPretestError
+        logger.info(
+            "Strategy Lab repair requested failed_attempt=%s next_attempt=%s reason=%s",
+            attempt_count,
+            attempt_count + 1,
+            safe_errors,
+        )
         repaired = await self._strategy_service.repair(
             original_prompt,
             current_code,
             [" ".join(error.split())[:300] for error in safe_errors[:10]],
+        )
+        logger.info(
+            "Strategy Lab repair completed attempt=%s model=%s",
+            attempt_count + 1,
+            repaired.model,
         )
         return repaired, attempt_count + 1
 

@@ -29,6 +29,14 @@ def test_generation_prompt_contains_supported_indicator_contract() -> None:
         assert indicator.approved_module in STRATEGY_SYSTEM_PROMPT
 
 
+def test_generation_prompt_requires_backtesting_ta_adapter() -> None:
+    assert "Never override Strategy.__init__" in STRATEGY_SYSTEM_PROMPT
+    assert "self.I" in STRATEGY_SYSTEM_PROMPT
+    assert "pandas.Series" in STRATEGY_SYSTEM_PROMPT
+    assert "to_numpy" in STRATEGY_SYSTEM_PROMPT
+    assert "self.position.close()" in STRATEGY_SYSTEM_PROMPT
+
+
 def test_repair_prompt_preserves_original_code_and_safe_errors() -> None:
     messages = build_repair_messages(
         "RSI düşükken al.",

@@ -1,8 +1,35 @@
-"""Day 4 testleri için deterministik, ağsız piyasa verisi fixture'ları."""
+"""Backend testleri için ortak pytest yapılandırması ve fixture'lar."""
+
+import tempfile
+from pathlib import Path
+from typing import Final
 
 import numpy as np
 import pandas as pd
 import pytest
+
+_PYTEST_TEMP_DIRECTORY: Final[pytest.StashKey[tempfile.TemporaryDirectory[str]]] = (
+    pytest.StashKey()
+)
+
+
+def pytest_configure(config: pytest.Config) -> None:
+    """Her çalıştırma için kullanıcıya ait, çakışmayan bir base temp oluştur."""
+    if config.option.basetemp is not None:
+        return
+
+    temporary_directory = tempfile.TemporaryDirectory(
+        prefix="llm-trading-strategy-pytest-"
+    )
+    config.stash[_PYTEST_TEMP_DIRECTORY] = temporary_directory
+    config.option.basetemp = Path(temporary_directory.name)
+
+
+def pytest_unconfigure(config: pytest.Config) -> None:
+    """Bu pytest çalıştırmasına ait geçici dizini güvenli biçimde temizle."""
+    temporary_directory = config.stash.get(_PYTEST_TEMP_DIRECTORY, None)
+    if temporary_directory is not None:
+        temporary_directory.cleanup()
 
 
 @pytest.fixture

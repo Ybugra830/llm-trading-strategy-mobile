@@ -183,9 +183,10 @@ def test_smoke_failure_can_repair_but_market_data_is_not_leaked(ohlcv_data) -> N
 
     assert response.generation.attempt_count == 2
     assert response.generation.repaired is True
-    assert strategy.repair_calls[0][2] == [
-        "GeneratedStrategy güvenli runtime testinde çalıştırılamadı."
-    ]
+    repair_error = strategy.repair_calls[0][2][0]
+    assert "GeneratedStrategy güvenli runtime testinde çalıştırılamadı." in repair_error
+    assert "self.I" in repair_error
+    assert "pandas.Series" in repair_error
     assert provider.calls == ["THYAO.IS"]
 
 

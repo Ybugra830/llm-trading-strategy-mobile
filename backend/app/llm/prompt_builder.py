@@ -31,6 +31,29 @@ The supported-indicator contract is limited to:
 For standard indicators, strongly prefer the approved ta implementation above.
 Do not invent unsupported indicators or claim custom formulas are verified.
 
+backtesting.py integration rules are mandatory:
+- Never override Strategy.__init__; initialize indicators only in init().
+- self.data.Open/High/Low/Close/Volume are backtesting arrays, not pandas Series.
+- Never pass a backtesting data array directly to a ta indicator.
+- In init(), register every ta indicator with self.I(...). The helper passed to
+  self.I must convert each input array to pandas.Series, calculate the ta
+  indicator, and return a NumPy array of the same length.
+- In next(), read the current indicator value with [-1]. Do not construct a ta
+  indicator or call its calculation method in next().
+- For a long-only exit, call self.position.close(); do not open a short with
+  self.sell().
+
+Example shape for a ta indicator (adapt the class and method as needed):
+
+def init(self):
+    def calculate(values):
+        series = pd.Series(values)
+        return RSIIndicator(series, window=14).rsi().to_numpy()
+    self.rsi = self.I(calculate, self.data.Close)
+
+def next(self):
+    current_rsi = self.rsi[-1]
+
 Generated code must never use or import any of the following:
 - os
 - sys

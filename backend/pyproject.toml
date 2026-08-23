@@ -31,4 +31,4 @@ exclude = ["sandbox*", "scripts*", "tests*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-q --basetemp=.pytest_tmp"
+addopts = "-q"
