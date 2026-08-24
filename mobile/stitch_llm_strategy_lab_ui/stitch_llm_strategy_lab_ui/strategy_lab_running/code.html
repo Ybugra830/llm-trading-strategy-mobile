@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Strategy Lab - Running</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-bright": "#363941",
+                        "on-secondary-fixed": "#001f26",
+                        "secondary-container": "#03b5d3",
+                        "on-background": "#e1e2ec",
+                        "on-secondary": "#003640",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#001a42",
+                        "inverse-primary": "#005ac2",
+                        "tertiary-fixed": "#ffdcc6",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "outline": "#8c909f",
+                        "error-container": "#93000a",
+                        "surface-tint": "#adc6ff",
+                        "surface-container-low": "#191b23",
+                        "on-tertiary-container": "#461f00",
+                        "on-primary": "#002e6a",
+                        "surface-container-highest": "#32353c",
+                        "surface-variant": "#32353c",
+                        "on-error": "#690005",
+                        "outline-variant": "#424754",
+                        "inverse-surface": "#e1e2ec",
+                        "on-surface": "#e1e2ec",
+                        "secondary-fixed": "#acedff",
+                        "surface-container": "#1d2027",
+                        "surface": "#10131a",
+                        "surface-dim": "#10131a",
+                        "tertiary-fixed-dim": "#ffb786",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "tertiary-container": "#df7412",
+                        "on-tertiary-fixed": "#311400",
+                        "tertiary": "#ffb786",
+                        "inverse-on-surface": "#2e3038",
+                        "background": "#10131a",
+                        "on-primary-fixed-variant": "#004395",
+                        "primary-container": "#4d8eff",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary-container": "#00424e",
+                        "on-tertiary": "#502400",
+                        "surface-container-high": "#272a31",
+                        "surface-container-lowest": "#0b0e15",
+                        "on-primary-container": "#00285d",
+                        "secondary": "#4cd7f6",
+                        "primary-fixed-dim": "#adc6ff",
+                        "primary": "#adc6ff",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "component-padding-y": "0.75rem",
+                        "stack-md": "1rem",
+                        "component-padding-x": "1rem",
+                        "gutter": "1rem",
+                        "stack-lg": "1.5rem",
+                        "page-margin": "1rem",
+                        "stack-sm": "0.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Geist"],
+                        "code-sm": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[style*="FILL' 1"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(77, 142, 255, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(77, 142, 255, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(77, 142, 255, 0); }
+        }
+        .active-step-indicator {
+            animation: pulse-ring 2s infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- App Bar -->
+<header class="bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant fixed top-0 left-0 w-full z-50 flex justify-between items-center px-page-margin h-14 md:hidden">
+<button class="text-primary dark:text-primary active:opacity-80 transition-opacity p-2 -ml-2 rounded-full hover:bg-surface-container-high transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface">Strategy Lab</h1>
+<button class="text-primary dark:text-primary active:opacity-80 transition-opacity p-2 -mr-2 rounded-full hover:bg-surface-container-high transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+</button>
+</header>
+<!-- Side Navigation (Desktop) -->
+<nav class="hidden md:flex flex-col bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant shadow-lg h-full w-72 rounded-r-xl fixed inset-y-0 left-0 z-[60] py-6">
+<div class="px-6 mb-8 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-2xl">person</span>
+</div>
+<div>
+<h2 class="font-title-md text-title-md text-primary font-bold">Trader Pro</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Institutional Tier</p>
+<p class="font-label-md text-label-md text-outline mt-1">v2.4.0</p>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-2 px-4">
+<a class="text-on-surface-variant hover:bg-surface-container-highest rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all active:scale-98 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-body-md text-body-md font-medium">Portfolio</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-highest rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all active:scale-98 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-body-md text-body-md font-medium">Backtest History</span>
+</a>
+<!-- Using Strategy Lab as a conceptual active state for the main workspace, though not strictly in the nav array, this maps to the app's primary purpose -->
+<a class="bg-primary-container text-on-primary-container rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all active:scale-98 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+<span class="font-body-md text-body-md font-medium">Strategy Lab</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-highest rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all active:scale-98 duration-150 mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md font-medium">Settings</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-highest rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all active:scale-98 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-body-md text-body-md font-medium">Help</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area with Background Blur -->
+<main class="pt-[72px] pb-[80px] md:pt-8 md:pl-80 px-page-margin md:pr-8 min-h-screen relative overflow-hidden">
+<!-- Background Mock Content (Dimmed/Blurred) -->
+<div class="opacity-30 blur-sm pointer-events-none transition-all duration-500 max-w-4xl mx-auto flex flex-col gap-stack-lg">
+<!-- Input Card Mock -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6">
+<h2 class="font-title-md text-title-md text-on-surface mb-4">Strategy Parameters</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Asset Class</label>
+<div class="h-12 bg-surface-container-low border border-outline-variant rounded-lg"></div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Timeframe</label>
+<div class="h-12 bg-surface-container-low border border-outline-variant rounded-lg"></div>
+</div>
+</div>
+</div>
+<!-- Code Area Mock -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 h-64 flex flex-col">
+<h2 class="font-title-md text-title-md text-on-surface mb-4">Logic Definition</h2>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg w-full"></div>
+</div>
+<!-- CTA Mock -->
+<div class="h-12 bg-primary/50 rounded-lg w-full max-w-md mx-auto mt-4"></div>
+</div>
+<!-- Foreground Loading Overlay -->
+<div class="absolute inset-0 z-40 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
+<!-- Loading Progress Card -->
+<div class="bg-surface border border-outline-variant rounded-xl shadow-2xl w-full max-w-md overflow-hidden animate-[fadeIn_0.3s_ease-out]">
+<!-- Card Header -->
+<div class="p-6 border-b border-outline-variant bg-surface-container-lowest">
+<div class="flex items-center gap-4 mb-2">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary animate-spin" data-icon="settings" style="animation-duration: 3s;">settings</span>
+</div>
+<h2 class="font-title-md text-title-md text-on-surface font-semibold">Running strategy</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant ml-14">Strategy code is validated and executed in an isolated environment.</p>
+</div>
+<!-- Linear Progress Bar -->
+<div class="h-1 w-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-primary w-1/2 rounded-r-full transition-all duration-1000 ease-in-out relative">
+<div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+</div>
+</div>
+<!-- Steps List -->
+<div class="p-6 bg-surface">
+<ul class="flex flex-col gap-4 relative">
+<!-- Vertical Line Connecting Steps -->
+<div class="absolute left-[11px] top-3 bottom-3 w-[2px] bg-surface-container-high -z-10"></div>
+<!-- Step 1: Done -->
+<li class="flex items-center gap-4">
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center border-2 border-secondary z-10 shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container text-[14px]" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface">Generating strategy</span>
+</li>
+<!-- Step 2: Done -->
+<li class="flex items-center gap-4">
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center border-2 border-secondary z-10 shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container text-[14px]" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface">Validating strategy</span>
+</li>
+<!-- Step 3: Active -->
+<li class="flex items-center gap-4">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center border-2 border-primary z-10 shrink-0 relative">
+<div class="absolute inset-0 rounded-full bg-primary active-step-indicator"></div>
+<span class="material-symbols-outlined text-on-primary text-[14px] relative z-20 animate-spin" data-icon="progress_activity">progress_activity</span>
+</div>
+<span class="font-body-md text-body-md text-primary font-medium">Running secure test</span>
+</li>
+<!-- Step 4: Pending -->
+<li class="flex items-center gap-4 opacity-50">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border-2 border-outline-variant flex items-center justify-center z-10 shrink-0">
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant">Loading market data</span>
+</li>
+<!-- Step 5: Pending -->
+<li class="flex items-center gap-4 opacity-50">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border-2 border-outline-variant flex items-center justify-center z-10 shrink-0">
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant">Running backtest</span>
+</li>
+<!-- Step 6: Pending -->
+<li class="flex items-center gap-4 opacity-50">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border-2 border-outline-variant flex items-center justify-center z-10 shrink-0">
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant">Preparing results</span>
+</li>
+</ul>
+</div>
+<!-- Action Footer -->
+<div class="p-4 border-t border-outline-variant bg-surface flex justify-end">
+<button class="px-6 py-2 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md uppercase tracking-wider">Cancel</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav (Mobile) -->
+<nav class="md:hidden bg-surface-container dark:bg-surface-container fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 pb-safe px-4 rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="science" style="font-variation-settings: 'FILL' 1;">science</span>
+<span class="font-label-md text-label-md mt-1">Strategy Lab</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="info">info</span>
+<span class="font-label-md text-label-md mt-1">About</span>
+</a>
+</nav>
+<style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+</body></html>

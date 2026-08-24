@@ -1,0 +1,5 @@
+You are an expert Flutter & Dart developer.
+- Architecture: Modular, clean Flutter structure.
+- UI & Theme: Strictly match the color codes, typography, padding, and layout defined in `mobile/stitch_llm_strategy_lab_ui/deep_system/DESIGN.md` and HTML templates.
+- Widgets: Keep widgets modular and reusable.
+- Null Safety: 100% sound null safety.

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About - Strategy Lab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-bright": "#363941",
+                        "on-secondary-fixed": "#001f26",
+                        "secondary-container": "#03b5d3",
+                        "on-background": "#e1e2ec",
+                        "on-secondary": "#003640",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#001a42",
+                        "inverse-primary": "#005ac2",
+                        "tertiary-fixed": "#ffdcc6",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "outline": "#8c909f",
+                        "error-container": "#93000a",
+                        "surface-tint": "#adc6ff",
+                        "surface-container-low": "#191b23",
+                        "on-tertiary-container": "#461f00",
+                        "on-primary": "#002e6a",
+                        "surface-container-highest": "#32353c",
+                        "surface-variant": "#32353c",
+                        "on-error": "#690005",
+                        "outline-variant": "#424754",
+                        "inverse-surface": "#e1e2ec",
+                        "on-surface": "#e1e2ec",
+                        "secondary-fixed": "#acedff",
+                        "surface-container": "#1d2027",
+                        "surface": "#10131a",
+                        "surface-dim": "#10131a",
+                        "tertiary-fixed-dim": "#ffb786",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "tertiary-container": "#df7412",
+                        "on-tertiary-fixed": "#311400",
+                        "tertiary": "#ffb786",
+                        "inverse-on-surface": "#2e3038",
+                        "background": "#10131a",
+                        "on-primary-fixed-variant": "#004395",
+                        "primary-container": "#4d8eff",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary-container": "#00424e",
+                        "on-tertiary": "#502400",
+                        "surface-container-high": "#272a31",
+                        "surface-container-lowest": "#0b0e15",
+                        "on-primary-container": "#00285d",
+                        "secondary": "#4cd7f6",
+                        "primary-fixed-dim": "#adc6ff",
+                        "primary": "#adc6ff",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "component-padding-y": "0.75rem",
+                        "stack-md": "1rem",
+                        "component-padding-x": "1rem",
+                        "gutter": "1rem",
+                        "stack-lg": "1.5rem",
+                        "page-margin": "1rem",
+                        "stack-sm": "0.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Geist"],
+                        "code-sm": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #10131a; color: #e1e2ec; }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-page-margin h-14 bg-surface border-b border-outline-variant">
+<button aria-label="Menu" class="text-primary active:opacity-80 transition-opacity p-2 -ml-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface">Strategy Lab</h1>
+<button aria-label="Info" class="text-primary active:opacity-80 transition-opacity p-2 -mr-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-[calc(3.5rem+1.5rem)] pb-[calc(4rem+env(safe-area-inset-bottom,20px)+1.5rem)] px-page-margin overflow-y-auto max-w-3xl mx-auto w-full">
+<h2 class="font-display-lg text-display-lg text-primary mb-stack-lg">About</h2>
+<div class="flex flex-col gap-stack-md">
+<!-- About the project -->
+<div class="bg-surface-container rounded-xl p-component-padding-x border border-outline-variant/30 flex flex-col gap-stack-sm">
+<h3 class="font-title-md text-title-md text-primary-fixed">About the project</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    LLM Trading Strategy Lab converts natural-language technical analysis ideas into validated strategies and tests them on historical BIST data.
+                </p>
+</div>
+<!-- Important notice -->
+<div class="bg-error-container/20 rounded-xl p-component-padding-x border border-error/20 flex gap-stack-md items-start">
+<div class="mt-1 text-error">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+</div>
+<div class="flex flex-col gap-stack-sm flex-grow">
+<h3 class="font-title-md text-title-md text-error">Important notice</h3>
+<p class="font-body-md text-body-md text-on-error-container leading-relaxed">
+                        This application is for educational and research purposes. It is not investment advice.
+                    </p>
+</div>
+</div>
+<!-- Security -->
+<div class="bg-surface-container rounded-xl p-component-padding-x border border-outline-variant/30 flex gap-stack-md items-start">
+<div class="mt-1 text-secondary-container">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</div>
+<div class="flex flex-col gap-stack-sm flex-grow">
+<h3 class="font-title-md text-title-md text-secondary-container">Security</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Generated strategy code is validated and executed in an isolated backend environment.
+                    </p>
+</div>
+</div>
+<!-- Data -->
+<div class="bg-surface-container rounded-xl p-component-padding-x border border-outline-variant/30 flex gap-stack-md items-start">
+<div class="mt-1 text-tertiary-container">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+</div>
+<div class="flex flex-col gap-stack-sm flex-grow">
+<h3 class="font-title-md text-title-md text-tertiary-container">Data</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Historical BIST market data is obtained by the backend. The mobile application does not connect directly to market-data or LLM providers.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 pb-safe px-4 bg-surface-container border-t border-outline-variant rounded-t-xl">
+<!-- Tab 1: Inactive -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors active:scale-95 transition-transform duration-200 group w-16" href="#">
+<div class="mb-1 p-1 rounded-full group-hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+</div>
+<span class="font-label-md text-label-md truncate w-full text-center">Strategy Lab</span>
+</a>
+<!-- Tab 2: Active -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 hover:text-secondary transition-colors active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-0.5" data-icon="info" data-weight="fill" style="font-variation-settings: 'FILL' 1;">info</span>
+<span class="font-label-md text-label-md">About</span>
+</a>
+</nav>
+</body></html>

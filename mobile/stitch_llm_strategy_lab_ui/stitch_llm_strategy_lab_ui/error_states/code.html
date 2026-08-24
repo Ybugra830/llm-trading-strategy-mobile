@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Strategy Lab - Error States</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-bright": "#363941",
+                        "on-secondary-fixed": "#001f26",
+                        "secondary-container": "#03b5d3",
+                        "on-background": "#e1e2ec",
+                        "on-secondary": "#003640",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#001a42",
+                        "inverse-primary": "#005ac2",
+                        "tertiary-fixed": "#ffdcc6",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "outline": "#8c909f",
+                        "error-container": "#93000a",
+                        "surface-tint": "#adc6ff",
+                        "surface-container-low": "#191b23",
+                        "on-tertiary-container": "#461f00",
+                        "on-primary": "#002e6a",
+                        "surface-container-highest": "#32353c",
+                        "surface-variant": "#32353c",
+                        "on-error": "#690005",
+                        "outline-variant": "#424754",
+                        "inverse-surface": "#e1e2ec",
+                        "on-surface": "#e1e2ec",
+                        "secondary-fixed": "#acedff",
+                        "surface-container": "#1d2027",
+                        "surface": "#10131a",
+                        "surface-dim": "#10131a",
+                        "tertiary-fixed-dim": "#ffb786",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "tertiary-container": "#df7412",
+                        "on-tertiary-fixed": "#311400",
+                        "tertiary": "#ffb786",
+                        "inverse-on-surface": "#2e3038",
+                        "background": "#10131a",
+                        "on-primary-fixed-variant": "#004395",
+                        "primary-container": "#4d8eff",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary-container": "#00424e",
+                        "on-tertiary": "#502400",
+                        "surface-container-high": "#272a31",
+                        "surface-container-lowest": "#0b0e15",
+                        "on-primary-container": "#00285d",
+                        "secondary": "#4cd7f6",
+                        "primary-fixed-dim": "#adc6ff",
+                        "primary": "#adc6ff",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "component-padding-y": "0.75rem",
+                        "stack-md": "1rem",
+                        "component-padding-x": "1rem",
+                        "gutter": "1rem",
+                        "stack-lg": "1.5rem",
+                        "page-margin": "1rem",
+                        "stack-sm": "0.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Geist"],
+                        "code-sm": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col pt-14 pb-20 md:pb-0 md:pl-72">
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden bg-surface text-primary border-b border-outline-variant fixed top-0 left-0 w-full z-50 flex justify-between items-center px-page-margin h-14">
+<button class="text-primary hover:bg-surface-container-high transition-colors active:opacity-80 transition-opacity p-2 -ml-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface">Strategy Lab</div>
+<button class="text-primary hover:bg-surface-container-high transition-colors active:opacity-80 transition-opacity p-2 -mr-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+</button>
+</header>
+<!-- NavigationDrawer (Desktop) -->
+<nav class="hidden md:flex bg-surface-container-low border-r border-outline-variant shadow-lg h-full w-72 rounded-r-xl fixed inset-y-0 left-0 z-[60] flex-col py-6">
+<div class="px-6 mb-8 flex items-center space-x-4">
+<img alt="User Profile" class="w-12 h-12 rounded-full object-cover border-2 border-outline-variant" data-alt="A professional looking user avatar for a high-end financial application. The portrait is sharply focused, utilizing dramatic, contrasty lighting against a dark minimalist background, fitting the institutional aesthetic of the application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6AjI8c0tHWvScwUG2r-ZkD9whLrohbyvs5yVGGrgO5H8deqSmLvelVgmztDyteGRNwqzDei743EqIzuMSKQMr0muPkHDTphlzDIOz8JnDFmaydR1UdJI-wU2_gmNoCWsRvpZceVtEIO5XzUUgJSZNDEMU2GHI1U4vnV3fK9vk9uEwapApdmbJXSb6HvMrRTPUgb_4GqIuo3p5LC2wvKjuG0CAL3ZJ2SdYAGc91ZVGxF3v_LbIM1RJ"/>
+<div>
+<h2 class="font-title-md text-title-md text-primary">Trader Pro</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Institutional Tier</p>
+<p class="font-label-md text-label-md text-outline mt-1">v2.4.0</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto space-y-2">
+<a class="flex items-center space-x-3 text-on-surface-variant hover:bg-surface-container-highest transition-all active:scale-98 duration-150 rounded-lg mx-2 px-4 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-body-md text-body-md">Portfolio</span>
+</a>
+<a class="flex items-center space-x-3 text-on-surface-variant hover:bg-surface-container-highest transition-all active:scale-98 duration-150 rounded-lg mx-2 px-4 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-body-md text-body-md">Backtest History</span>
+</a>
+<a class="flex items-center space-x-3 text-on-surface-variant hover:bg-surface-container-highest transition-all active:scale-98 duration-150 rounded-lg mx-2 px-4 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center space-x-3 text-on-surface-variant hover:bg-surface-container-highest transition-all active:scale-98 duration-150 rounded-lg mx-2 px-4 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-body-md text-body-md">Help</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto px-page-margin py-stack-lg max-w-5xl mx-auto w-full space-y-12">
+<!-- Screen 1: Validation Failure -->
+<section aria-labelledby="validation-failure-title">
+<div class="bg-surface-container border border-error-container rounded-xl p-6 relative overflow-hidden flex flex-col md:flex-row items-center gap-8 shadow-sm">
+<!-- Decorative Background Glow -->
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-error-container opacity-20 blur-3xl rounded-full pointer-events-none"></div>
+<div class="flex-shrink-0 relative">
+<div class="w-20 h-20 bg-surface border border-error flex items-center justify-center rounded-2xl shadow-[0_4px_16px_rgba(255,180,171,0.15)]">
+<span class="material-symbols-outlined text-4xl text-error" data-icon="gpp_bad" style="font-variation-settings: 'FILL' 1;">gpp_bad</span>
+</div>
+</div>
+<div class="flex-1 text-center md:text-left z-10">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-2" id="validation-failure-title">Strategy could not be validated</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6 max-w-2xl">The generated strategy did not pass the required safety or compatibility checks. Ensure parameters are within accepted institutional limits.</p>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 mb-6 inline-block w-full md:w-auto text-left">
+<div class="flex items-center space-x-2 mb-1">
+<span class="material-symbols-outlined text-error text-sm" data-icon="cancel">cancel</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Diagnostics</span>
+</div>
+<div class="font-code-sm text-code-sm text-error">Validation: Failed (ErrorCode: V-903)</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant mt-1">Margin requirements exceed safe leverage ratio.</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+<button class="w-full sm:w-auto h-12 px-6 bg-primary text-on-primary font-title-md text-title-md rounded-lg hover:bg-primary-fixed transition-colors flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+<span class="material-symbols-outlined mr-2 text-sm" data-icon="edit">edit</span>
+                            Edit Strategy
+                        </button>
+<button class="w-full sm:w-auto h-12 px-6 bg-transparent border border-outline-variant text-on-surface font-title-md text-title-md rounded-lg hover:bg-surface-container-high transition-colors flex items-center justify-center">
+                            Try Again
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Screen 2: Generic Error -->
+<section aria-labelledby="generic-error-title">
+<div class="bg-surface border border-outline-variant rounded-xl p-8 md:p-12 text-center max-w-2xl mx-auto shadow-sm relative overflow-hidden">
+<div class="w-24 h-24 mx-auto mb-6 bg-surface-container-highest border border-outline-variant rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-on-surface-variant" data-icon="cloud_off" style="font-variation-settings: 'FILL' 1;">cloud_off</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-3" id="generic-error-title">Something went wrong</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">We could not run the strategy right now. Please check your connection or try again later.</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<button class="w-full sm:w-auto h-12 px-8 bg-surface-bright text-on-surface font-title-md text-title-md rounded-lg hover:bg-outline-variant transition-colors flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined mr-2 text-sm" data-icon="refresh">refresh</span>
+                        Try Again
+                    </button>
+<button class="w-full sm:w-auto h-12 px-8 bg-transparent text-primary font-title-md text-title-md rounded-lg hover:bg-surface-container-high transition-colors flex items-center justify-center">
+                        Back to Strategy
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden bg-surface-container border-t border-outline-variant fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 pb-safe px-4 rounded-t-xl shadow-[0_-4px_16px_rgba(0,0,0,0.5)]">
+<!-- Strategy Lab is active -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="science">science</span>
+<span class="font-label-md text-label-md">Strategy Lab</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors active:scale-95 transition-transform duration-200 px-4 py-1" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="info">info</span>
+<span class="font-label-md text-label-md">About</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Backtest Result</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-bright": "#363941",
+                        "on-secondary-fixed": "#001f26",
+                        "secondary-container": "#03b5d3",
+                        "on-background": "#e1e2ec",
+                        "on-secondary": "#003640",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#001a42",
+                        "inverse-primary": "#005ac2",
+                        "tertiary-fixed": "#ffdcc6",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "outline": "#8c909f",
+                        "error-container": "#93000a",
+                        "surface-tint": "#adc6ff",
+                        "surface-container-low": "#191b23",
+                        "on-tertiary-container": "#461f00",
+                        "on-primary": "#002e6a",
+                        "surface-container-highest": "#32353c",
+                        "surface-variant": "#32353c",
+                        "on-error": "#690005",
+                        "outline-variant": "#424754",
+                        "inverse-surface": "#e1e2ec",
+                        "on-surface": "#e1e2ec",
+                        "secondary-fixed": "#acedff",
+                        "surface-container": "#1d2027",
+                        "surface": "#10131a",
+                        "surface-dim": "#10131a",
+                        "tertiary-fixed-dim": "#ffb786",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "tertiary-container": "#df7412",
+                        "on-tertiary-fixed": "#311400",
+                        "tertiary": "#ffb786",
+                        "inverse-on-surface": "#2e3038",
+                        "background": "#10131a",
+                        "on-primary-fixed-variant": "#004395",
+                        "primary-container": "#4d8eff",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary-container": "#00424e",
+                        "on-tertiary": "#502400",
+                        "surface-container-high": "#272a31",
+                        "surface-container-lowest": "#0b0e15",
+                        "on-primary-container": "#00285d",
+                        "secondary": "#4cd7f6",
+                        "primary-fixed-dim": "#adc6ff",
+                        "primary": "#adc6ff",
+                        "error": "#ffb4ab",
+                        "success": "#10b981",
+                        "success-container": "rgba(16, 185, 129, 0.15)",
+                        "on-success-container": "#34d399"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "component-padding-y": "0.75rem",
+                        "stack-md": "1rem",
+                        "component-padding-x": "1rem",
+                        "gutter": "1rem",
+                        "stack-lg": "1.5rem",
+                        "page-margin": "1rem",
+                        "stack-sm": "0.5rem",
+                        "safe-bottom": "env(safe-area-inset-bottom)"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Geist"],
+                        "code-sm": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            background-color: #0B0E14; /* Level 0 Base */
+            color: #e1e2ec;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col md:flex-row pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0 pt-14 md:pt-0">
+<!-- Mobile Top App Bar (Hidden on md, since user asked for backtest result, it's a specific page, but nav was requested) -->
+<!-- Note: Following instruction "Task-Focused: Any sub-page featuring a 'Close' or 'Back' action that implies a temporary departure from the main navigation flow. Automatic Suppression" -> The nav shell should ideally be suppressed for a back button page, BUT the user explicitly requested: "Use Bottom Navigation." and "Top: Back button, Title 'Backtest Result'." so I will follow explicit user request to include bottom nav and a top header with back button. -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-page-margin h-14 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant md:hidden">
+<button class="text-primary dark:text-primary active:opacity-80 transition-opacity p-2 -ml-2" onclick="history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface">Backtest Result</h1>
+<button class="text-primary dark:text-primary active:opacity-80 transition-opacity p-2 -mr-2">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</header>
+<!-- Desktop Sidebar Navigation (Hidden on mobile) -->
+<nav class="hidden md:flex flex-col w-72 h-screen bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant shadow-lg sticky top-0 left-0 z-[60] py-6 flex-shrink-0">
+<div class="px-6 mb-8 flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="object-cover w-full h-full" data-alt="A detailed headshot portrait of a professional algorithmic trader wearing a sleek dark suit. High-contrast, moody corporate lighting highlighting confidence and expertise, set against a deep minimalist dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6XE9BgkC3_sNmtCeKtSNqLPfBfSZc7edgRmtGt_eyIWFeT2Pg6uq9G80y_aWWHogkInrHGHeYvSldSIqxQ1qauU9vIWh3-Un9q3CMjLtrFJrAwJljnweF9KV60dIxEFY8g8rJMx16g88WKay1zGo7G8MrcV_0qwHd1_ZOWmjzDQt9gtqcMCpJML-c5a-7nBoCVUXU3Rl-hjcu48T2LFxjXbyBFMQnQeerwsYzljbX8lW5rQWK9DvH"/>
+</div>
+<div>
+<h2 class="font-title-md text-title-md text-primary">Trader Pro</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Institutional Tier <span class="text-[10px] opacity-70 ml-1">v2.4.0</span></p>
+</div>
+</div>
+<div class="flex flex-col space-y-2 flex-grow">
+<!-- Backtest History maps to this context -->
+<a class="flex items-center space-x-3 bg-primary-container text-on-primary-container rounded-lg mx-2 px-4 py-3 hover:bg-surface-container-high transition-all active:scale-98 duration-150" href="#">
+<span class="material-symbols-outlined fill" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-body-md text-body-md font-medium">Backtest History</span>
+</a>
+<a class="flex items-center space-x-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg mx-2 px-4 py-3 hover:bg-surface-container-high transition-all active:scale-98 duration-150" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-body-md text-body-md font-medium">Portfolio</span>
+</a>
+<a class="flex items-center space-x-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg mx-2 px-4 py-3 hover:bg-surface-container-high transition-all active:scale-98 duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md font-medium">Settings</span>
+</a>
+<a class="flex items-center space-x-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg mx-2 px-4 py-3 hover:bg-surface-container-high transition-all active:scale-98 duration-150 mt-auto" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md text-body-md font-medium">Help</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow p-4 md:p-8 max-w-5xl mx-auto w-full space-y-stack-lg">
+<!-- Desktop Header (Hidden on Mobile) -->
+<div class="hidden md:flex items-center justify-between mb-8">
+<div class="flex items-center space-x-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-highest">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-display-lg text-display-lg text-on-surface">Backtest Result</h1>
+</div>
+</div>
+<!-- Header Info Area -->
+<div class="flex flex-wrap items-center gap-4">
+<div class="bg-surface-container-high border border-outline-variant px-3 py-1.5 rounded-lg flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary text-sm">monitoring</span>
+<span class="font-label-md text-label-md text-on-surface tracking-wider">THYAO</span>
+</div>
+<div class="bg-success-container border border-success/30 px-3 py-1.5 rounded-full flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-on-success-container text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-label-md text-on-success-container uppercase tracking-wider">Successful</span>
+</div>
+<div class="flex items-center space-x-2 text-on-surface-variant ml-auto md:ml-0 w-full md:w-auto mt-2 md:mt-0 bg-surface-container rounded-lg px-3 py-1.5 border border-outline-variant">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span class="font-body-md text-body-md">Feb 23, 2026 – Aug 21, 2026</span>
+</div>
+</div>
+<!-- Hero Card & Benchmark (Bento Grid Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Hero Return Card -->
+<div class="md:col-span-2 bg-[#161B22] border border-[#30363D] rounded-xl p-6 relative overflow-hidden flex flex-col justify-between min-h-[200px]">
+<!-- Subtle background accent -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-success/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10">
+<h3 class="font-body-md text-body-md text-on-surface-variant mb-1">Total Return</h3>
+<div class="font-display-lg text-display-lg text-success flex items-baseline space-x-2">
+<span>+25.76%</span>
+<span class="material-symbols-outlined text-success">trending_up</span>
+</div>
+</div>
+<div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+<div class="bg-surface-container-low rounded-lg p-4 border border-outline-variant/50">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase block mb-1">Final Equity</span>
+<span class="font-title-md text-title-md text-on-surface">125,756.64 TRY</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 border border-outline-variant/50">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase block mb-1">Net Profit</span>
+<span class="font-title-md text-title-md text-success">+25,756.64 TRY</span>
+</div>
+</div>
+</div>
+<!-- Benchmark Comparison -->
+<div class="bg-[#161B22] border border-[#30363D] rounded-xl p-6 flex flex-col justify-center">
+<h3 class="font-title-md text-title-md text-on-surface mb-6 flex items-center">
+<span class="material-symbols-outlined mr-2 text-primary">compare_arrows</span>
+                    Benchmark
+                </h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between items-end mb-1">
+<span class="font-body-md text-body-md text-on-surface-variant">Strategy</span>
+<span class="font-body-md text-body-md font-bold text-success">+25.76%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2">
+<div class="bg-success h-2 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-end mb-1">
+<span class="font-body-md text-body-md text-on-surface-variant">Buy &amp; Hold</span>
+<span class="font-body-md text-body-md font-bold text-on-surface">+2.82%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2">
+<div class="bg-outline h-2 rounded-full" style="width: 15%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Metrics Grid -->
+<div class="bg-[#161B22] border border-[#30363D] rounded-xl p-6">
+<h3 class="font-title-md text-title-md text-on-surface mb-6 flex items-center border-b border-[#30363D] pb-4">
+<span class="material-symbols-outlined mr-2 text-primary">analytics</span>
+                Performance Metrics
+            </h3>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-4">
+<div class="flex flex-col space-y-1">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Max Drawdown</span>
+<span class="font-body-lg text-body-lg text-error">-2.25%</span>
+</div>
+<div class="flex flex-col space-y-1">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Sharpe Ratio</span>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">2.25</span>
+</div>
+<div class="flex flex-col space-y-1">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Win Rate</span>
+<span class="font-body-lg text-body-lg text-success font-medium">100%</span>
+</div>
+<div class="flex flex-col space-y-1">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Trades</span>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">1</span>
+</div>
+<div class="flex flex-col space-y-1">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Sortino Ratio</span>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">13.20</span>
+</div>
+<div class="flex flex-col space-y-1">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Exposure</span>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">26.4%</span>
+</div>
+</div>
+</div>
+<!-- Expandable Code & Info Section -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Code Snippet -->
+<div class="md:col-span-2 bg-[#161B22] border border-[#30363D] rounded-xl overflow-hidden group">
+<details class="w-full">
+<summary class="p-4 cursor-pointer flex justify-between items-center bg-surface-container-low hover:bg-surface-container transition-colors select-none">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-secondary">code</span>
+<span class="font-title-md text-title-md text-on-surface text-base">View Generated Strategy</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-4 bg-[#0d1117] border-t border-[#30363D] overflow-x-auto">
+<pre class="font-code-sm text-code-sm text-on-surface-variant"><code class="language-python">
+<span class="text-tertiary">def</span> <span class="text-secondary-fixed">execute_strategy</span>(data):
+    <span class="text-outline"># Llama 3.3 generated logic based on MACD divergence</span>
+    macd_line, signal_line = calculate_macd(data[<span class="text-success">'close'</span>])
+    
+    <span class="text-tertiary">if</span> macd_line[-1] &gt; signal_line[-1] <span class="text-tertiary">and</span> data[<span class="text-success">'volume'</span>][-1] &gt; avg_vol:
+        <span class="text-tertiary">return</span> {<span class="text-success">'action'</span>: <span class="text-success">'BUY'</span>, <span class="text-success">'allocation'</span>: <span class="text-primary">1.0</span>}
+    
+    <span class="text-tertiary">return</span> {<span class="text-success">'action'</span>: <span class="text-success">'HOLD'</span>}
+</code>
+</pre>
+</div>
+</details>
+</div>
+<!-- Strategy Info -->
+<div class="bg-[#161B22] border border-[#30363D] rounded-xl p-4 flex flex-col justify-center space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Model</span>
+<span class="bg-primary-container/20 text-primary border border-primary/30 px-2 py-0.5 rounded text-xs font-label-md">Llama 3.3 70B</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Attempts</span>
+<span class="font-body-md text-body-md text-on-surface">1</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Validation</span>
+<div class="flex items-center space-x-1 text-success">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-body-md text-body-md">Passed</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Nav (Hidden on Desktop) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 pb-safe px-4 bg-surface-container dark:bg-surface-container border-t border-outline-variant dark:border-outline-variant rounded-t-xl md:hidden">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined fill text-[24px]" style="font-variation-settings: 'FILL' 1;">science</span>
+<span class="font-label-md text-label-md text-[10px] mt-1">Strategy Lab</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]">info</span>
+<span class="font-label-md text-label-md text-[10px] mt-1">About</span>
+</a>
+</nav>
+<!-- Script for handling detail tag toggling visually if needed, though native HTML works fine -->
+<script>
+        // Optional JS for enhancing interactions
+    </script>
+</body></html>
