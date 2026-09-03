@@ -6,13 +6,14 @@ from app.validators.interface_validator import validate_interface
 from app.validators.lookahead_validator import validate_lookahead
 from app.validators.security_validator import validate_security
 from app.validators.syntax_validator import parse_syntax
+from app.validators.strategy_contract import analyze_contract, ContractFinding
 
 
 def _unique_errors(errors: list[str]) -> list[str]:
     return list(dict.fromkeys(errors))
 
 
-def validate_strategy_code(code: str) -> StrategyValidationResponse:
+def validate_strategy_code(code: str, *, contract_findings: tuple[ContractFinding, ...] | None = None) -> StrategyValidationResponse:
     """Kaynak kodunu bir kez parse edip tüm statik kontrolleri çalıştır."""
     syntax_result = parse_syntax(code)
     if not syntax_result.valid or syntax_result.tree is None:
@@ -29,6 +30,8 @@ def validate_strategy_code(code: str) -> StrategyValidationResponse:
     import_errors = validate_imports(syntax_result.tree)
     security_errors = validate_security(syntax_result.tree)
     interface_errors = validate_interface(syntax_result.tree)
+    findings = analyze_contract(code).findings if contract_findings is None else contract_findings
+    interface_errors.extend(item.message for item in findings)
     lookahead_errors = validate_lookahead(syntax_result.tree)
     errors = _unique_errors(
         import_errors + security_errors + interface_errors + lookahead_errors

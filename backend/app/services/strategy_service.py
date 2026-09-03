@@ -1,6 +1,7 @@
 """Strateji üretim servisi."""
 
 from app.llm.nvidia_client import NvidiaNimClient
+from app.llm.repair_context import RepairFailureContext
 from app.schemas.strategy import StrategyGenerateResponse
 
 
@@ -19,12 +20,12 @@ class StrategyService:
         self,
         original_prompt: str,
         current_code: str,
-        safe_errors: list[str],
+        context: RepairFailureContext,
     ) -> StrategyGenerateResponse:
         """Mevcut kodu özgün niyeti ve güvenli bulguları koruyarak onart."""
         code = await self._client.repair_code(
             original_prompt,
             current_code,
-            safe_errors,
+            context,
         )
         return StrategyGenerateResponse(code=code, model=self._client.model)

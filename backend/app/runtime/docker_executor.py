@@ -209,6 +209,7 @@ class DockerSandboxExecutor:
             "stage": stage,
             "initial_cash": float(initial_cash),
             "commission": float(commission),
+            "strategy_timeout_seconds": self._settings.sandbox_timeout_seconds,
             "strategy_code_hash": strategy_code_hash,
         }
         request_path.write_text(
@@ -243,14 +244,18 @@ class DockerSandboxExecutor:
                     "Strateji izin verilen çıktı sınırını aştı.",
                     started,
                 )
-            if elapsed > self._settings.sandbox_timeout_seconds:
+            host_timeout = (
+                self._settings.sandbox_timeout_seconds
+                + self._settings.sandbox_startup_grace_seconds
+            )
+            if elapsed > host_timeout:
                 self._force_remove(container_name, safe_env)
                 self._wait_after_cleanup(process)
                 return self._failure_result(
                     stage,
                     strategy_code_hash,
-                    SandboxErrorCode.STRATEGY_TIMEOUT,
-                    "Strateji çalışma süresi sınırını aştı.",
+                    SandboxErrorCode.SANDBOX_UNAVAILABLE,
+                    "Sandbox çalışma ortamı zamanında başlatılamadı.",
                     started,
                 )
             time.sleep(0.02)
@@ -308,6 +313,7 @@ class DockerSandboxExecutor:
             stage=stage,
             error_code=error_code,
             error_message=error_message,
+            safe_failure_type=None,
             strategy_code_hash=strategy_code_hash,
             metrics=None,
             duration_seconds=max(0, time.monotonic() - started),

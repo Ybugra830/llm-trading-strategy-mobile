@@ -15,6 +15,7 @@ class StrategyValidationRequest(BaseModel):
     """Doğrulanacak Python kaynak kodu."""
 
     code: StrategySourceCode
+    prompt: str | None = Field(default=None, min_length=1, max_length=2_000)
 
 
 class StrategyValidationResponse(BaseModel):

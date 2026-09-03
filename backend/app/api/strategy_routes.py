@@ -1,6 +1,7 @@
 """Strateji üretim endpoint'i."""
 
 from typing import Annotated
+from collections.abc import AsyncIterator
 
 from fastapi import APIRouter, Depends, HTTPException, status
 
@@ -12,9 +13,10 @@ from app.services.strategy_service import StrategyService
 router = APIRouter(prefix="/api/v1/strategies", tags=["strategies"])
 
 
-def get_strategy_service() -> StrategyService:
+async def get_strategy_service() -> AsyncIterator[StrategyService]:
     """İstek için strateji servisini oluştur."""
-    return StrategyService(NvidiaNimClient(get_settings()))
+    async with NvidiaNimClient(get_settings()) as client:
+        yield StrategyService(client)
 
 
 @router.post(

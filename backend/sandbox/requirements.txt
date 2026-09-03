@@ -1,4 +1,4 @@
-backtesting>=0.6.4,<1.0
+backtesting==0.6.6
 numpy>=1.26,<3.0
 pandas>=2.2,<4.0
 ta>=0.11,<1.0

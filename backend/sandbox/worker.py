@@ -6,21 +6,49 @@ import importlib.util
 import io
 import json
 import math
+import signal
 import time
 from pathlib import Path
 from typing import Any, Mapping
 
 import pandas as pd
 from backtesting import Backtest, Strategy
+from backtesting.backtesting import Position, Trade
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 3
 INPUT_DIR = Path("/input")
 OUTPUT_CAPTURE_LIMIT = 64 * 1024
 REQUIRED_COLUMNS = ("Open", "High", "Low", "Close", "Volume")
+SAFE_FAILURE_TYPES = {
+    "AttributeError",
+    "TypeError",
+    "ValueError",
+    "IndexError",
+    "KeyError",
+    "RuntimeError",
+    "ZeroDivisionError",
+    "OverflowError",
+}
 
 
 class OutputLimitExceeded(RuntimeError):
     pass
+
+
+class StrategyClassMissing(LookupError):
+    pass
+
+
+class StrategyInterfaceMismatch(TypeError):
+    pass
+
+
+class StrategyExecutionTimeout(TimeoutError):
+    pass
+
+
+def raise_strategy_timeout(signum, frame) -> None:
+    raise StrategyExecutionTimeout
 
 
 class CappedTextSink(io.TextIOBase):
@@ -83,6 +111,8 @@ def emit(
     started: float,
     error_code: str | None = None,
     error_message: str | None = None,
+    safe_failure_type: str | None = None,
+    safe_failure_context: dict[str, str] | None = None,
     metrics: dict[str, Any] | None = None,
 ) -> None:
     payload = {
@@ -91,6 +121,8 @@ def emit(
         "stage": stage,
         "error_code": error_code,
         "error_message": error_message,
+        "safe_failure_type": safe_failure_type,
+        "safe_failure_context": safe_failure_context,
         "strategy_code_hash": strategy_code_hash,
         "metrics": metrics,
         "duration_seconds": max(0, time.monotonic() - started),
@@ -104,6 +136,9 @@ def load_request() -> dict[str, Any]:
         raise ValueError("schema")
     if request.get("stage") not in {"smoke", "backtest"}:
         raise ValueError("stage")
+    timeout = request.get("strategy_timeout_seconds")
+    if not isinstance(timeout, (int, float)) or not 1 <= float(timeout) <= 60:
+        raise ValueError("timeout")
     return request
 
 
@@ -122,12 +157,50 @@ def load_strategy(source_path: Path) -> type[Strategy]:
     spec.loader.exec_module(module)
     strategy_class = getattr(module, "GeneratedStrategy", None)
     if strategy_class is None:
-        raise LookupError("class")
+        raise StrategyClassMissing
     if not isinstance(strategy_class, type) or not issubclass(strategy_class, Strategy):
-        raise TypeError("inheritance")
+        raise StrategyInterfaceMismatch
     if "init" not in strategy_class.__dict__ or "next" not in strategy_class.__dict__:
-        raise TypeError("interface")
+        raise StrategyInterfaceMismatch
     return strategy_class
+
+
+def safe_failure_type(error: BaseException) -> str:
+    """Return the deepest allowlisted exception class without its message."""
+    current: BaseException | None = error
+    detected = "UnknownRuntimeError"
+    depth = 0
+    while current is not None and depth < 5:
+        name = type(current).__name__
+        if name in SAFE_FAILURE_TYPES:
+            detected = name
+        current = current.__cause__ or current.__context__
+        depth += 1
+    return detected
+
+
+def safe_runtime_context(error: BaseException) -> dict[str, str] | None:
+    """Inspect exception metadata, never serialize messages, objects or traces."""
+    context = None
+    current: BaseException | None = error
+    for _ in range(5):
+        if current is None:
+            break
+        if isinstance(current, AttributeError):
+            target = current.obj
+            if type(target) is Position:
+                context = {
+                    "family": "position_management", "finding": "invalid_position_attribute",
+                    "api": "Position.entry_price" if current.name == "entry_price" else "Position.unsupported_attribute",
+                }
+            elif type(target) is Trade:
+                context = {"family": "position_management", "finding": "invalid_trade_attribute",
+                           "api": "Trade.unsupported_attribute"}
+            elif type(target).__module__.startswith("ta."):
+                context = {"family": "indicator_adapter", "finding": "invalid_indicator_attribute",
+                           "api": "indicator.unsupported_attribute"}
+        current = current.__cause__ or current.__context__
+    return context if safe_failure_type(error) == "AttributeError" else None
 
 
 def main() -> None:
@@ -147,17 +220,35 @@ def main() -> None:
         sink = CappedTextSink(OUTPUT_CAPTURE_LIMIT)
         try:
             with contextlib.redirect_stdout(sink), contextlib.redirect_stderr(sink):
-                strategy_class = load_strategy(source_path)
-                backtest = Backtest(
-                    data,
-                    strategy_class,
-                    cash=float(request["initial_cash"]),
-                    commission=float(request["commission"]),
-                    exclusive_orders=True,
-                    trade_on_close=False,
-                    finalize_trades=True,
+                previous_handler = signal.signal(signal.SIGALRM, raise_strategy_timeout)
+                signal.setitimer(
+                    signal.ITIMER_REAL, float(request["strategy_timeout_seconds"])
                 )
-                stats = backtest.run()
+                try:
+                    strategy_class = load_strategy(source_path)
+                    backtest = Backtest(
+                        data,
+                        strategy_class,
+                        cash=float(request["initial_cash"]),
+                        commission=float(request["commission"]),
+                        exclusive_orders=True,
+                        trade_on_close=False,
+                        finalize_trades=True,
+                    )
+                    stats = backtest.run()
+                finally:
+                    signal.setitimer(signal.ITIMER_REAL, 0)
+                    signal.signal(signal.SIGALRM, previous_handler)
+        except StrategyExecutionTimeout:
+            emit(
+                success=False,
+                stage=stage,
+                strategy_code_hash=strategy_hash,
+                started=started,
+                error_code="STRATEGY_TIMEOUT",
+                error_message="Strateji çalışma süresi sınırını aştı.",
+            )
+            return
         except OutputLimitExceeded:
             emit(
                 success=False,
@@ -178,7 +269,7 @@ def main() -> None:
                 error_message="GeneratedStrategy modülü yüklenemedi.",
             )
             return
-        except LookupError:
+        except StrategyClassMissing:
             emit(
                 success=False,
                 stage=stage,
@@ -188,7 +279,7 @@ def main() -> None:
                 error_message="GeneratedStrategy sınıfı yüklenemedi.",
             )
             return
-        except TypeError:
+        except StrategyInterfaceMismatch:
             emit(
                 success=False,
                 stage=stage,
@@ -198,7 +289,7 @@ def main() -> None:
                 error_message="GeneratedStrategy arayüzü çalışma ortamıyla uyumsuz.",
             )
             return
-        except BaseException:
+        except BaseException as error:
             emit(
                 success=False,
                 stage=stage,
@@ -206,6 +297,8 @@ def main() -> None:
                 started=started,
                 error_code="STRATEGY_RUNTIME_ERROR",
                 error_message="GeneratedStrategy izole backtest sırasında çalıştırılamadı.",
+                safe_failure_type=safe_failure_type(error),
+                safe_failure_context=safe_runtime_context(error),
             )
             return
 

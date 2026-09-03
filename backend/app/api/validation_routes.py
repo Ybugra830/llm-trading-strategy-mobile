@@ -25,4 +25,4 @@ def validate_strategy(
     service: Annotated[ValidationService, Depends(get_validation_service)],
 ) -> StrategyValidationResponse:
     """Python kaynak kodunu çalıştırmadan statik olarak doğrula."""
-    return service.validate(request.code)
+    return service.validate(request.code, request.prompt)

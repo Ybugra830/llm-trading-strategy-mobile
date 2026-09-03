@@ -8,6 +8,11 @@ from typing import Protocol
 
 import pandas as pd
 
+from app.llm.repair_context import (
+    RepairFailureContext,
+    build_repair_context,
+    static_failure_type,
+)
 from app.market.bist_symbols import normalize_bist_symbol, to_yahoo_symbol
 from app.market.data_split import MarketDataSplit, split_market_data
 from app.market.ohlcv_cleaner import clean_ohlcv
@@ -27,6 +32,7 @@ from app.schemas.strategy_lab import (
     StrategyLabRuntime,
 )
 from app.services.strategy_service import StrategyService
+from app.services.strategy_lab_observer import StrategyLabAttemptObserver
 from app.services.validation_service import ValidationService
 
 logger = logging.getLogger(__name__)
@@ -35,12 +41,7 @@ SAFE_SMOKE_ERRORS = {
     SandboxErrorCode.STRATEGY_IMPORT_ERROR: "GeneratedStrategy modülü güvenli runtime testinde yüklenemedi.",
     SandboxErrorCode.STRATEGY_CLASS_MISSING: "Gerekli GeneratedStrategy sınıfı güvenli runtime testinde bulunamadı.",
     SandboxErrorCode.STRATEGY_INTERFACE_ERROR: "GeneratedStrategy arayüzü güvenli runtime testiyle uyumlu değil.",
-    SandboxErrorCode.STRATEGY_RUNTIME_ERROR: (
-        "GeneratedStrategy güvenli runtime testinde çalıştırılamadı. "
-        "ta indikatörlerini backtesting veri dizilerine doğrudan uygulama; init() "
-        "içinde self.I ile kaydet, helper içinde girdiyi pandas.Series'e çevir, "
-        "NumPy dizisi döndür ve next() içinde son değeri [-1] ile oku."
-    ),
+    SandboxErrorCode.STRATEGY_RUNTIME_ERROR: "GeneratedStrategy güvenli runtime testinde çalıştırılamadı.",
     SandboxErrorCode.STRATEGY_TIMEOUT: "GeneratedStrategy güvenli runtime testinde süre sınırını aştı.",
     SandboxErrorCode.STRATEGY_RESOURCE_LIMIT: "GeneratedStrategy güvenli runtime testinde kaynak sınırını aştı.",
 }
@@ -66,18 +67,22 @@ class StrategyLabService:
         sandbox_executor: SandboxExecutor,
         market_provider: MarketDataProvider,
         max_strategy_versions: int = 3,
+        observer: StrategyLabAttemptObserver | None = None,
     ) -> None:
         self._strategy_service = strategy_service
         self._validation_service = validation_service
         self._sandbox_executor = sandbox_executor
         self._market_provider = market_provider
         self._max_strategy_versions = max_strategy_versions
+        self._observer = observer
 
     async def run(self, request: StrategyLabRunRequest) -> StrategyLabRunResponse:
         symbol = normalize_bist_symbol(request.symbol)
         yahoo_symbol = to_yahoo_symbol(symbol)
         generated = await self._strategy_service.generate(request.prompt)
         attempt_count = 1
+        if self._observer is not None:
+            self._observer.on_generated(attempt_count, "initial", generated)
         logger.info(
             "Strategy Lab generated attempt=%s model=%s",
             attempt_count,
@@ -85,7 +90,11 @@ class StrategyLabService:
         )
 
         while True:
-            prepared = self._validation_service.prepare(generated.code)
+            prepared = self._validation_service.prepare(generated.code, request.prompt)
+            if self._observer is not None:
+                self._observer.on_validation(
+                    attempt_count, prepared.code, prepared.validation
+                )
             logger.info(
                 "Strategy Lab static validation attempt=%s model=%s valid=%s errors=%s",
                 attempt_count,
@@ -94,10 +103,18 @@ class StrategyLabService:
                 prepared.validation.errors,
             )
             if not prepared.validation.valid:
+                context = build_repair_context(
+                    stage="static",
+                    failure_type=static_failure_type(prepared.validation),
+                    code=prepared.code,
+                    prompt=request.prompt,
+                    safe_findings=prepared.validation.errors,
+                    contract_findings=prepared.contract_findings,
+                )
                 generated, attempt_count = await self._repair_or_fail(
                     request.prompt,
                     prepared.code,
-                    prepared.validation.errors,
+                    context,
                     attempt_count,
                 )
                 continue
@@ -115,6 +132,8 @@ class StrategyLabService:
                 request.initial_cash,
                 request.commission,
             )
+            if self._observer is not None:
+                self._observer.on_smoke(attempt_count, smoke)
             logger.info(
                 "Strategy Lab sandbox result attempt=%s stage=%s success=%s "
                 "error_code=%s error_message=%s",
@@ -128,10 +147,22 @@ class StrategyLabService:
                 safe_error = SAFE_SMOKE_ERRORS.get(smoke.error_code)
                 if safe_error is None:
                     raise SandboxUnavailableError
+                context = build_repair_context(
+                    stage="smoke",
+                    failure_type=(
+                        smoke.safe_failure_type.value
+                        if smoke.safe_failure_type is not None
+                        else smoke.error_code.value
+                    ),
+                    code=prepared.code,
+                    prompt=request.prompt,
+                    safe_findings=[safe_error],
+                    runtime_context=smoke.safe_failure_context,
+                )
                 generated, attempt_count = await self._repair_or_fail(
                     request.prompt,
                     prepared.code,
-                    [safe_error],
+                    context,
                     attempt_count,
                 )
                 continue
@@ -166,6 +197,8 @@ class StrategyLabService:
             request.initial_cash,
             request.commission,
         )
+        if self._observer is not None:
+            self._observer.on_backtest(result)
         logger.info(
             "Strategy Lab sandbox result stage=%s success=%s error_code=%s "
             "error_message=%s",
@@ -204,7 +237,7 @@ class StrategyLabService:
         self,
         original_prompt: str,
         current_code: str,
-        safe_errors: list[str],
+        context: RepairFailureContext,
         attempt_count: int,
     ):
         if attempt_count >= self._max_strategy_versions:
@@ -212,20 +245,26 @@ class StrategyLabService:
                 "Strategy Lab pretest exhausted attempt=%s max_versions=%s errors=%s",
                 attempt_count,
                 self._max_strategy_versions,
-                safe_errors,
+                context.safe_findings,
             )
             raise StrategyPretestError
         logger.info(
             "Strategy Lab repair requested failed_attempt=%s next_attempt=%s reason=%s",
             attempt_count,
             attempt_count + 1,
-            safe_errors,
+            context.safe_findings,
         )
+        if self._observer is not None:
+            self._observer.on_repair_requested(
+                attempt_count, attempt_count + 1, context
+            )
         repaired = await self._strategy_service.repair(
             original_prompt,
             current_code,
-            [" ".join(error.split())[:300] for error in safe_errors[:10]],
+            context,
         )
+        if self._observer is not None:
+            self._observer.on_generated(attempt_count + 1, "repair", repaired)
         logger.info(
             "Strategy Lab repair completed attempt=%s model=%s",
             attempt_count + 1,

@@ -177,6 +177,9 @@ python scripts/check_sandbox.py
 Docker worker network olmadan, read-only root, non-root user, capability drop,
 no-new-privileges, CPU/bellek/PID/zaman/çıktı, IPC ve open-file sınırlarıyla
 çalışır. Docker kullanılamıyorsa HTTP 503 döner; local execution fallback yoktur.
+`SANDBOX_TIMEOUT_SECONDS` generated source yükleme ve backtest süresini worker
+içinde sınırlar. `SANDBOX_STARTUP_GRACE_SECONDS` yalnız Docker cold-start için
+ayrı host payıdır; worker'ın strateji çalışma bütçesini büyütmez.
 
 ```powershell
 Invoke-RestMethod -Method Post `
@@ -210,23 +213,86 @@ FastAPI'den bağımsız bağlantı kontrolü için backend dizininden çalışt�
 python scripts/check_nvidia_connection.py
 ```
 
-Script API anahtarını göstermez. Yalnızca anahtarın bulunup bulunmadığını,
-uzunluğunu, base URL'yi, modeli, token sınırını ve güvenli sağlayıcı sonucunu
-yazar. Başarılı sonuç modelin NVIDIA hosted endpoint tarafından kabul edildiğini
-ve metin yanıtı alındığını doğrular.
+Script etkin modeli ve anahtarı uygulamayla aynı ayarlardan yükler: process
+environment > `backend/.env` > root `.env` > varsayılanlar. API anahtarını,
+ham yanıtları ve header'ları yazdırmaz. Önce 32 token ile tam `OK` yanıtı,
+sonra 512 token ile küçük bir Python fonksiyonu ister. Her istekte süre,
+HTTP status, dönen model ve hata türü kaydedilir. İlk başarısızlıkta durur;
+retry/fallback yapmaz. `--timeout-seconds` varsayılanı 180'dir.
+
+Üretim ayarları ve doğrulama komutları için [NVIDIA provider configuration](docs/nvidia-provider.md)
+belgesine bakın. `NVIDIA_REQUEST_TIMEOUT_SECONDS` varsayılanı 180 saniyedir:
+tek modelin tüm denemeleri ve backoff bu toplam bütçeyi paylaşır. SDK retry
+kapalıdır; provider katmanı yalnızca timeout, 429 ve 5xx için en fazla bir
+retry yapar. Retry bütçeyi sıfırlamaz. İsteğe bağlı fallback ayrı, aynı
+büyüklükte bir bütçe kullanır ve varsayılan olarak kapalıdır.
 
 Sağlayıcı hatalarında public API yanıtı güvenli ve genel kalır. Sunucu terminali
 ve tanı scripti şu ayrıntıları gösterebilir:
 
 - `401 AuthenticationError`: anahtar geçersiz, süresi dolmuş veya iptal edilmiş olabilir.
 - `403 PermissionDeniedError`: anahtar bu endpoint/model için yetkisiz olabilir.
-- `404 NotFoundError`: base URL veya model kimliği sağlayıcıda bulunamamış olabilir.
+- `404` / `410`: base URL veya model bulunamamış ya da model kaldırılmış olabilir.
 - `400 BadRequestError`: istek parametrelerinden biri sağlayıcı tarafından reddedilmiştir.
 - `429 RateLimitError`: NVIDIA kullanım limiti aşılmıştır.
-- `APIConnectionError` / `APITimeoutError`: DNS, firewall, proxy veya ağ erişimi sorunu olabilir.
+- `APITimeoutError`: provider zaman sınırını aşmıştır.
+- `APIConnectionError`: DNS, firewall, TLS, proxy veya ağ erişimi sorunu olabilir.
+- `5xx`: sağlayıcı sunucu hatası; authentication veya model EOL ile aynı sınıf değildir.
 
 Loglar exception türünü, varsa HTTP durumunu ve request ID'yi içerir; API
 anahtarı, Authorization header veya `.env` içeriği loglanmaz.
+
+## Strategy Lab reliability doğrulaması
+
+Repository-owned sekiz canonical stratejinin statik validator ve gerçek local
+Docker worker uyumluluğunu kontrol etmek için sandbox image'i yeniden build
+ettikten sonra şu komutu çalıştırın:
+
+```powershell
+python scripts/check_canonical_strategies.py
+python scripts/check_sandbox_failure_protocol.py
+```
+
+İkinci kontrol generated source'u hostta çalıştırmadan gerçek Docker worker'da
+sonsuz döngünün worker-içi timeout'a uğradığını ve bozuk bir `ta` methodunun raw
+mesaj yerine yalnız allowlisted `AttributeError` sınıfını döndürdüğünü doğrular.
+
+Gerçek NVIDIA, Docker, Yahoo Finance ve FastAPI route'unu kullanan reliability
+matrix normal `pytest` akışına dahil değildir; yalnızca bilinçli olarak opt-in
+çalıştırılır. Varsayılan komut dokuz EN/TR promptu yirmişer kez ve sıralı olarak
+çalıştırır:
+
+```powershell
+python scripts/run_strategy_reliability_matrix.py --runs-per-prompt 20
+```
+
+Tek bir prompt ailesini kısa smoke amacıyla seçmek mümkündür:
+
+```powershell
+python scripts/run_strategy_reliability_matrix.py `
+  --runs-per-prompt 1 `
+  --prompt-id en_sma `
+  --prompt-id tr_sma
+```
+
+Runner kendi retry'ını yapmaz. Provider katmanının sınırlı retry/fallback
+denemeleri sunucu loglarında görünür. Her scheduled HTTP çağrısı rapora girer; NVIDIA,
+Yahoo veya Docker altyapı hataları da başarısız koşu sayılır. Generated source,
+run JSON'ları ve özetler `reports/strategy-reliability/` altında tutulur ve Git
+tarafından izlenmez. Production observer varsayılan olarak kapalıdır; normal
+servis generated source loglamaz.
+
+İkinci nesil yapılandırılmış strateji şeması ve deterministik compiler önerisi
+`docs/structured_strategy_v2.md` içindedir. Bu belge tasarımdır; mevcut akışta
+JSON compiler etkinleştirilmemiştir.
+
+RSI14 ve yüzde trailing stop için Position/Trade API sözleşmesi, protocol v3,
+deterministik Docker davranış testi ve Nemotron Super / Mistral Nemotron
+karşılaştırma komutları [hardening kabul raporunda](docs/nemotron-super-hardening.md)
+belgelenmiştir. Standalone validation isteği opsiyonel `prompt` alanını kabul eder;
+Strategy Lab özgün prompt'u ilk doğrulamaya ve her repair doğrulamasına taşır.
+Production model `nvidia/nemotron-3-super-120b-a12b` olarak korunur; karşılaştırma
+yalnızca geçici process-level override kullanır. Bu çalışma deploy içermez.
 
 ## Test
 

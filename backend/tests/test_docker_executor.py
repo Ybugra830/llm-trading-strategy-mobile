@@ -5,11 +5,18 @@ import json
 from pathlib import Path
 
 import pytest
+from pydantic import ValidationError
 
 from app.config import Settings
 from app.runtime.docker_executor import DockerSandboxExecutor
 from app.runtime.errors import SandboxProtocolError, SandboxUnavailableError
-from app.runtime.models import SandboxErrorCode
+from app.runtime.models import (
+    SANDBOX_SCHEMA_VERSION,
+    SafeFailureType,
+    SandboxErrorCode,
+    SandboxResult,
+)
+from sandbox.worker import safe_failure_type
 
 
 def settings(**overrides) -> Settings:
@@ -28,19 +35,21 @@ def settings(**overrides) -> Settings:
 
 class SuccessfulPopen:
     calls: list[tuple[list[str], dict]] = []
-    schema_version = 1
+    schema_version = SANDBOX_SCHEMA_VERSION
     return_code = 0
     extra_output = b""
 
     def __init__(self, command, **kwargs) -> None:
         type(self).calls.append((command, kwargs))
         request = self._read_request(command)
+        assert request["strategy_timeout_seconds"] == 10
         payload = {
             "schema_version": type(self).schema_version,
             "success": True,
             "stage": request["stage"],
             "error_code": None,
             "error_message": None,
+            "safe_failure_type": None,
             "strategy_code_hash": request["strategy_code_hash"],
             "metrics": None,
             "duration_seconds": 0.01,
@@ -81,7 +90,7 @@ class HangingPopen:
 @pytest.fixture(autouse=True)
 def reset_fake_popen() -> None:
     SuccessfulPopen.calls = []
-    SuccessfulPopen.schema_version = 1
+    SuccessfulPopen.schema_version = SANDBOX_SCHEMA_VERSION
     SuccessfulPopen.return_code = 0
     SuccessfulPopen.extra_output = b""
 
@@ -119,7 +128,7 @@ def test_docker_command_contains_all_isolation_controls(monkeypatch) -> None:
 
 
 def test_unknown_worker_schema_is_rejected(monkeypatch) -> None:
-    SuccessfulPopen.schema_version = 2
+    SuccessfulPopen.schema_version = SANDBOX_SCHEMA_VERSION + 1
     monkeypatch.setattr("app.runtime.docker_executor.subprocess.Popen", SuccessfulPopen)
     code = "class GeneratedStrategy: pass"
 
@@ -164,9 +173,9 @@ def test_output_over_limit_is_not_parsed(monkeypatch) -> None:
     assert result.error_code == SandboxErrorCode.STRATEGY_RESOURCE_LIMIT
 
 
-def test_timeout_cleans_container_and_returns_strategy_timeout(monkeypatch) -> None:
+def test_host_timeout_cleans_container_and_returns_infrastructure_error(monkeypatch) -> None:
     cleanup_calls: list[list[str]] = []
-    clock = iter([0.0, 2.0, 2.1])
+    clock = iter([0.0, 3.0, 3.1])
     monkeypatch.setattr("app.runtime.docker_executor.subprocess.Popen", HangingPopen)
     monkeypatch.setattr(
         "app.runtime.docker_executor.subprocess.run",
@@ -179,7 +188,7 @@ def test_timeout_cleans_container_and_returns_strategy_timeout(monkeypatch) -> N
     code = "class GeneratedStrategy: pass"
 
     result = DockerSandboxExecutor(
-        settings(sandbox_timeout_seconds=1)
+        settings(sandbox_timeout_seconds=1, sandbox_startup_grace_seconds=1)
     ).run_smoke(
         code,
         hashlib.sha256(code.encode()).hexdigest(),
@@ -187,7 +196,7 @@ def test_timeout_cleans_container_and_returns_strategy_timeout(monkeypatch) -> N
         0.002,
     )
 
-    assert result.error_code == SandboxErrorCode.STRATEGY_TIMEOUT
+    assert result.error_code == SandboxErrorCode.SANDBOX_UNAVAILABLE
     assert cleanup_calls[0][:3] == ["docker", "rm", "--force"]
 
 
@@ -208,3 +217,37 @@ def test_missing_docker_binary_fails_closed(monkeypatch, tmp_path) -> None:
             0.002,
         )
     assert marker.exists() is False
+
+
+def test_runtime_protocol_requires_allowlisted_safe_failure_type() -> None:
+    with pytest.raises(ValidationError):
+        SandboxResult(
+            schema_version=SANDBOX_SCHEMA_VERSION,
+            success=False,
+            stage="smoke",
+            error_code=SandboxErrorCode.STRATEGY_RUNTIME_ERROR,
+            error_message="GeneratedStrategy çalıştırılamadı.",
+            strategy_code_hash="a" * 64,
+            duration_seconds=0.01,
+        )
+
+
+def test_worker_failure_type_allowlist_and_unknown_fallback() -> None:
+    assert safe_failure_type(AttributeError("not persisted")) == "AttributeError"
+    assert safe_failure_type(PermissionError("not persisted")) == "UnknownRuntimeError"
+
+    outer = RuntimeError("outer")
+    outer.__cause__ = ValueError("inner")
+    assert safe_failure_type(outer) == "ValueError"
+
+    result = SandboxResult(
+        schema_version=SANDBOX_SCHEMA_VERSION,
+        success=False,
+        stage="smoke",
+        error_code=SandboxErrorCode.STRATEGY_RUNTIME_ERROR,
+        error_message="GeneratedStrategy çalıştırılamadı.",
+        safe_failure_type=SafeFailureType.UNKNOWN_RUNTIME_ERROR,
+        strategy_code_hash="a" * 64,
+        duration_seconds=0.01,
+    )
+    assert result.safe_failure_type == SafeFailureType.UNKNOWN_RUNTIME_ERROR

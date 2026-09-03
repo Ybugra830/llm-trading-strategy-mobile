@@ -1,6 +1,7 @@
 """Flutter-facing Strategy Lab endpointleri."""
 
 import logging
+from collections.abc import AsyncIterator
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -37,15 +38,16 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/v1/strategy-lab", tags=["strategy-lab"])
 
 
-def get_strategy_lab_service() -> StrategyLabService:
+async def get_strategy_lab_service() -> AsyncIterator[StrategyLabService]:
     settings = get_settings()
-    return StrategyLabService(
-        strategy_service=StrategyService(NvidiaNimClient(settings)),
-        validation_service=ValidationService(),
-        sandbox_executor=DockerSandboxExecutor(settings),
-        market_provider=YahooFinanceProvider(),
-        max_strategy_versions=settings.max_strategy_versions,
-    )
+    async with NvidiaNimClient(settings) as client:
+        yield StrategyLabService(
+            strategy_service=StrategyService(client),
+            validation_service=ValidationService(),
+            sandbox_executor=DockerSandboxExecutor(settings),
+            market_provider=YahooFinanceProvider(),
+            max_strategy_versions=settings.max_strategy_versions,
+        )
 
 
 @router.get("/capabilities", response_model=StrategyLabCapabilitiesResponse)

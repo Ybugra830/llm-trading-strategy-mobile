@@ -44,8 +44,10 @@ def test_config_summary_never_contains_api_key() -> None:
 def test_sandbox_defaults_use_three_total_strategy_versions() -> None:
     settings = Settings(_env_file=None)
 
+    assert settings.nvidia_request_timeout_seconds == 180
     assert settings.sandbox_image == "llm-strategy-sandbox:dev"
     assert settings.sandbox_timeout_seconds == 10
+    assert settings.sandbox_startup_grace_seconds == 20
     assert settings.sandbox_memory == "256m"
     assert settings.sandbox_cpus == 1
     assert settings.sandbox_pids_limit == 64
@@ -57,6 +59,15 @@ def test_sandbox_defaults_use_three_total_strategy_versions() -> None:
     ("field", "value"),
     [
         ("sandbox_timeout_seconds", 0),
+        ("sandbox_startup_grace_seconds", 0),
+        ("nvidia_request_timeout_seconds", 0),
+        ("nvidia_connect_timeout_seconds", 0),
+        ("nvidia_read_timeout_seconds", 301),
+        ("nvidia_write_timeout_seconds", 0),
+        ("nvidia_pool_timeout_seconds", 0),
+        ("nvidia_max_retries", 2),
+        ("nvidia_retry_backoff_seconds", 6),
+        ("nvidia_max_tokens", 16384),
         ("sandbox_memory", "unlimited"),
         ("sandbox_cpus", 0),
         ("sandbox_pids_limit", 1),
@@ -67,3 +78,9 @@ def test_sandbox_defaults_use_three_total_strategy_versions() -> None:
 def test_invalid_sandbox_limits_are_rejected(field: str, value: object) -> None:
     with pytest.raises(ValidationError):
         Settings(_env_file=None, **{field: value})
+
+
+def test_empty_fallback_is_disabled_and_unset_by_default():
+    assert Settings(_env_file=None).nvidia_fallback_model is None
+    assert Settings(_env_file=None, nvidia_fallback_model="  ").nvidia_fallback_model is None
+    assert Settings(_env_file=None, nvidia_fallback_model=" tested/model ").nvidia_fallback_model == "tested/model"
