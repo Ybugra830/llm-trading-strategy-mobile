@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:flutter/foundation.dart';
 
 class ApiConfig {
   ApiConfig({String? baseUrl})
@@ -7,8 +7,11 @@ class ApiConfig {
   static const _definedBaseUrl = String.fromEnvironment('API_BASE_URL');
 
   static String get resolvedBaseUrl {
+    // Web requests use the hosting origin and Nginx's /api/ proxy.
+    if (kIsWeb) return '';
     if (_definedBaseUrl.trim().isNotEmpty) return _definedBaseUrl;
-    return Platform.isAndroid
+
+    return defaultTargetPlatform == TargetPlatform.android
         ? 'http://10.0.2.2:8000'
         : 'http://127.0.0.1:8000';
   }
