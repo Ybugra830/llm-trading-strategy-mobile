@@ -241,6 +241,24 @@ def test_three_invalid_versions_stop_before_market(ohlcv_data) -> None:
     assert provider.calls == []
 
 
+def test_filesystem_versions_never_reach_smoke_market_or_backtest(ohlcv_data) -> None:
+    versions = [
+        VALID_CODE + "\nreader = open\nreader('unused')",
+        "import pandas as pd\n" + VALID_CODE + "\nreader = pd.read_csv\nreader('unused')",
+        "import pandas as pd\n" + VALID_CODE + "\nframe = pd.DataFrame()\nwriter = frame.to_csv\nwriter('unused')",
+    ]
+    strategy = FakeStrategyService(versions)
+    sandbox = FakeSandbox()
+    provider = FakeMarketProvider(ohlcv_data)
+    with pytest.raises(StrategyPretestError):
+        asyncio.run(build_service(strategy, sandbox, provider).run(request()))
+    assert len(strategy.repair_calls) == 2
+    assert all(context.stage == "static" for _, _, context in strategy.repair_calls)
+    assert sandbox.smoke_calls == []
+    assert sandbox.backtest_calls == []
+    assert provider.calls == []
+
+
 def test_real_held_out_failure_never_repairs_or_reruns(ohlcv_data) -> None:
     strategy = FakeStrategyService([VALID_CODE, VALID_CODE + "\n# must not be used"])
     sandbox = FakeSandbox(backtest_success=False)

@@ -74,6 +74,13 @@ shutil, pathlib, pickle, marshal, ctypes, importlib, builtins, eval, exec,
 compile, open, input, globals, locals, getattr, setattr, delattr, print, or
 __import__.
 
+Generated strategies must never read, write, deserialize, inspect, or create
+files. This includes filesystem access through builtins, pandas, NumPy, pathlib,
+aliases, bound methods, or indirect imports. Never use pandas read_* APIs,
+file stores or file writers (including to_csv), or NumPy load/save, fromfile,
+tofile, dump, or memory-mapped/file-backed APIs. Use only the supplied market
+data and in-memory computation; do not obtain filesystem-capable callables.
+
 Canonical bilingual examples follow. Match their adapter and trading patterns;
 adapt the indicators, periods, thresholds, boolean conditions, and documented
 position-management pattern to the user's stated intent. Do not invent APIs.
