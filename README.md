@@ -1,117 +1,161 @@
 # LLM Trading Strategy Mobile
 
-LLM Trading Strategy Mobile, doğal dilde tanımlanan teknik analiz stratejilerini
-Python koduna dönüştürmek ve ilerleyen aşamalarda doğrulayıp geçmiş piyasa
-verileri üzerinde test etmek amacıyla geliştirilen mobil uygulama ve backend
-projesidir.
+Kullanıcının doğal dilde tanımladığı trading stratejisini NVIDIA NIM üzerinden
+LLM ile Python strateji koduna dönüştüren uçtan uca bir sistemdir. Üretilen kod
+statik güvenlik kontrollerinden ve Docker sandbox doğrulamasından geçirilir;
+BIST hisselerinin geçmiş verileri üzerinde backtest yapılır ve sonuçlar Flutter
+tabanlı web/mobile arayüzünde gösterilir.
 
-> **Mevcut durum:** Backend; NVIDIA NIM strateji üretimi, AST tabanlı statik
-> doğrulama, tamamlanmış günlük BIST verisinde trusted backtest ve generated
-> stratejiler için Docker-isolated Strategy Lab akışı sunar. Generated source
-> FastAPI Python sürecinde çalıştırılmaz. Flutter halen başlangıç kabuğudur.
+## Live Demo
 
-## Depo yapısı
+[Open Live Strategy Lab](https://strategy-lab.denmarkeast.cloudapp.azure.com/)
+
+Canlı demo, Azure VM üzerinde çalışan **Flutter Web + FastAPI** deploymentıdır.
+Nginx, HTTPS bağlantılarını karşılar, Flutter Web dosyalarını sunar ve API
+isteklerini yalnızca localhost üzerinde dinleyen FastAPI servisine yönlendirir.
+
+## Architecture
 
 ```text
-backend/  FastAPI, NVIDIA NIM, statik doğrulama, BIST verisi ve backtest
-mobile/   Android ve iOS hedefli Flutter uygulama iskeleti
-docs/     Türkçe mimari ve staj dokümantasyonu
+Flutter Web / Mobile
+        ↓
+FastAPI
+        ↓
+NVIDIA NIM
+        ↓
+Generated Python Strategy
+        ↓
+AST Validation
+        ↓
+Bounded Repair (doğrulama veya smoke testi başarısız olursa)
+        ↓
+Docker Sandbox Smoke Test
+        ↓
+Strategy Freeze (SHA-256)
+        ↓
+Yahoo Finance BIST Data
+        ↓
+Held-Out Backtest (Docker sandbox)
+        ↓
+Metrics → Flutter arayüzü
 ```
 
-## Backend kurulumu
+Onarım zorunlu bir adım değildir: statik doğrulama veya deterministik smoke
+testi başarısız olursa sınırlı sayıda yeniden üretim yapılır ve yeni sürüm tekrar
+doğrulanır. Varsayılan sınır, ilk üretim dahil üç strateji sürümüdür. Smoke testi
+başarılı olduğunda kod SHA-256 ile sabitlenir; son altı takvim ayına ayrılmış
+held-out test verisi veya backtest sonuçları onarım amacıyla LLM'e gönderilmez.
 
-Python 3.11 veya daha yeni bir sürüm gereklidir.
+**Güvenlik:** LLM tarafından oluşturulan Python kodu FastAPI host process içinde
+doğrudan çalıştırılmaz. Generated strategy yalnızca statik doğrulama sonrasında
+izole Docker sandbox ortamında çalıştırılır. Sandbox ağ erişimi kapalı,
+salt okunur kök dosya sistemine sahip, ayrıcalıksız kullanıcıyla çalışan ve
+süre/CPU/bellek/process sınırları uygulanan bir ortamdır. AST ve lookahead
+kontrolleri güvenlik katmanlarıdır; stratejinin doğruluğunu veya kârlılığını
+garanti etmez.
+
+## Tech Stack
+
+| Katman | Teknolojiler |
+| --- | --- |
+| Backend | Python, FastAPI |
+| Arayüz | Flutter, Dart |
+| Strateji üretimi | NVIDIA NIM |
+| İzole çalışma ortamı | Docker |
+| Veri ve backtest | Yahoo Finance (`yfinance`), backtesting.py, pandas, NumPy |
+| Deployment ve kaynak yönetimi | Nginx, Azure VM, GitHub |
+
+## Features
+
+- Doğal dilden Python strateji üretimi.
+- SMA, EMA, RSI, MACD, Bollinger Bands, Stochastic ve ATR indikatör desteği.
+- BIST sembolleri ve Yahoo Finance için `.IS` sembol dönüşümü.
+- AST tabanlı statik doğrulama ve lookahead kontrolleri.
+- Sınırlı onarım (bounded repair) ve Docker sandbox smoke testi.
+- SHA-256 strategy freeze ve çalışma sonucunda bütünlük kontrolü.
+- Tamamlanmış günlük verilerle held-out backtesting.
+- Başlangıç sermayesi ve komisyon ayarları.
+- Getiri, net kâr/zarar, işlem sayısı, win rate, drawdown, Sharpe, Sortino ve
+  diğer backtest metriklerinin gösterimi.
+- Flutter mobile/web arayüzü ve herkese açık Azure demosu.
+
+Desteklenen semboller: `THYAO`, `ASELS`, `TUPRS`, `BIMAS`, `EREGL`, `KCHOL`,
+`GARAN`, `AKBNK`, `SISE`, `SAHOL`, `FROTO`, `TOASO`.
+
+## API
+
+| Method | Endpoint | Açıklama |
+| --- | --- | --- |
+| GET | `/health` | Uygulama sağlık kontrolü; `{"status":"ok"}` döndürür. |
+| GET | `/api/v1/strategy-lab/capabilities` | Desteklenen semboller, indikatörler, varsayılanlar ve prompt sınırları. |
+| POST | `/api/v1/strategy-lab/run` | Üretim, doğrulama, sandbox ve backtest akışını çalıştırır. |
+| POST | `/api/v1/strategies/generate` | Doğal dilden strateji kodu üretir. |
+| POST | `/api/v1/strategies/validate` | Kaynak kodunu çalıştırmadan statik olarak doğrular. |
+| POST | `/api/v1/backtests/bist` | Repoya ait güvenilir referans SMA stratejisiyle BIST backtest yapar. |
+
+Strategy Lab örnek isteği:
+
+```json
+{
+  "prompt": "RSI 35 altında al ve RSI 70 üzerinde sat.",
+  "symbol": "THYAO",
+  "initial_cash": 100000,
+  "commission": 0.002
+}
+```
+
+`prompt`, baştaki/sondaki boşluklar temizlendikten sonra 5–2000 karakter
+olmalıdır. `symbol` zorunludur ve desteklenen BIST sembollerinden biri olmalıdır.
+`initial_cash` sıfırdan büyük olmalıdır; varsayılanı `100000` değeridir.
+`commission`, `0 <= commission < 0.1` aralığında bir orandır; varsayılan
+`0.002`, %0,2 komisyona karşılık gelir.
+
+Başarılı yanıt üretilen kodu, deneme sayısını, doğrulama/runtime bilgilerini,
+veri dönemini, backtest ayarlarını ve metrikleri içerir. İşlem tek HTTP isteği
+içinde tamamlanır ve LLM/veri servislerine bağlı olarak zaman alabilir.
+Yerel backend'in OpenAPI arayüzü: `http://127.0.0.1:8000/docs`.
+
+## Running Locally
+
+Gereksinimler: Python 3.11+, Flutter 3.35.x / Dart 3.9.2 ile uyumlu SDK,
+çalışan Docker daemon ve strateji üretimi için NVIDIA NIM API anahtarı.
+Aşağıdaki komutlar Windows PowerShell içindir; her komut bloğuna belirtilen
+dizinden başlayın.
+
+### Backend
+
+Repo kökünden, ilk kurulumda:
 
 ```powershell
 cd backend
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -e ".[dev]"
-Copy-Item .env.example .env
+if (-not (Test-Path .env)) { Copy-Item .env.example .env }
 ```
 
-Oluşturulan `.env` dosyasında `NVIDIA_API_KEY` değerini yerel olarak doldurun.
-Gerçek API anahtarlarını veya `.env` dosyasını Git'e eklemeyin.
+`backend/.env` içindeki `NVIDIA_API_KEY` değerini kendi ortamınızda doldurun.
+Gerçek anahtarları, `.env` dosyalarını veya SSH bilgilerini repoya eklemeyin.
 
-## Backend'i çalıştırma
-
-```powershell
-cd backend
-uvicorn app.main:app --reload
-```
-
-- Sağlık kontrolü: `http://127.0.0.1:8000/health`
-- Swagger arayüzü: `http://127.0.0.1:8000/docs`
-- Strateji üretimi: `POST /api/v1/strategies/generate`
-- Statik doğrulama: `POST /api/v1/strategies/validate`
-- BIST backtest: `POST /api/v1/backtests/bist`
-- Strategy Lab: `POST /api/v1/strategy-lab/run`
-- Flutter capability metadata: `GET /api/v1/strategy-lab/capabilities`
-
-Swagger'da üretim ve doğrulama endpoint'lerini **Try it out** seçeneğiyle
-deneyebilirsiniz. Güvensiz veya geçersiz kaynak kodu normal sonuç olarak HTTP
-200 ve `valid=false` döndürür; boş ya da 20.000 karakterden uzun `code` alanı
-HTTP 422 döndürür.
-
-## BIST backtest
-
-Day 4 endpoint'i yalnızca `THYAO`, `ASELS`, `TUPRS`, `BIMAS`, `EREGL`,
-`KCHOL`, `GARAN`, `AKBNK`, `SISE`, `SAHOL`, `FROTO` ve `TOASO`
-sembollerini kabul eder. Sembol Yahoo Finance için `.IS` ekiyle dönüştürülür.
-
-Yaklaşık üç yıllık düzeltilmiş günlük OHLCV indirilir. Bugün exclusive bitiş
-tarihi olduğundan potansiyel olarak tamamlanmamış güncel bar backtest'e girmez.
-Temiz verinin son altı takvim ayı görülmemiş test dönemi olarak ayrılır ve
-repository-owned `ReferenceSmaCrossStrategy` yalnızca bu dönemde çalıştırılır.
+`backend/` dizininde, sanal ortam aktif ve Docker daemon çalışırken sandbox
+image'ini oluşturup doğrulayın:
 
 ```powershell
-Invoke-RestMethod -Method Post `
-  -Uri http://127.0.0.1:8000/api/v1/backtests/bist `
-  -ContentType "application/json" `
-  -Body '{"symbol":"THYAO","initial_cash":100000,"commission":0.002}'
-```
-
-Yanıt; gerçek veri ve test tarihlerini, satır sayılarını, backtest ayarlarını,
-getiri, buy-and-hold, net kâr/zarar, işlem sayısı, win rate, drawdown, Sharpe,
-Sortino, Profit Factor, işlem ve exposure metriklerini içerir.
-
-## Backend testleri
-
-```powershell
-cd backend
-pytest
-```
-
-Backend testleri gerçek NVIDIA API anahtarı, Yahoo Finance veya dış ağ kullanmaz.
-
-## Day 5 Strategy Lab sandbox
-
-Generated strateji yalnızca özel Docker image içinde çalışır. Image'i oluşturmak
-için Docker Desktop/daemon çalışırken:
-
-```powershell
-cd backend
 docker build -f sandbox/Dockerfile -t llm-strategy-sandbox:dev sandbox
 python scripts/check_sandbox.py
 ```
 
-Örnek istek:
+Aynı dizinde backend'i başlatın:
 
 ```powershell
-Invoke-RestMethod -Method Post `
-  -Uri http://127.0.0.1:8000/api/v1/strategy-lab/run `
-  -ContentType "application/json" `
-  -Body '{"prompt":"RSI 35 altında al ve RSI 70 üzerinde sat.","symbol":"THYAO","initial_cash":100000,"commission":0.002}'
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-Repair yalnızca statik validation ve deterministik smoke testinde yapılabilir.
-Smoke sonrasında strateji frozen olur; held-out son altı aylık BIST backtest'i
-repair için NVIDIA'ya bilgi göndermez. Supported-indicator contract SMA, EMA,
-RSI, MACD, Bollinger Bands, Stochastic ve ATR değerleriyle sınırlıdır.
+Sağlık kontrolü: `http://127.0.0.1:8000/health`.
 
-## Flutter kurulumu ve çalıştırma
+### Flutter
 
-Flutter 3.35.x gereklidir.
+Repo kökünden yeni bir terminalde:
 
 ```powershell
 cd mobile
@@ -119,32 +163,84 @@ flutter pub get
 flutter run
 ```
 
-## Flutter analizi ve testleri
+Yerel geliştirmede Android emülatörü varsayılan olarak `http://10.0.2.2:8000`,
+diğer native platformlar `http://127.0.0.1:8000` adresini kullanır. Fiziksel
+cihazlar için erişilebilir bir backend adresi gerekir. Native hedeflerde adres
+`--dart-define=API_BASE_URL=...` ile değiştirilebilir.
+
+Web sürümü `/api/` isteklerini **aynı origin** üzerinden gönderir ve
+`API_BASE_URL` tanımını kullanmaz. Yerel web kullanımı için
+`flutter build web --release` çıktısı, `/api/` isteklerini FastAPI'ye ileten
+bir web sunucusuyla sunulmalıdır; yalnızca Flutter geliştirme sunucusunu açmak
+API proxy'si sağlamaz. [Nginx şablonu](deploy/azure/nginx.conf) bu yönlendirmeyi
+gösterir; yerel kullanımda web root yolunu yerel build dizinine uyarlayın.
+
+### Tests and Build
+
+`backend/` dizininde, sanal ortam aktifken:
 
 ```powershell
-cd mobile
-flutter analyze
-flutter test
+python -m pytest
 ```
 
-## Mevcut sınırlar ve sonraki aşamalar
+Backend testleri gerçek NVIDIA API anahtarı, Yahoo Finance veya dış ağ gerektirmez.
+Docker image kontrolü yukarıdaki `check_sandbox.py` komutuyla ayrıca yapılır.
 
-LLM çıktısı güvenilir uygulama kodu değildir. AST doğrulaması statik filtredir;
-generated runtime yalnızca network-disabled, read-only ve kaynak sınırlı Docker
-sandbox'da gerçekleşir. Kapsamlı indikatör sayısal karşılaştırması, Flutter API
-entegrasyonu ve deployment sonraki aşamalardadır. Strategy Lab MVP isteği uzun
-sürebilir; production/mobile sürümünde job-id ve polling tabanlı asenkron iş
-mimarisi değerlendirilecektir.
+`mobile/` dizininde:
 
-Yahoo Finance verisi için gerçek zaman veya kesintisiz erişim garantisi yoktur.
-`yfinance`, Yahoo tarafından desteklenen resmî bir istemci değildir ve kullanım
-eğitim/araştırma amacıyla Yahoo koşullarına uygun olmalıdır. Sistem yatırım
-tavsiyesi vermez, gerçek emir göndermez ve geçmiş performans gelecekteki sonucu
-garanti etmez.
+```powershell
+flutter analyze
+flutter test
+flutter build web --release
+```
 
-Ayrıntılı backend kullanımı için [backend/README.md](backend/README.md), hedef
-mimari için [docs/architecture.md](docs/architecture.md), AST teknik notu için
-[docs/ast-validation.md](docs/ast-validation.md), Day 4 açıklaması için
-[docs/day4-bist-backtest.md](docs/day4-bist-backtest.md), Day 5 güvenli runtime
-için [docs/day5-safe-runtime-and-strategy-lab.md](docs/day5-safe-runtime-and-strategy-lab.md)
-dosyasına bakın.
+Web çıktısı `mobile/build/web/` altında oluşur ve Git'e eklenmez.
+
+## Deployment
+
+```text
+Browser → HTTPS → Azure VM / Nginx → Flutter Web
+                             └── /api/... → FastAPI (127.0.0.1:8000)
+                             └── /health  → FastAPI (127.0.0.1:8000)
+```
+
+Azure'daki repo `/opt/llm-trading-strategy-mobile`, backend çalışma dizini
+`/opt/llm-trading-strategy-mobile/backend`, Flutter Web sunum dizini
+`/var/www/strategy-lab` konumundadır. FastAPI, `llm-strategy` systemd servisi
+olarak çalışır. **FastAPI internete doğrudan 8000 portundan açılmaz**;
+Nginx `/api/` önekini koruyarak localhost backend'e proxy yapar.
+
+Repodaki [deploy/azure/nginx.conf](deploy/azure/nginx.conf), HTTP için başlangıç
+şablonudur. Canlı ortam ayrıca demo alan adına bağlı HTTPS ve Certbot tarafından
+yönetilen TLS yapılandırmasını kullanır. Şablon, canlı HTTPS yapılandırmasının
+birebir kopyası değildir ve aktif yapılandırmanın üzerine doğrudan yazılmamalıdır.
+Sertifikalar, özel anahtarlar ve ortama özgü gizli değerler Git dışında tutulur.
+
+Web deploymentında yalnızca release build'in `build/web/` içeriği web root'a
+sunulur. Backend ortam dosyaları, SSH anahtarları, QA çıktıları ve loglar public
+web dizinine veya GitHub'a taşınmaz.
+
+## Disclaimer
+
+Backtest sonuçları geçmiş piyasa verilerine dayanır ve gelecekteki performansı
+garanti etmez. Sistem eğitim ve araştırma amaçlıdır; yatırım tavsiyesi vermez
+ve gerçek emir göndermez. Yahoo Finance verisinin kesintisiz veya gerçek zamanlı
+olduğu garanti edilmez. `yfinance`, Yahoo tarafından desteklenen resmî bir
+istemci değildir; veri kullanımında ilgili sağlayıcının koşulları dikkate
+alınmalıdır.
+
+## Project Structure and Further Reading
+
+```text
+backend/       FastAPI, LLM, doğrulama, veri, backtest ve Docker sandbox
+mobile/        Flutter mobile/web uygulaması
+deploy/azure/  Nginx deployment şablonu
+docs/          Mimari ve teknik dokümantasyon
+```
+
+- [Backend kurulumu ve API ayrıntıları](backend/README.md)
+- [Flutter API yapılandırması](mobile/README.md)
+- [Mimari](docs/architecture.md)
+- [AST doğrulaması](docs/ast-validation.md)
+- [BIST backtest](docs/day4-bist-backtest.md)
+- [Güvenli runtime ve Strategy Lab](docs/day5-safe-runtime-and-strategy-lab.md)
