@@ -1,0 +1,149 @@
+{
+  "id": "CONCURRENT-2",
+  "target": "public, independent Chrome browser contexts",
+  "start_utc": "2026-09-06T09:39:04.232250+00:00",
+  "end_utc": "2026-09-06T09:39:22.249725+00:00",
+  "requests": [
+    {
+      "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+      "method": "POST",
+      "start": 176579.936903,
+      "utc": "2026-09-06T09:39:04.314851+00:00",
+      "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+      "body": {
+        "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+        "symbol": "THYAO",
+        "initial_cash": 100000,
+        "commission": 0.002
+      },
+      "http_status": 200,
+      "duration_seconds": 17.42477000001236,
+      "finished": true,
+      "response": {
+        "symbol": "THYAO",
+        "configuration": {
+          "initial_cash": 100000.0,
+          "commission": 0.002
+        },
+        "runtime": {
+          "sandboxed": true,
+          "smoke_test_passed": true
+        },
+        "data": {
+          "download_start": "2023-09-06",
+          "download_end": "2026-09-04",
+          "total_rows": 754,
+          "history_rows": 626,
+          "test_rows": 128,
+          "cutoff_date": "2026-03-04",
+          "test_start": "2026-03-04",
+          "test_end": "2026-09-04"
+        },
+        "metrics": {
+          "initial_cash": 100000.0,
+          "final_equity": 125575.81650000002,
+          "net_profit": 25575.816500000015,
+          "return_percent": 25.575816500000016,
+          "buy_and_hold_return_percent": 1.718213058419244,
+          "number_of_trades": 2,
+          "win_rate_percent": 50.0,
+          "max_drawdown_percent": -2.2486712247546614,
+          "sharpe_ratio": 2.218781624336278,
+          "sortino_ratio": 12.678818962844495,
+          "profit_factor": 179.21136711951468,
+          "best_trade_percent": 25.824817518248167,
+          "worst_trade_percent": -0.14410256410256495,
+          "average_trade_duration": "24 days 00:00:00",
+          "exposure_time_percent": 27.34375
+        },
+        "validation": {
+          "valid": true,
+          "syntax_valid": true,
+          "imports_valid": true,
+          "security_valid": true,
+          "interface_valid": true,
+          "lookahead_valid": true,
+          "errors": []
+        }
+      },
+      "generation": {
+        "attempt_count": 1,
+        "repaired": false
+      },
+      "source_hash": "0a04285ffea6bf3a60bd4ddc771fdbc679f0239877b0087df586284741c7be90",
+      "secret_found": false,
+      "error_detail": ""
+    },
+    {
+      "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+      "method": "POST",
+      "start": 176580.247824,
+      "utc": "2026-09-06T09:39:04.625912+00:00",
+      "session": "B544657CEC333391F9C1A821715DB355",
+      "body": {
+        "prompt": "Buy when SMA20 crosses above SMA50 and close when SMA20 crosses below SMA50.",
+        "symbol": "ASELS",
+        "initial_cash": 100000,
+        "commission": 0.002
+      },
+      "http_status": 200,
+      "duration_seconds": 7.593006000010064,
+      "finished": true,
+      "response": {
+        "symbol": "ASELS",
+        "configuration": {
+          "initial_cash": 100000.0,
+          "commission": 0.002
+        },
+        "runtime": {
+          "sandboxed": true,
+          "smoke_test_passed": true
+        },
+        "data": {
+          "download_start": "2023-09-06",
+          "download_end": "2026-09-04",
+          "total_rows": 754,
+          "history_rows": 626,
+          "test_rows": 128,
+          "cutoff_date": "2026-03-04",
+          "test_start": "2026-03-04",
+          "test_end": "2026-09-04"
+        },
+        "metrics": {
+          "initial_cash": 100000.0,
+          "final_equity": 94755.811,
+          "net_profit": -5244.1889999999985,
+          "return_percent": -5.244188999999999,
+          "buy_and_hold_return_percent": -6.445783132530121,
+          "number_of_trades": 1,
+          "win_rate_percent": 0.0,
+          "max_drawdown_percent": -5.993234904282674,
+          "sharpe_ratio": -1.7490885408148136,
+          "sortino_ratio": -1.59279811506404,
+          "profit_factor": 0.0,
+          "best_trade_percent": -5.265249999999996,
+          "worst_trade_percent": -5.265249999999996,
+          "average_trade_duration": "8 days 00:00:00",
+          "exposure_time_percent": 5.46875
+        },
+        "validation": {
+          "valid": true,
+          "syntax_valid": true,
+          "imports_valid": true,
+          "security_valid": true,
+          "interface_valid": true,
+          "lookahead_valid": true,
+          "errors": []
+        }
+      },
+      "generation": {
+        "attempt_count": 1,
+        "repaired": false
+      },
+      "source_hash": "472607c22c2979280c78a5b0c63addea55b4c780d77b7b505d639b2f94761f69",
+      "secret_found": false,
+      "error_detail": ""
+    }
+  ],
+  "passed": true
+}

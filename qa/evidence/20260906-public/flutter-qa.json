@@ -1,0 +1,9 @@
+{
+  "id": "flutter-qa",
+  "target": "local",
+  "start_utc": "2026-09-06T09:33:58.058642+00:00",
+  "end_utc": "2026-09-06T09:34:12.691805+00:00",
+  "duration_seconds": 14.633156700001564,
+  "exit_code": 1,
+  "evidence": "flutter-qa.txt"
+}

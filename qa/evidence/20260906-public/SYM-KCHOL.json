@@ -1,0 +1,135 @@
+{
+  "id": "SYM-KCHOL",
+  "target": "public Chrome UI",
+  "end_utc": "2026-09-06T09:22:33.539167+00:00",
+  "expected": {
+    "symbol": "KCHOL",
+    "initial_cash": 100000.0,
+    "commission": 0.002
+  },
+  "post_count": 1,
+  "requests": [
+    {
+      "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+      "method": "POST",
+      "start": 175583.191069,
+      "utc": "2026-09-06T09:22:27.568921+00:00",
+      "session": "96A22F568A05CE433D1D14ADCFBE6004",
+      "body": {
+        "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+        "symbol": "KCHOL",
+        "initial_cash": 100000,
+        "commission": 0.002
+      },
+      "http_status": 502,
+      "duration_seconds": 5.3795870000030845,
+      "finished": true,
+      "response": {},
+      "generation": {},
+      "source_hash": null,
+      "secret_found": false,
+      "error_detail": "Piyasa verisi şu anda kullanılamıyor."
+    }
+  ],
+  "screen": [
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Menu\nStrategy Lab\nAbout\nSomething went wrong\nPiyasa verisi şu anda kullanılamıyor.\nTry Again\nBack to Strategy\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Menu\nStrategy Lab\nAbout\nSomething went wrong\nPiyasa verisi şu anda kullanılamıyor.\nTry Again\nBack to Strategy\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Menu\nStrategy Lab\nAbout\nSomething went wrong\nPiyasa verisi şu anda kullanılamıyor.\nTry Again\nBack to Strategy\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Menu\nStrategy Lab\nAbout\nSomething went wrong\nPiyasa verisi şu anda kullanılamıyor.\nTry Again\nBack to Strategy\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Menu\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "Menu"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "About"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "group",
+      "label": null,
+      "text": "Something went wrong\nPiyasa verisi şu anda kullanılamıyor.\nTry Again\nBack to Strategy"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Something went wrong"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Piyasa verisi şu anda kullanılamıyor."
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "Try Again"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "Back to Strategy"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "Strategy Lab"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "About"
+    }
+  ],
+  "console": [
+    {
+      "utc": "2026-09-06T09:21:32.634564+00:00",
+      "session": "96A22F568A05CE433D1D14ADCFBE6004",
+      "kind": "error",
+      "message": "Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+    },
+    {
+      "utc": "2026-09-06T09:22:32.951460+00:00",
+      "session": "96A22F568A05CE433D1D14ADCFBE6004",
+      "kind": "error",
+      "message": "Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+    }
+  ],
+  "passed": false
+}

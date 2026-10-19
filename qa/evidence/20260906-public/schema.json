@@ -1,0 +1,520 @@
+[
+  {
+    "id": "SCHEMA-prompt-0",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.413599+00:00",
+    "field": "prompt",
+    "input": "",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "prompt"
+        ],
+        "type": "string_too_short"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-prompt-1",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.413714+00:00",
+    "field": "prompt",
+    "input": "R",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "prompt"
+        ],
+        "type": "string_too_short"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-prompt-2",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.413739+00:00",
+    "field": "prompt",
+    "input": "RSI",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "prompt"
+        ],
+        "type": "string_too_short"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-prompt-3",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.413755+00:00",
+    "field": "prompt",
+    "input": "RSIX",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "prompt"
+        ],
+        "type": "string_too_short"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-prompt-4",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.413767+00:00",
+    "field": "prompt",
+    "input": "RSI X",
+    "accepted": true,
+    "normalized": 5
+  },
+  {
+    "id": "SCHEMA-prompt-5",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.413916+00:00",
+    "field": "prompt",
+    "input": "Buy when RSI is below 35.",
+    "accepted": true,
+    "normalized": 25
+  },
+  {
+    "id": "SCHEMA-prompt-6",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.413939+00:00",
+    "field": "prompt",
+    "input": {
+      "length": 1999
+    },
+    "accepted": true,
+    "normalized": 1999
+  },
+  {
+    "id": "SCHEMA-prompt-7",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.413956+00:00",
+    "field": "prompt",
+    "input": {
+      "length": 2000
+    },
+    "accepted": true,
+    "normalized": 2000
+  },
+  {
+    "id": "SCHEMA-prompt-8",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.413971+00:00",
+    "field": "prompt",
+    "input": {
+      "length": 2001
+    },
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "prompt"
+        ],
+        "type": "string_too_long"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-prompt-9",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414012+00:00",
+    "field": "prompt",
+    "input": {
+      "length": 10000
+    },
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "prompt"
+        ],
+        "type": "string_too_long"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-initial_cash-0",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414037+00:00",
+    "field": "initial_cash",
+    "input": "",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "initial_cash"
+        ],
+        "type": "float_parsing"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-initial_cash-1",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414058+00:00",
+    "field": "initial_cash",
+    "input": 0,
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "initial_cash"
+        ],
+        "type": "greater_than"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-initial_cash-2",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414093+00:00",
+    "field": "initial_cash",
+    "input": -1,
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "initial_cash"
+        ],
+        "type": "greater_than"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-initial_cash-3",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414111+00:00",
+    "field": "initial_cash",
+    "input": -100000,
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "initial_cash"
+        ],
+        "type": "greater_than"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-initial_cash-4",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414127+00:00",
+    "field": "initial_cash",
+    "input": 1,
+    "accepted": true,
+    "normalized": 1.0
+  },
+  {
+    "id": "SCHEMA-initial_cash-5",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414140+00:00",
+    "field": "initial_cash",
+    "input": 0.01,
+    "accepted": true,
+    "normalized": 0.01
+  },
+  {
+    "id": "SCHEMA-initial_cash-6",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414150+00:00",
+    "field": "initial_cash",
+    "input": 999999999999999999,
+    "accepted": true,
+    "normalized": 1e+18
+  },
+  {
+    "id": "SCHEMA-initial_cash-7",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414162+00:00",
+    "field": "initial_cash",
+    "input": "harf",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "initial_cash"
+        ],
+        "type": "float_parsing"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-initial_cash-8",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414178+00:00",
+    "field": "initial_cash",
+    "input": "abc",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "initial_cash"
+        ],
+        "type": "float_parsing"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-initial_cash-9",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414196+00:00",
+    "field": "initial_cash",
+    "input": "1e10",
+    "accepted": true,
+    "normalized": 10000000000.0
+  },
+  {
+    "id": "SCHEMA-initial_cash-10",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414210+00:00",
+    "field": "initial_cash",
+    "input": "NaN",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "initial_cash"
+        ],
+        "type": "finite_number"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-initial_cash-11",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414226+00:00",
+    "field": "initial_cash",
+    "input": "Infinity",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "initial_cash"
+        ],
+        "type": "finite_number"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-initial_cash-12",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414241+00:00",
+    "field": "initial_cash",
+    "input": " ",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "initial_cash"
+        ],
+        "type": "float_parsing"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-initial_cash-13",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414255+00:00",
+    "field": "initial_cash",
+    "input": "1,5",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "initial_cash"
+        ],
+        "type": "float_parsing"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-initial_cash-14",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414270+00:00",
+    "field": "initial_cash",
+    "input": "1.5",
+    "accepted": true,
+    "normalized": 1.5
+  },
+  {
+    "id": "SCHEMA-commission-0",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414282+00:00",
+    "field": "commission",
+    "input": "",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "commission"
+        ],
+        "type": "float_parsing"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-commission-1",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414298+00:00",
+    "field": "commission",
+    "input": -1,
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "commission"
+        ],
+        "type": "greater_than_equal"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-commission-2",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414316+00:00",
+    "field": "commission",
+    "input": 0,
+    "accepted": true,
+    "normalized": 0.0
+  },
+  {
+    "id": "SCHEMA-commission-3",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414329+00:00",
+    "field": "commission",
+    "input": 0.0005,
+    "accepted": true,
+    "normalized": 0.0005
+  },
+  {
+    "id": "SCHEMA-commission-4",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414339+00:00",
+    "field": "commission",
+    "input": 0.002,
+    "accepted": true,
+    "normalized": 0.002
+  },
+  {
+    "id": "SCHEMA-commission-5",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414349+00:00",
+    "field": "commission",
+    "input": 0.005,
+    "accepted": true,
+    "normalized": 0.005
+  },
+  {
+    "id": "SCHEMA-commission-6",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414358+00:00",
+    "field": "commission",
+    "input": 0.01,
+    "accepted": true,
+    "normalized": 0.01
+  },
+  {
+    "id": "SCHEMA-commission-7",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414370+00:00",
+    "field": "commission",
+    "input": 0.1,
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "commission"
+        ],
+        "type": "less_than"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-commission-8",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414401+00:00",
+    "field": "commission",
+    "input": 1,
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "commission"
+        ],
+        "type": "less_than"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-commission-9",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414418+00:00",
+    "field": "commission",
+    "input": 10,
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "commission"
+        ],
+        "type": "less_than"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-commission-10",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414434+00:00",
+    "field": "commission",
+    "input": "abc",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "commission"
+        ],
+        "type": "float_parsing"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-commission-11",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414450+00:00",
+    "field": "commission",
+    "input": "NaN",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "commission"
+        ],
+        "type": "finite_number"
+      }
+    ]
+  },
+  {
+    "id": "SCHEMA-commission-12",
+    "target": "local Pydantic schema, no HTTP",
+    "utc": "2026-09-06T09:17:23.414465+00:00",
+    "field": "commission",
+    "input": "Infinity",
+    "accepted": false,
+    "errors": [
+      {
+        "loc": [
+          "commission"
+        ],
+        "type": "finite_number"
+      }
+    ]
+  }
+]

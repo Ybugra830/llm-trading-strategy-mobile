@@ -1,0 +1,77 @@
+{
+  "id": "MARKET-DIAG",
+  "target": "Azure original provider and cleaner; no strategy",
+  "start_utc": "2026-09-06T09:36:57.373810+00:00",
+  "end_utc": "2026-09-06T09:36:59.982392+00:00",
+  "rc": 0,
+  "results": [
+    {
+      "symbol": "TUPRS.IS",
+      "rows": 754,
+      "columns": [
+        "Close",
+        "High",
+        "Low",
+        "Open",
+        "Volume"
+      ],
+      "cleaner": "InvalidMarketDataError",
+      "High-below-Open": {
+        "count": 0,
+        "min_difference": 0.0
+      },
+      "High-below-Close": {
+        "count": 0,
+        "min_difference": 0.0
+      },
+      "Open-below-Low": {
+        "count": 0,
+        "min_difference": 0.0
+      },
+      "Close-below-Low": {
+        "count": 2,
+        "min_difference": -1.4210854715202004e-14
+      },
+      "High-below-Low": {
+        "count": 0,
+        "min_difference": 0.0
+      },
+      "nonpositive_price_rows": 0,
+      "negative_volume_rows": 0
+    },
+    {
+      "symbol": "KCHOL.IS",
+      "rows": 754,
+      "columns": [
+        "Close",
+        "High",
+        "Low",
+        "Open",
+        "Volume"
+      ],
+      "cleaner": "accepted",
+      "High-below-Open": {
+        "count": 0,
+        "min_difference": 0.0
+      },
+      "High-below-Close": {
+        "count": 0,
+        "min_difference": 0.0
+      },
+      "Open-below-Low": {
+        "count": 0,
+        "min_difference": 0.0
+      },
+      "Close-below-Low": {
+        "count": 0,
+        "min_difference": 0.0
+      },
+      "High-below-Low": {
+        "count": 0,
+        "min_difference": 0.0
+      },
+      "nonpositive_price_rows": 0,
+      "negative_volume_rows": 0
+    }
+  ]
+}

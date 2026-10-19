@@ -1,0 +1,117 @@
+{
+  "id": "NET-OFFLINE",
+  "utc": "2026-09-06T09:41:56.912696+00:00",
+  "target": "public UI, Chrome offline",
+  "screen": [
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Menu\nStrategy Lab\nAbout\nSomething went wrong\nCould not reach the Strategy Lab service. Check your connection and try again.\nTry Again\nBack to Strategy\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Menu\nStrategy Lab\nAbout\nSomething went wrong\nCould not reach the Strategy Lab service. Check your connection and try again.\nTry Again\nBack to Strategy\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Menu\nStrategy Lab\nAbout\nSomething went wrong\nCould not reach the Strategy Lab service. Check your connection and try again.\nTry Again\nBack to Strategy\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Menu\nStrategy Lab\nAbout\nSomething went wrong\nCould not reach the Strategy Lab service. Check your connection and try again.\nTry Again\nBack to Strategy\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Menu\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "Menu"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "About"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "group",
+      "label": null,
+      "text": "Something went wrong\nCould not reach the Strategy Lab service. Check your connection and try again.\nTry Again\nBack to Strategy"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Something went wrong"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Could not reach the Strategy Lab service. Check your connection and try again."
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "Try Again"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "Back to Strategy"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "Strategy Lab"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "About"
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+      "method": "POST",
+      "start": 176749.280209,
+      "utc": "2026-09-06T09:41:53.658550+00:00",
+      "session": "74DF3A19F90C4B3A222145228307C627",
+      "body": {
+        "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+        "symbol": "THYAO",
+        "initial_cash": 100000,
+        "commission": 0.002
+      },
+      "duration_seconds": 0.006506000005174428,
+      "finished": true,
+      "network_error": "net::ERR_INTERNET_DISCONNECTED"
+    }
+  ],
+  "console": [
+    {
+      "utc": "2026-09-06T09:41:53.681643+00:00",
+      "session": "74DF3A19F90C4B3A222145228307C627",
+      "kind": "error",
+      "message": "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+    }
+  ]
+}

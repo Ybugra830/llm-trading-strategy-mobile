@@ -1,0 +1,372 @@
+{
+  "id": "SYM-BIMAS",
+  "target": "public Chrome UI",
+  "end_utc": "2026-09-06T09:22:02.903541+00:00",
+  "expected": {
+    "symbol": "BIMAS",
+    "initial_cash": 100000.0,
+    "commission": 0.002
+  },
+  "post_count": 1,
+  "requests": [
+    {
+      "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+      "method": "POST",
+      "start": 175534.824573,
+      "utc": "2026-09-06T09:21:39.203176+00:00",
+      "session": "96A22F568A05CE433D1D14ADCFBE6004",
+      "body": {
+        "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+        "symbol": "BIMAS",
+        "initial_cash": 100000,
+        "commission": 0.002
+      },
+      "http_status": 200,
+      "duration_seconds": 22.867622000019765,
+      "finished": true,
+      "response": {
+        "status": "success",
+        "symbol": "BIMAS",
+        "yahoo_symbol": "BIMAS.IS",
+        "data": {
+          "download_start": "2023-09-06",
+          "download_end": "2026-09-04",
+          "total_rows": 757,
+          "history_rows": 627,
+          "test_rows": 130,
+          "cutoff_date": "2026-03-04",
+          "test_start": "2026-03-04",
+          "test_end": "2026-09-04"
+        },
+        "configuration": {
+          "initial_cash": 100000.0,
+          "commission": 0.002
+        },
+        "metrics": {
+          "initial_cash": 100000.0,
+          "final_equity": 100000.0,
+          "net_profit": 0.0,
+          "return_percent": 0.0,
+          "buy_and_hold_return_percent": 23.006734659751064,
+          "number_of_trades": 0,
+          "win_rate_percent": null,
+          "max_drawdown_percent": -0.0,
+          "sharpe_ratio": null,
+          "sortino_ratio": null,
+          "profit_factor": null,
+          "best_trade_percent": null,
+          "worst_trade_percent": null,
+          "average_trade_duration": null,
+          "exposure_time_percent": 0.0
+        },
+        "validation": {
+          "valid": true,
+          "syntax_valid": true,
+          "imports_valid": true,
+          "security_valid": true,
+          "interface_valid": true,
+          "lookahead_valid": true,
+          "errors": []
+        },
+        "runtime": {
+          "sandboxed": true,
+          "smoke_test_passed": true
+        }
+      },
+      "generation": {
+        "model": "nvidia/nemotron-3-super-120b-a12b",
+        "attempt_count": 1,
+        "repaired": false
+      },
+      "source_hash": "0a04285ffea6bf3a60bd4ddc771fdbc679f0239877b0087df586284741c7be90",
+      "secret_found": false
+    }
+  ],
+  "screen": [
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Back\nBacktest Result\nAbout\nBIMAS\nSUCCESSFUL\nMar 4, 2026 – Sep 4, 2026\nTotal Return\n0.00%\nBenchmark\nStrategy\n0.00%\n0%\nFINAL EQUITY\nBuy & Hold\n+23.01%\n100,000.00 TRY\n100%\nNET PROFIT\n0.00 TRY\nPerformance Metrics\nMAX DRAWDOWN -0.00%\nSHARPE RATIO N/A\nWIN RATE N/A\nTRADES 0\nSORTINO RATIO N/A\nPROFIT FACTOR N/A\nEXPOSURE 0.00%\nBEST TRADE N/A\nWORST TRADE N/A\nAVG. DURATION N/A\nView Generated Strategy\nModel\nnvidia/nemotron-3-super-120b-a12b\nAttempts\n1\nValidation\nPassed\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Back\nBacktest Result\nAbout\nBIMAS\nSUCCESSFUL\nMar 4, 2026 – Sep 4, 2026\nTotal Return\n0.00%\nBenchmark\nStrategy\n0.00%\n0%\nFINAL EQUITY\nBuy & Hold\n+23.01%\n100,000.00 TRY\n100%\nNET PROFIT\n0.00 TRY\nPerformance Metrics\nMAX DRAWDOWN -0.00%\nSHARPE RATIO N/A\nWIN RATE N/A\nTRADES 0\nSORTINO RATIO N/A\nPROFIT FACTOR N/A\nEXPOSURE 0.00%\nBEST TRADE N/A\nWORST TRADE N/A\nAVG. DURATION N/A\nView Generated Strategy\nModel\nnvidia/nemotron-3-super-120b-a12b\nAttempts\n1\nValidation\nPassed\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Back\nBacktest Result\nAbout\nBIMAS\nSUCCESSFUL\nMar 4, 2026 – Sep 4, 2026\nTotal Return\n0.00%\nBenchmark\nStrategy\n0.00%\n0%\nFINAL EQUITY\nBuy & Hold\n+23.01%\n100,000.00 TRY\n100%\nNET PROFIT\n0.00 TRY\nPerformance Metrics\nMAX DRAWDOWN -0.00%\nSHARPE RATIO N/A\nWIN RATE N/A\nTRADES 0\nSORTINO RATIO N/A\nPROFIT FACTOR N/A\nEXPOSURE 0.00%\nBEST TRADE N/A\nWORST TRADE N/A\nAVG. DURATION N/A\nView Generated Strategy\nModel\nnvidia/nemotron-3-super-120b-a12b\nAttempts\n1\nValidation\nPassed\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Back\nBacktest Result\nAbout\nBIMAS\nSUCCESSFUL\nMar 4, 2026 – Sep 4, 2026\nTotal Return\n0.00%\nBenchmark\nStrategy\n0.00%\n0%\nFINAL EQUITY\nBuy & Hold\n+23.01%\n100,000.00 TRY\n100%\nNET PROFIT\n0.00 TRY\nPerformance Metrics\nMAX DRAWDOWN -0.00%\nSHARPE RATIO N/A\nWIN RATE N/A\nTRADES 0\nSORTINO RATIO N/A\nPROFIT FACTOR N/A\nEXPOSURE 0.00%\nBEST TRADE N/A\nWORST TRADE N/A\nAVG. DURATION N/A\nView Generated Strategy\nModel\nnvidia/nemotron-3-super-120b-a12b\nAttempts\n1\nValidation\nPassed\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Back\nBacktest Result\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "Back"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "About"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "group",
+      "label": null,
+      "text": "BIMAS\nSUCCESSFUL\nMar 4, 2026 – Sep 4, 2026\nTotal Return\n0.00%\nBenchmark\nStrategy\n0.00%\n0%\nFINAL EQUITY\nBuy & Hold\n+23.01%\n100,000.00 TRY\n100%\nNET PROFIT\n0.00 TRY\nPerformance Metrics\nMAX DRAWDOWN -0.00%\nSHARPE RATIO N/A\nWIN RATE N/A\nTRADES 0\nSORTINO RATIO N/A\nPROFIT FACTOR N/A\nEXPOSURE 0.00%\nBEST TRADE N/A\nWORST TRADE N/A\nAVG. DURATION N/A\nView Generated Strategy\nModel\nnvidia/nemotron-3-super-120b-a12b\nAttempts\n1\nValidation\nPassed"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "BIMAS"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "SUCCESSFUL"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Mar 4, 2026 – Sep 4, 2026"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Total Return"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "0.00%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Benchmark"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Strategy"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "0.00%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "0%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "FINAL EQUITY"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Buy & Hold"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "+23.01%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "100,000.00 TRY"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "100%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "NET PROFIT"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "0.00 TRY"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Performance Metrics"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "MAX DRAWDOWN -0.00%\nSHARPE RATIO N/A\nWIN RATE N/A\nTRADES 0\nSORTINO RATIO N/A\nPROFIT FACTOR N/A\nEXPOSURE 0.00%\nBEST TRADE N/A\nWORST TRADE N/A\nAVG. DURATION N/A"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "MAX DRAWDOWN -0.00%\nSHARPE RATIO N/A\nWIN RATE N/A\nTRADES 0\nSORTINO RATIO N/A\nPROFIT FACTOR N/A\nEXPOSURE 0.00%\nBEST TRADE N/A\nWORST TRADE N/A\nAVG. DURATION N/A"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "MAX DRAWDOWN -0.00%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "SHARPE RATIO N/A"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "WIN RATE N/A"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "TRADES 0"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "SORTINO RATIO N/A"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "PROFIT FACTOR N/A"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "EXPOSURE 0.00%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "BEST TRADE N/A"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "WORST TRADE N/A"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "AVG. DURATION N/A"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "View Generated Strategy"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Model"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "nvidia/nemotron-3-super-120b-a12b"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Attempts"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "1"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Validation"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Passed"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "Strategy Lab"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "About"
+    }
+  ],
+  "console": [
+    {
+      "utc": "2026-09-06T09:21:32.634564+00:00",
+      "session": "96A22F568A05CE433D1D14ADCFBE6004",
+      "kind": "error",
+      "message": "Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+    }
+  ],
+  "passed": true
+}

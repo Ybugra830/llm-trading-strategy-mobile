@@ -1,0 +1,952 @@
+[
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/",
+    "method": "GET",
+    "start": 176495.05164,
+    "utc": "2026-09-06T09:37:39.429072+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.3939480000117328,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/flutter_bootstrap.js",
+    "method": "GET",
+    "start": 176495.450822,
+    "utc": "2026-09-06T09:37:39.836656+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.10835799999767914,
+    "finished": true
+  },
+  {
+    "url": "https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/canvaskit.wasm",
+    "method": "GET",
+    "start": 176495.56401,
+    "utc": "2026-09-06T09:37:39.943231+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 9.12487999998848,
+    "finished": true
+  },
+  {
+    "url": "https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/canvaskit.js",
+    "method": "GET",
+    "start": 176495.564365,
+    "utc": "2026-09-06T09:37:39.943289+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.9897490000003017,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/main.dart.js",
+    "method": "GET",
+    "start": 176495.565485,
+    "utc": "2026-09-06T09:37:39.943451+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 12.893849999993108,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/FontManifest.json",
+    "method": "GET",
+    "start": 176508.94998,
+    "utc": "2026-09-06T09:37:53.332017+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.15684099998907186,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/favicon.png",
+    "method": "GET",
+    "start": 176508.963207,
+    "utc": "2026-09-06T09:37:53.340748+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.14344400001573376,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/fonts/MaterialIcons-Regular.otf",
+    "method": "GET",
+    "start": 176509.11107,
+    "utc": "2026-09-06T09:37:53.489434+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.3119189999997616,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Me4GZLCzYlKw.woff2",
+    "method": "GET",
+    "start": 176509.111425,
+    "utc": "2026-09-06T09:37:53.489626+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.9199229999794625,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/AssetManifest.bin.json",
+    "method": "GET",
+    "start": 176510.076985,
+    "utc": "2026-09-06T09:37:54.463202+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.12406100000953302,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/capabilities",
+    "method": "GET",
+    "start": 176510.422725,
+    "utc": "2026-09-06T09:37:54.801157+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.2289079999900423,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/15b294b67f2f8bbc04d990023ef4aec66502b87dc9040d84abe5f896ccb693de.ttf",
+    "method": "GET",
+    "start": 176510.431737,
+    "utc": "2026-09-06T09:37:54.809864+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.9137239999836311,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/ae7ee8606ec4b58cb0126a2410f15da7eb0a255131917cf679f815b9b4585a06.ttf",
+    "method": "GET",
+    "start": 176510.432029,
+    "utc": "2026-09-06T09:37:54.810075+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.4044080000021495,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/notosans/v37/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyD9A99Y41P6zHtY.woff2",
+    "method": "GET",
+    "start": 176510.808152,
+    "utc": "2026-09-06T09:37:55.186041+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 1.0140629999805242,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/",
+    "method": "GET",
+    "start": 176515.878189,
+    "utc": "2026-09-06T09:38:00.255514+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.9875630000024103,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/flutter_bootstrap.js",
+    "method": "GET",
+    "start": 176516.87064,
+    "utc": "2026-09-06T09:38:01.256123+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.23202199998195283,
+    "finished": true
+  },
+  {
+    "url": "https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/canvaskit.wasm",
+    "method": "GET",
+    "start": 176517.104476,
+    "utc": "2026-09-06T09:38:01.482573+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.0496770000027027,
+    "finished": true
+  },
+  {
+    "url": "https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/canvaskit.js",
+    "method": "GET",
+    "start": 176517.104733,
+    "utc": "2026-09-06T09:38:01.482727+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.00012700000661425292,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/main.dart.js",
+    "method": "GET",
+    "start": 176517.105324,
+    "utc": "2026-09-06T09:38:01.482994+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.3422980000032112,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/FontManifest.json",
+    "method": "GET",
+    "start": 176517.586996,
+    "utc": "2026-09-06T09:38:01.965483+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.2468679999874439,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/favicon.png",
+    "method": "GET",
+    "start": 176517.589774,
+    "utc": "2026-09-06T09:38:01.967339+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.24397599999792874,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/fonts/MaterialIcons-Regular.otf",
+    "method": "GET",
+    "start": 176517.835588,
+    "utc": "2026-09-06T09:38:02.213467+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.4078130000270903,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Me4GZLCzYlKw.woff2",
+    "method": "GET",
+    "start": 176517.835796,
+    "utc": "2026-09-06T09:38:02.213596+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.001129999989643693,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/AssetManifest.bin.json",
+    "method": "GET",
+    "start": 176518.258877,
+    "utc": "2026-09-06T09:38:02.661464+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.23086500001954846,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/capabilities",
+    "method": "GET",
+    "start": 176518.365915,
+    "utc": "2026-09-06T09:38:02.743789+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.20138099999167025,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/15b294b67f2f8bbc04d990023ef4aec66502b87dc9040d84abe5f896ccb693de.ttf",
+    "method": "GET",
+    "start": 176518.491862,
+    "utc": "2026-09-06T09:38:02.869543+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.0018600000184960663,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/ae7ee8606ec4b58cb0126a2410f15da7eb0a255131917cf679f815b9b4585a06.ttf",
+    "method": "GET",
+    "start": 176518.49207,
+    "utc": "2026-09-06T09:38:02.869688+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.002437999995891005,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/",
+    "method": "GET",
+    "start": 176522.3684,
+    "utc": "2026-09-06T09:38:06.745691+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 2.3033899999863934,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/flutter_bootstrap.js",
+    "method": "GET",
+    "start": 176524.676755,
+    "utc": "2026-09-06T09:38:09.061176+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.28951299999607727,
+    "finished": true
+  },
+  {
+    "url": "https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/canvaskit.wasm",
+    "method": "GET",
+    "start": 176524.969495,
+    "utc": "2026-09-06T09:38:09.347961+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 7.747862999996869,
+    "finished": true
+  },
+  {
+    "url": "https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/canvaskit.js",
+    "method": "GET",
+    "start": 176524.969688,
+    "utc": "2026-09-06T09:38:09.348087+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 1.6244709999882616,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/main.dart.js",
+    "method": "GET",
+    "start": 176524.97071,
+    "utc": "2026-09-06T09:38:09.348185+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 51.187625999999,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/FontManifest.json",
+    "method": "GET",
+    "start": 176576.519825,
+    "utc": "2026-09-06T09:39:00.901520+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.2000009999901522,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/favicon.png",
+    "method": "GET",
+    "start": 176576.530484,
+    "utc": "2026-09-06T09:39:00.908376+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.35773000001790933,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/fonts/MaterialIcons-Regular.otf",
+    "method": "GET",
+    "start": 176576.722933,
+    "utc": "2026-09-06T09:39:01.100842+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.16457299998728558,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Me4GZLCzYlKw.woff2",
+    "method": "GET",
+    "start": 176576.723153,
+    "utc": "2026-09-06T09:39:01.101055+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 1.1234330000006594,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/AssetManifest.bin.json",
+    "method": "GET",
+    "start": 176577.896544,
+    "utc": "2026-09-06T09:39:02.284471+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.3402500000083819,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/capabilities",
+    "method": "GET",
+    "start": 176578.148914,
+    "utc": "2026-09-06T09:39:02.526795+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.38910800000303425,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/15b294b67f2f8bbc04d990023ef4aec66502b87dc9040d84abe5f896ccb693de.ttf",
+    "method": "GET",
+    "start": 176578.242073,
+    "utc": "2026-09-06T09:39:02.620055+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.9187239999882877,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/ae7ee8606ec4b58cb0126a2410f15da7eb0a255131917cf679f815b9b4585a06.ttf",
+    "method": "GET",
+    "start": 176578.242331,
+    "utc": "2026-09-06T09:39:02.620181+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.592731000011554,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/notosans/v37/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyD9A99Y41P6zHtY.woff2",
+    "method": "GET",
+    "start": 176578.676999,
+    "utc": "2026-09-06T09:39:03.055305+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.6172760000044946,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+    "method": "POST",
+    "start": 176579.936903,
+    "utc": "2026-09-06T09:39:04.314851+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "body": {
+      "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+      "symbol": "THYAO",
+      "initial_cash": 100000,
+      "commission": 0.002
+    },
+    "http_status": 200,
+    "duration_seconds": 17.42477000001236,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+    "method": "POST",
+    "start": 176580.247824,
+    "utc": "2026-09-06T09:39:04.625912+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "body": {
+      "prompt": "Buy when SMA20 crosses above SMA50 and close when SMA20 crosses below SMA50.",
+      "symbol": "ASELS",
+      "initial_cash": 100000,
+      "commission": 0.002
+    },
+    "http_status": 200,
+    "duration_seconds": 7.593006000010064,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/d29d9a7c90a0bc4e1c27308ebe182240267d95b57973a0d15c9f2c73c3ce326a.ttf",
+    "method": "GET",
+    "start": 176587.902527,
+    "utc": "2026-09-06T09:39:13.202006+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.1427079999994021,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/d29d9a7c90a0bc4e1c27308ebe182240267d95b57973a0d15c9f2c73c3ce326a.ttf",
+    "method": "GET",
+    "start": 176597.440526,
+    "utc": "2026-09-06T09:39:21.820238+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 1.6083320000034291,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/",
+    "method": "GET",
+    "start": 176602.226427,
+    "utc": "2026-09-06T09:39:26.603751+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.07755400001769885,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/flutter_bootstrap.js",
+    "method": "GET",
+    "start": 176602.313717,
+    "utc": "2026-09-06T09:39:26.703713+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.08468999998876825,
+    "finished": true
+  },
+  {
+    "url": "https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/canvaskit.wasm",
+    "method": "GET",
+    "start": 176602.401301,
+    "utc": "2026-09-06T09:39:26.779172+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.04915800000890158,
+    "finished": true
+  },
+  {
+    "url": "https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/canvaskit.js",
+    "method": "GET",
+    "start": 176602.401492,
+    "utc": "2026-09-06T09:39:26.779218+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 9.200000204145908e-05,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/main.dart.js",
+    "method": "GET",
+    "start": 176602.401938,
+    "utc": "2026-09-06T09:39:26.779473+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.19049800001084805,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/FontManifest.json",
+    "method": "GET",
+    "start": 176602.73839,
+    "utc": "2026-09-06T09:39:27.117502+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.0792539999820292,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/favicon.png",
+    "method": "GET",
+    "start": 176602.741869,
+    "utc": "2026-09-06T09:39:27.119177+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.15557400000398047,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/fonts/MaterialIcons-Regular.otf",
+    "method": "GET",
+    "start": 176602.820155,
+    "utc": "2026-09-06T09:39:27.198450+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.1890830000047572,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Me4GZLCzYlKw.woff2",
+    "method": "GET",
+    "start": 176602.820519,
+    "utc": "2026-09-06T09:39:27.198617+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.0012390000047162175,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/AssetManifest.bin.json",
+    "method": "GET",
+    "start": 176603.035702,
+    "utc": "2026-09-06T09:39:27.454941+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.07677899999544024,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/capabilities",
+    "method": "GET",
+    "start": 176603.182437,
+    "utc": "2026-09-06T09:39:27.560888+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.09499599999981001,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/15b294b67f2f8bbc04d990023ef4aec66502b87dc9040d84abe5f896ccb693de.ttf",
+    "method": "GET",
+    "start": 176603.19642,
+    "utc": "2026-09-06T09:39:27.574976+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.0036649999965447932,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/ae7ee8606ec4b58cb0126a2410f15da7eb0a255131917cf679f815b9b4585a06.ttf",
+    "method": "GET",
+    "start": 176603.196945,
+    "utc": "2026-09-06T09:39:27.575397+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.005250999995041639,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/",
+    "method": "GET",
+    "start": 176603.945865,
+    "utc": "2026-09-06T09:39:28.323352+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.08120800001779571,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/flutter_bootstrap.js",
+    "method": "GET",
+    "start": 176604.03675,
+    "utc": "2026-09-06T09:39:28.426846+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.10633599999709986,
+    "finished": true
+  },
+  {
+    "url": "https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/canvaskit.wasm",
+    "method": "GET",
+    "start": 176604.14583,
+    "utc": "2026-09-06T09:39:28.526143+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.06982100001187064,
+    "finished": true
+  },
+  {
+    "url": "https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/canvaskit.js",
+    "method": "GET",
+    "start": 176604.146135,
+    "utc": "2026-09-06T09:39:28.526688+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.00014899999951012433,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/main.dart.js",
+    "method": "GET",
+    "start": 176604.14713,
+    "utc": "2026-09-06T09:39:28.527547+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.28338899998925626,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/FontManifest.json",
+    "method": "GET",
+    "start": 176604.649762,
+    "utc": "2026-09-06T09:39:29.028986+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.44761400000425056,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/favicon.png",
+    "method": "GET",
+    "start": 176604.661726,
+    "utc": "2026-09-06T09:39:29.039347+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.4373640000121668,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/fonts/MaterialIcons-Regular.otf",
+    "method": "GET",
+    "start": 176605.099629,
+    "utc": "2026-09-06T09:39:29.478748+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.3022950000013225,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Me4GZLCzYlKw.woff2",
+    "method": "GET",
+    "start": 176605.100105,
+    "utc": "2026-09-06T09:39:29.478997+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.001125000009778887,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/AssetManifest.bin.json",
+    "method": "GET",
+    "start": 176605.426574,
+    "utc": "2026-09-06T09:39:29.869356+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.7511649999942165,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/capabilities",
+    "method": "GET",
+    "start": 176605.600367,
+    "utc": "2026-09-06T09:39:29.978444+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.5772149999975227,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/15b294b67f2f8bbc04d990023ef4aec66502b87dc9040d84abe5f896ccb693de.ttf",
+    "method": "GET",
+    "start": 176606.186841,
+    "utc": "2026-09-06T09:39:30.565547+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.002598999999463558,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/ae7ee8606ec4b58cb0126a2410f15da7eb0a255131917cf679f815b9b4585a06.ttf",
+    "method": "GET",
+    "start": 176606.187279,
+    "utc": "2026-09-06T09:39:30.565761+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.0033669999975245446,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/notosans/v37/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyD9A99Y41P6zHtY.woff2",
+    "method": "GET",
+    "start": 176606.325028,
+    "utc": "2026-09-06T09:39:30.703209+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.0011980000126641244,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/",
+    "method": "GET",
+    "start": 176610.724447,
+    "utc": "2026-09-06T09:39:35.101955+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.0832630000077188,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/flutter_bootstrap.js",
+    "method": "GET",
+    "start": 176610.817103,
+    "utc": "2026-09-06T09:39:35.207614+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.13677199999801815,
+    "finished": true
+  },
+  {
+    "url": "https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/canvaskit.wasm",
+    "method": "GET",
+    "start": 176610.962115,
+    "utc": "2026-09-06T09:39:35.344825+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 11.339953999995487,
+    "finished": true
+  },
+  {
+    "url": "https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/canvaskit.js",
+    "method": "GET",
+    "start": 176610.962532,
+    "utc": "2026-09-06T09:39:35.345218+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.47729700000490993,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/main.dart.js",
+    "method": "GET",
+    "start": 176610.964265,
+    "utc": "2026-09-06T09:39:35.345335+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 25.74485899999854,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/FontManifest.json",
+    "method": "GET",
+    "start": 176637.035148,
+    "utc": "2026-09-06T09:40:01.417258+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.1050190000096336,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/favicon.png",
+    "method": "GET",
+    "start": 176637.047105,
+    "utc": "2026-09-06T09:40:01.424453+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.19564200000604615,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/fonts/MaterialIcons-Regular.otf",
+    "method": "GET",
+    "start": 176637.143912,
+    "utc": "2026-09-06T09:40:01.522094+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.10574599998653866,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Me4GZLCzYlKw.woff2",
+    "method": "GET",
+    "start": 176637.144183,
+    "utc": "2026-09-06T09:40:01.522342+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.40661000000545755,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/assets/AssetManifest.bin.json",
+    "method": "GET",
+    "start": 176637.599989,
+    "utc": "2026-09-06T09:40:01.986757+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.15678699998534285,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/capabilities",
+    "method": "GET",
+    "start": 176637.877821,
+    "utc": "2026-09-06T09:40:02.256066+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.2239349999872502,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/15b294b67f2f8bbc04d990023ef4aec66502b87dc9040d84abe5f896ccb693de.ttf",
+    "method": "GET",
+    "start": 176637.886304,
+    "utc": "2026-09-06T09:40:02.264403+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.3215589999745134,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/ae7ee8606ec4b58cb0126a2410f15da7eb0a255131917cf679f815b9b4585a06.ttf",
+    "method": "GET",
+    "start": 176637.886601,
+    "utc": "2026-09-06T09:40:02.264463+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.22919099999126047,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/notosans/v37/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyD9A99Y41P6zHtY.woff2",
+    "method": "GET",
+    "start": 176638.295766,
+    "utc": "2026-09-06T09:40:02.673933+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.2790450000029523,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+    "method": "POST",
+    "start": 176639.580237,
+    "utc": "2026-09-06T09:40:03.958331+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "body": {
+      "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+      "symbol": "THYAO",
+      "initial_cash": 100000,
+      "commission": 0.002
+    },
+    "http_status": 200,
+    "duration_seconds": 15.072715000016615,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+    "method": "POST",
+    "start": 176639.913798,
+    "utc": "2026-09-06T09:40:04.291742+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "body": {
+      "prompt": "Buy when SMA20 crosses above SMA50 and close when SMA20 crosses below SMA50.",
+      "symbol": "ASELS",
+      "initial_cash": 100000,
+      "commission": 0.002
+    },
+    "http_status": 200,
+    "duration_seconds": 14.76109000001452,
+    "finished": true
+  },
+  {
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+    "method": "POST",
+    "start": 176640.235415,
+    "utc": "2026-09-06T09:40:04.613485+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "body": {
+      "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+      "symbol": "EREGL",
+      "initial_cash": 100000,
+      "commission": 0.002
+    },
+    "http_status": 200,
+    "duration_seconds": 8.705079999985173,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/d29d9a7c90a0bc4e1c27308ebe182240267d95b57973a0d15c9f2c73c3ce326a.ttf",
+    "method": "GET",
+    "start": 176649.043411,
+    "utc": "2026-09-06T09:40:13.424652+00:00",
+    "session": "8EE6B701DB3E5EE55D6CBE2C489EDABF",
+    "http_status": 200,
+    "duration_seconds": 0.11856400000397116,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/d29d9a7c90a0bc4e1c27308ebe182240267d95b57973a0d15c9f2c73c3ce326a.ttf",
+    "method": "GET",
+    "start": 176654.728366,
+    "utc": "2026-09-06T09:40:22.685165+00:00",
+    "session": "1E116EAB4FA4FBFAD9BDDCA9E962D52F",
+    "http_status": 200,
+    "duration_seconds": 0.0015779999957885593,
+    "finished": true
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/a/d29d9a7c90a0bc4e1c27308ebe182240267d95b57973a0d15c9f2c73c3ce326a.ttf",
+    "method": "GET",
+    "start": 176654.761254,
+    "utc": "2026-09-06T09:40:22.685879+00:00",
+    "session": "B544657CEC333391F9C1A821715DB355",
+    "http_status": 200,
+    "duration_seconds": 0.001832999987527728,
+    "finished": true
+  }
+]

@@ -1,0 +1,6104 @@
+[
+  {
+    "id": "PROMPT-0",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:29:44.531928+00:00",
+    "end_utc": "2026-09-06T09:29:45.974984+00:00",
+    "input": "",
+    "field_index": 0,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n0/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n0/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n0/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n0/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n0/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter at least 5 characters.\n0/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": "Buy when RSI is below 35 and sell when RSI is above 70.",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter at least 5 characters."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "0/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "₺"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": "100000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "0.20"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "PROMPT-1",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:29:49.920984+00:00",
+    "end_utc": "2026-09-06T09:29:51.367227+00:00",
+    "input": "R",
+    "field_index": 0,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n1/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n1/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n1/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n1/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n1/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter at least 5 characters.\n1/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "R"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter at least 5 characters."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "1/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "₺"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": "100000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "0.20"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "PROMPT-2",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:29:55.071088+00:00",
+    "end_utc": "2026-09-06T09:29:56.518426+00:00",
+    "input": "RSI",
+    "field_index": 0,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n3/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n3/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n3/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n3/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n3/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter at least 5 characters.\n3/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "RSI"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter at least 5 characters."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "3/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "₺"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": "100000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "0.20"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "PROMPT-3",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:29:59.520410+00:00",
+    "end_utc": "2026-09-06T09:30:00.970616+00:00",
+    "input": "RSIX",
+    "field_index": 0,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n4/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n4/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n4/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n4/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\nEnter at least 5 characters.\n4/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter at least 5 characters.\n4/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "RSIX"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter at least 5 characters."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "4/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "₺"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": "100000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "0.20"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "PROMPT-4",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:04.453378+00:00",
+    "end_utc": "2026-09-06T09:30:05.902057+00:00",
+    "input": "RSI X",
+    "field_index": 0,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176040.131339,
+        "utc": "2026-09-06T09:30:04.509352+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "RSI X",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0838759999896865,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "PROMPT-5",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:08.836931+00:00",
+    "end_utc": "2026-09-06T09:30:10.281353+00:00",
+    "input": "Buy when RSI is below 35 and close when RSI is above 70.",
+    "field_index": 0,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176044.524565,
+        "utc": "2026-09-06T09:30:08.902862+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0719690000114497,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "PROMPT-6",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:13.325239+00:00",
+    "end_utc": "2026-09-06T09:30:14.775060+00:00",
+    "input": {
+      "length": 1999
+    },
+    "field_index": 0,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176049.009936,
+        "utc": "2026-09-06T09:30:13.388384+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0782950000138953,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "PROMPT-7",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:17.716938+00:00",
+    "end_utc": "2026-09-06T09:30:19.163090+00:00",
+    "input": {
+      "length": 2000
+    },
+    "field_index": 0,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176053.403922,
+        "utc": "2026-09-06T09:30:17.782213+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.073578000010457,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "PROMPT-8",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:22.200990+00:00",
+    "end_utc": "2026-09-06T09:30:23.651219+00:00",
+    "input": {
+      "length": 2001
+    },
+    "field_index": 0,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176057.870935,
+        "utc": "2026-09-06T09:30:22.249076+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0909519999986514,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "PROMPT-9",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:26.811142+00:00",
+    "end_utc": "2026-09-06T09:30:28.257441+00:00",
+    "input": {
+      "length": 10000
+    },
+    "field_index": 0,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176062.509642,
+        "utc": "2026-09-06T09:30:26.888476+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0585010000213515,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-0",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:32.061335+00:00",
+    "end_utc": "2026-09-06T09:30:33.518862+00:00",
+    "input": "",
+    "field_index": 1,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "0.20"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-1",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:36.942795+00:00",
+    "end_utc": "2026-09-06T09:30:38.394652+00:00",
+    "input": "0",
+    "field_index": 1,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "₺"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": "0"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "0.20"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-2",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:41.394447+00:00",
+    "end_utc": "2026-09-06T09:30:42.844277+00:00",
+    "input": "-1",
+    "field_index": 1,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176077.063535,
+        "utc": "2026-09-06T09:30:41.441909+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 1,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.090648000012152,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-3",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:46.459959+00:00",
+    "end_utc": "2026-09-06T09:30:47.889264+00:00",
+    "input": "-100000",
+    "field_index": 1,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176082.143002,
+        "utc": "2026-09-06T09:30:46.522792+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0604250000033062,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-4",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:50.779611+00:00",
+    "end_utc": "2026-09-06T09:30:52.229573+00:00",
+    "input": "1",
+    "field_index": 1,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176086.457427,
+        "utc": "2026-09-06T09:30:50.835364+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 1,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0871040000056382,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-5",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:55.263573+00:00",
+    "end_utc": "2026-09-06T09:30:56.713310+00:00",
+    "input": "0.01",
+    "field_index": 1,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176090.961327,
+        "utc": "2026-09-06T09:30:55.339435+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 0.01,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0626369999954477,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-6",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:30:59.723410+00:00",
+    "end_utc": "2026-09-06T09:31:01.162201+00:00",
+    "input": "999999999999999999",
+    "field_index": 1,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176095.391811,
+        "utc": "2026-09-06T09:30:59.769638+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 1000000000000000000,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0857019999821205,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-7",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:31:04.083333+00:00",
+    "end_utc": "2026-09-06T09:31:05.535297+00:00",
+    "input": "harf",
+    "field_index": 1,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "0.20"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-8",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:31:08.706882+00:00",
+    "end_utc": "2026-09-06T09:31:10.158387+00:00",
+    "input": "abc",
+    "field_index": 1,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "0.20"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-9",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:31:13.107411+00:00",
+    "end_utc": "2026-09-06T09:31:14.554078+00:00",
+    "input": "1e10",
+    "field_index": 1,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176108.789512,
+        "utc": "2026-09-06T09:31:13.167620+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 110,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0775930000236258,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-10",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:31:17.613155+00:00",
+    "end_utc": "2026-09-06T09:31:19.062470+00:00",
+    "input": "NaN",
+    "field_index": 1,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "0.20"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-11",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:31:22.075612+00:00",
+    "end_utc": "2026-09-06T09:31:23.519727+00:00",
+    "input": "Infinity",
+    "field_index": 1,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "0.20"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-12",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:31:26.511162+00:00",
+    "end_utc": "2026-09-06T09:31:27.960309+00:00",
+    "input": " ",
+    "field_index": 1,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\nEnter a positive initial cash value.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Enter a positive initial cash value."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "0.20"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-13",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:31:30.913514+00:00",
+    "end_utc": "2026-09-06T09:31:32.356337+00:00",
+    "input": "1,5",
+    "field_index": 1,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176126.602579,
+        "utc": "2026-09-06T09:31:30.980815+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 1.5,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0714359999983571,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-CASH-14",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:31:36.627659+00:00",
+    "end_utc": "2026-09-06T09:31:38.068823+00:00",
+    "input": "1.5",
+    "field_index": 1,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176132.31498,
+        "utc": "2026-09-06T09:31:36.693455+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 1.5,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0669090000155848,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-0",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:31:44.173728+00:00",
+    "end_utc": "2026-09-06T09:31:45.635338+00:00",
+    "input": "",
+    "field_index": 2,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "₺"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": "100000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-1",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:31:48.578841+00:00",
+    "end_utc": "2026-09-06T09:31:50.026501+00:00",
+    "input": "-1",
+    "field_index": 2,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176144.252779,
+        "utc": "2026-09-06T09:31:48.630988+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0.01
+        },
+        "duration_seconds": 1.0849659999948926,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-2",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:31:53.558231+00:00",
+    "end_utc": "2026-09-06T09:31:55.008195+00:00",
+    "input": "0",
+    "field_index": 2,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176149.249909,
+        "utc": "2026-09-06T09:31:53.628409+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0
+        },
+        "duration_seconds": 1.0665739999967627,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-3",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:31:57.993284+00:00",
+    "end_utc": "2026-09-06T09:31:59.440519+00:00",
+    "input": "0.05",
+    "field_index": 2,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176153.672026,
+        "utc": "2026-09-06T09:31:58.050052+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0.0005
+        },
+        "duration_seconds": 1.0796870000194758,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-4",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:32:02.549022+00:00",
+    "end_utc": "2026-09-06T09:32:03.989501+00:00",
+    "input": "0.20",
+    "field_index": 2,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176158.243524,
+        "utc": "2026-09-06T09:32:02.621844+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0.002
+        },
+        "duration_seconds": 1.0604030000104103,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-5",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:32:06.935193+00:00",
+    "end_utc": "2026-09-06T09:32:08.379441+00:00",
+    "input": "0.50",
+    "field_index": 2,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176162.605698,
+        "utc": "2026-09-06T09:32:06.983548+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0.005
+        },
+        "duration_seconds": 1.084662000008393,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-6",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:32:12.018164+00:00",
+    "end_utc": "2026-09-06T09:32:13.469414+00:00",
+    "input": "1",
+    "field_index": 2,
+    "intercepted_post_count": 1,
+    "requests": [
+      {
+        "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+        "method": "POST",
+        "start": 176167.729837,
+        "utc": "2026-09-06T09:32:12.108349+00:00",
+        "session": "A88A86C54992584AFDF6B6F470159414",
+        "body": {
+          "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+          "symbol": "THYAO",
+          "initial_cash": 100000,
+          "commission": 0.01
+        },
+        "duration_seconds": 1.0490799999970477,
+        "finished": true,
+        "network_error": "net::ERR_ABORTED"
+      }
+    ],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nRunning strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Running strategy\nStrategy code is validated and executed in an isolated environment.\nGenerating strategy\nValidating strategy\nRunning secure test\nLoading market data\nRunning backtest\nPreparing results\nCANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy code is validated and executed in an isolated environment."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Generating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Validating strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running secure test"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Loading market data"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Running backtest"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Preparing results"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "CANCEL"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-7",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:32:16.422534+00:00",
+    "end_utc": "2026-09-06T09:32:17.871240+00:00",
+    "input": "10",
+    "field_index": 2,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "₺"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": "100000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "10"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-8",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:32:20.883865+00:00",
+    "end_utc": "2026-09-06T09:32:22.324399+00:00",
+    "input": "100",
+    "field_index": 2,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "₺"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": "100000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "100"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-9",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:32:25.409144+00:00",
+    "end_utc": "2026-09-06T09:32:26.851635+00:00",
+    "input": "1000",
+    "field_index": 2,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "₺"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": "100000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": "1000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "%"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-10",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:32:29.892104+00:00",
+    "end_utc": "2026-09-06T09:32:31.340738+00:00",
+    "input": "abc",
+    "field_index": 2,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "₺"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": "100000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-11",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:32:34.340550+00:00",
+    "end_utc": "2026-09-06T09:32:35.782765+00:00",
+    "input": "NaN",
+    "field_index": 2,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "₺"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": "100000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  },
+  {
+    "id": "FUZZ-COM-12",
+    "target": "public UI; POST intercepted before backend",
+    "start_utc": "2026-09-06T09:32:39.396354+00:00",
+    "end_utc": "2026-09-06T09:32:40.838894+00:00",
+    "input": "Infinity",
+    "field_index": 2,
+    "intercepted_post_count": 0,
+    "requests": [],
+    "screen": [
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Menu\nStrategy Lab\nAbout"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Menu"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "group",
+        "label": null,
+        "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n56/2000\nTARGET ASSET\nTHYAO\n₺\nCommission must be between 0% and 10%.\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "BIST BACKTEST"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Describe your strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Examples"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "TEXTAREA",
+        "role": null,
+        "label": null,
+        "text": "",
+        "value": "Buy when RSI is below 35 and close when RSI is above 70."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "56/2000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "TARGET ASSET"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "THYAO"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "₺"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Initial Capital",
+        "text": "",
+        "value": "100000"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "label": "Commission Rate",
+        "text": "",
+        "value": ""
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Commission must be between 0% and 10%."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Run Strategy"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": null,
+        "label": null,
+        "text": "Backtests use historical data and do not guarantee future performance."
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "Strategy Lab"
+      },
+      {
+        "tag": "FLT-SEMANTICS",
+        "role": "button",
+        "label": null,
+        "text": "About"
+      }
+    ]
+  }
+]

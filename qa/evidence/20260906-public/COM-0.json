@@ -1,0 +1,378 @@
+{
+  "id": "COM-0",
+  "target": "public Chrome UI",
+  "end_utc": "2026-09-06T09:25:08.755939+00:00",
+  "expected": {
+    "symbol": "THYAO",
+    "initial_cash": 100000.0,
+    "commission": 0.0
+  },
+  "post_count": 1,
+  "requests": [
+    {
+      "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/run",
+      "method": "POST",
+      "start": 175734.335468,
+      "utc": "2026-09-06T09:24:58.714143+00:00",
+      "session": "96A22F568A05CE433D1D14ADCFBE6004",
+      "body": {
+        "prompt": "Buy when RSI is below 35 and close when RSI is above 70.",
+        "symbol": "THYAO",
+        "initial_cash": 100000,
+        "commission": 0
+      },
+      "http_status": 200,
+      "duration_seconds": 9.029719999991357,
+      "finished": true,
+      "response": {
+        "status": "success",
+        "symbol": "THYAO",
+        "yahoo_symbol": "THYAO.IS",
+        "data": {
+          "download_start": "2023-09-06",
+          "download_end": "2026-09-04",
+          "total_rows": 754,
+          "history_rows": 626,
+          "test_rows": 128,
+          "cutoff_date": "2026-03-04",
+          "test_start": "2026-03-04",
+          "test_end": "2026-09-04"
+        },
+        "configuration": {
+          "initial_cash": 100000.0,
+          "commission": 0.0
+        },
+        "metrics": {
+          "initial_cash": 100000.0,
+          "final_equity": 126531.25,
+          "net_profit": 26531.25,
+          "return_percent": 26.53125,
+          "buy_and_hold_return_percent": 1.718213058419244,
+          "number_of_trades": 2,
+          "win_rate_percent": 100.0,
+          "max_drawdown_percent": -2.244573558430174,
+          "sharpe_ratio": 2.266780914540876,
+          "sortino_ratio": 13.449232858670094,
+          "profit_factor": null,
+          "best_trade_percent": 26.277372262773714,
+          "worst_trade_percent": 0.2564102564102555,
+          "average_trade_duration": "24 days 00:00:00",
+          "exposure_time_percent": 27.34375
+        },
+        "validation": {
+          "valid": true,
+          "syntax_valid": true,
+          "imports_valid": true,
+          "security_valid": true,
+          "interface_valid": true,
+          "lookahead_valid": true,
+          "errors": []
+        },
+        "runtime": {
+          "sandboxed": true,
+          "smoke_test_passed": true
+        }
+      },
+      "generation": {
+        "model": "nvidia/nemotron-3-super-120b-a12b",
+        "attempt_count": 1,
+        "repaired": false
+      },
+      "source_hash": "0a04285ffea6bf3a60bd4ddc771fdbc679f0239877b0087df586284741c7be90",
+      "secret_found": false
+    }
+  ],
+  "screen": [
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Back\nBacktest Result\nAbout\nTHYAO\nSUCCESSFUL\nMar 4, 2026 – Sep 4, 2026\nTotal Return\n+26.53%\nBenchmark\nStrategy\n+26.53%\n100%\nFINAL EQUITY\nBuy & Hold\n+1.72%\n126,531.25 TRY\n6%\nNET PROFIT\n26,531.25 TRY\nPerformance Metrics\nMAX DRAWDOWN -2.24%\nSHARPE RATIO 2.27\nWIN RATE 100.00%\nTRADES 2\nSORTINO RATIO 13.45\nPROFIT FACTOR N/A\nEXPOSURE 27.34%\nBEST TRADE 26.28%\nWORST TRADE 0.26%\nAVG. DURATION 24 days 00:00:00\nView Generated Strategy\nModel\nnvidia/nemotron-3-super-120b-a12b\nAttempts\n1\nValidation\nPassed\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Back\nBacktest Result\nAbout\nTHYAO\nSUCCESSFUL\nMar 4, 2026 – Sep 4, 2026\nTotal Return\n+26.53%\nBenchmark\nStrategy\n+26.53%\n100%\nFINAL EQUITY\nBuy & Hold\n+1.72%\n126,531.25 TRY\n6%\nNET PROFIT\n26,531.25 TRY\nPerformance Metrics\nMAX DRAWDOWN -2.24%\nSHARPE RATIO 2.27\nWIN RATE 100.00%\nTRADES 2\nSORTINO RATIO 13.45\nPROFIT FACTOR N/A\nEXPOSURE 27.34%\nBEST TRADE 26.28%\nWORST TRADE 0.26%\nAVG. DURATION 24 days 00:00:00\nView Generated Strategy\nModel\nnvidia/nemotron-3-super-120b-a12b\nAttempts\n1\nValidation\nPassed\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Back\nBacktest Result\nAbout\nTHYAO\nSUCCESSFUL\nMar 4, 2026 – Sep 4, 2026\nTotal Return\n+26.53%\nBenchmark\nStrategy\n+26.53%\n100%\nFINAL EQUITY\nBuy & Hold\n+1.72%\n126,531.25 TRY\n6%\nNET PROFIT\n26,531.25 TRY\nPerformance Metrics\nMAX DRAWDOWN -2.24%\nSHARPE RATIO 2.27\nWIN RATE 100.00%\nTRADES 2\nSORTINO RATIO 13.45\nPROFIT FACTOR N/A\nEXPOSURE 27.34%\nBEST TRADE 26.28%\nWORST TRADE 0.26%\nAVG. DURATION 24 days 00:00:00\nView Generated Strategy\nModel\nnvidia/nemotron-3-super-120b-a12b\nAttempts\n1\nValidation\nPassed\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Back\nBacktest Result\nAbout\nTHYAO\nSUCCESSFUL\nMar 4, 2026 – Sep 4, 2026\nTotal Return\n+26.53%\nBenchmark\nStrategy\n+26.53%\n100%\nFINAL EQUITY\nBuy & Hold\n+1.72%\n126,531.25 TRY\n6%\nNET PROFIT\n26,531.25 TRY\nPerformance Metrics\nMAX DRAWDOWN -2.24%\nSHARPE RATIO 2.27\nWIN RATE 100.00%\nTRADES 2\nSORTINO RATIO 13.45\nPROFIT FACTOR N/A\nEXPOSURE 27.34%\nBEST TRADE 26.28%\nWORST TRADE 0.26%\nAVG. DURATION 24 days 00:00:00\nView Generated Strategy\nModel\nnvidia/nemotron-3-super-120b-a12b\nAttempts\n1\nValidation\nPassed\nStrategy Lab\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Back\nBacktest Result\nAbout"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "Back"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "About"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "group",
+      "label": null,
+      "text": "THYAO\nSUCCESSFUL\nMar 4, 2026 – Sep 4, 2026\nTotal Return\n+26.53%\nBenchmark\nStrategy\n+26.53%\n100%\nFINAL EQUITY\nBuy & Hold\n+1.72%\n126,531.25 TRY\n6%\nNET PROFIT\n26,531.25 TRY\nPerformance Metrics\nMAX DRAWDOWN -2.24%\nSHARPE RATIO 2.27\nWIN RATE 100.00%\nTRADES 2\nSORTINO RATIO 13.45\nPROFIT FACTOR N/A\nEXPOSURE 27.34%\nBEST TRADE 26.28%\nWORST TRADE 0.26%\nAVG. DURATION 24 days 00:00:00\nView Generated Strategy\nModel\nnvidia/nemotron-3-super-120b-a12b\nAttempts\n1\nValidation\nPassed"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "THYAO"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "SUCCESSFUL"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Mar 4, 2026 – Sep 4, 2026"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Total Return"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "+26.53%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Benchmark"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Strategy"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "+26.53%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "100%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "FINAL EQUITY"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Buy & Hold"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "+1.72%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "126,531.25 TRY"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "6%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "NET PROFIT"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "26,531.25 TRY"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Performance Metrics"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "MAX DRAWDOWN -2.24%\nSHARPE RATIO 2.27\nWIN RATE 100.00%\nTRADES 2\nSORTINO RATIO 13.45\nPROFIT FACTOR N/A\nEXPOSURE 27.34%\nBEST TRADE 26.28%\nWORST TRADE 0.26%\nAVG. DURATION 24 days 00:00:00"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "MAX DRAWDOWN -2.24%\nSHARPE RATIO 2.27\nWIN RATE 100.00%\nTRADES 2\nSORTINO RATIO 13.45\nPROFIT FACTOR N/A\nEXPOSURE 27.34%\nBEST TRADE 26.28%\nWORST TRADE 0.26%\nAVG. DURATION 24 days 00:00:00"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "MAX DRAWDOWN -2.24%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "SHARPE RATIO 2.27"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "WIN RATE 100.00%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "TRADES 2"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "SORTINO RATIO 13.45"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "PROFIT FACTOR N/A"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "EXPOSURE 27.34%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "BEST TRADE 26.28%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "WORST TRADE 0.26%"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "AVG. DURATION 24 days 00:00:00"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "View Generated Strategy"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Model"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "nvidia/nemotron-3-super-120b-a12b"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Attempts"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "1"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Validation"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": null,
+      "label": null,
+      "text": "Passed"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "Strategy Lab"
+    },
+    {
+      "tag": "FLT-SEMANTICS",
+      "role": "button",
+      "label": null,
+      "text": "About"
+    }
+  ],
+  "console": [
+    {
+      "utc": "2026-09-06T09:21:32.634564+00:00",
+      "session": "96A22F568A05CE433D1D14ADCFBE6004",
+      "kind": "error",
+      "message": "Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+    },
+    {
+      "utc": "2026-09-06T09:22:32.951460+00:00",
+      "session": "96A22F568A05CE433D1D14ADCFBE6004",
+      "kind": "error",
+      "message": "Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+    }
+  ],
+  "passed": true
+}

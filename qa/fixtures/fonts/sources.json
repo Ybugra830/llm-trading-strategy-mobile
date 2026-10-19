@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Inter",
+    "url": "https://fonts.gstatic.com/s/a/15b294b67f2f8bbc04d990023ef4aec66502b87dc9040d84abe5f896ccb693de.ttf",
+    "sha256": "15b294b67f2f8bbc04d990023ef4aec66502b87dc9040d84abe5f896ccb693de",
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/inter/OFL.txt"
+  },
+  {
+    "name": "Geist",
+    "url": "https://fonts.gstatic.com/s/a/ae7ee8606ec4b58cb0126a2410f15da7eb0a255131917cf679f815b9b4585a06.ttf",
+    "sha256": "ae7ee8606ec4b58cb0126a2410f15da7eb0a255131917cf679f815b9b4585a06",
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/geist/OFL.txt"
+  }
+]

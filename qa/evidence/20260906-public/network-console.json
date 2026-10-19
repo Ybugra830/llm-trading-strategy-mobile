@@ -1,0 +1,8 @@
+[
+  {
+    "utc": "2026-09-06T09:41:53.681643+00:00",
+    "session": "74DF3A19F90C4B3A222145228307C627",
+    "kind": "error",
+    "message": "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+  }
+]

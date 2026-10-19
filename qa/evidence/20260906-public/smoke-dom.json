@@ -1,0 +1,167 @@
+[
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n0/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n0/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n0/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "Menu\nStrategy Lab\nAbout\nStrategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n0/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance.\nStrategy Lab\nAbout"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "Menu\nStrategy Lab\nAbout"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": "button",
+    "label": null,
+    "text": "Menu"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": "button",
+    "label": null,
+    "text": "About"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": "group",
+    "label": null,
+    "text": "Strategy Lab\nBIST BACKTEST\nDescribe your strategy\nExamples\n0/2000\nTARGET ASSET\nTHYAO\n₺\n%\nRun Strategy\nBacktests use historical data and do not guarantee future performance."
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "Strategy Lab"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "BIST BACKTEST"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "Describe your strategy"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": "button",
+    "label": null,
+    "text": "Examples"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "0/2000"
+  },
+  {
+    "tag": "TEXTAREA",
+    "role": null,
+    "label": "Buy when RSI is below 35 and sell when RSI is above 70.",
+    "text": "",
+    "value": ""
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "0/2000"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "TARGET ASSET"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": "button",
+    "label": null,
+    "text": "THYAO"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "₺"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": ""
+  },
+  {
+    "tag": "INPUT",
+    "role": null,
+    "label": "Initial Capital",
+    "text": "",
+    "value": ""
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": ""
+  },
+  {
+    "tag": "INPUT",
+    "role": null,
+    "label": "Commission Rate",
+    "text": "",
+    "value": ""
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "%"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": "button",
+    "label": null,
+    "text": "Run Strategy"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": null,
+    "label": null,
+    "text": "Backtests use historical data and do not guarantee future performance."
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": "button",
+    "label": null,
+    "text": "Strategy Lab"
+  },
+  {
+    "tag": "FLT-SEMANTICS",
+    "role": "button",
+    "label": null,
+    "text": "About"
+  }
+]

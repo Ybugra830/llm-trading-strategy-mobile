@@ -1,0 +1,128 @@
+[
+  {
+    "id": "post-basic/",
+    "start_utc": "2026-09-06T09:27:59.251876+00:00",
+    "end_utc": "2026-09-06T09:28:00.835715+00:00",
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/",
+    "http_status": 200,
+    "bytes": 1281,
+    "sha256": "9bc3504e4ed5d44d2f602b60ee9100e79531622ae8be520c8124205c0e34e8d2",
+    "secret_found": false,
+    "library_marker_counts": {
+      "NVIDIA_API_KEY": 0,
+      "Authorization": 0,
+      "Bearer": 0,
+      ".env": 0,
+      "localhost:8000": 0,
+      "10.0.2.2": 0
+    }
+  },
+  {
+    "id": "post-basic/health",
+    "start_utc": "2026-09-06T09:28:00.836429+00:00",
+    "end_utc": "2026-09-06T09:28:01.039942+00:00",
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/health",
+    "http_status": 200,
+    "bytes": 15,
+    "sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+    "secret_found": false,
+    "library_marker_counts": {
+      "NVIDIA_API_KEY": 0,
+      "Authorization": 0,
+      "Bearer": 0,
+      ".env": 0,
+      "localhost:8000": 0,
+      "10.0.2.2": 0
+    },
+    "json": {
+      "status": "ok"
+    }
+  },
+  {
+    "id": "post-basic/api/v1/strategy-lab/capabilities",
+    "start_utc": "2026-09-06T09:28:01.040032+00:00",
+    "end_utc": "2026-09-06T09:28:01.251768+00:00",
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/api/v1/strategy-lab/capabilities",
+    "http_status": 200,
+    "bytes": 305,
+    "sha256": "6aa598c6b11c680b25665c058181736fc67f7015ac79173f60f24a8f3778d80d",
+    "secret_found": false,
+    "library_marker_counts": {
+      "NVIDIA_API_KEY": 0,
+      "Authorization": 0,
+      "Bearer": 0,
+      ".env": 0,
+      "localhost:8000": 0,
+      "10.0.2.2": 0
+    },
+    "json": {
+      "supported_symbols": [
+        "THYAO",
+        "ASELS",
+        "TUPRS",
+        "BIMAS",
+        "EREGL",
+        "KCHOL",
+        "GARAN",
+        "AKBNK",
+        "SISE",
+        "SAHOL",
+        "FROTO",
+        "TOASO"
+      ],
+      "supported_indicators": [
+        "SMA",
+        "EMA",
+        "RSI",
+        "MACD",
+        "Bollinger Bands",
+        "Stochastic",
+        "ATR"
+      ],
+      "defaults": {
+        "initial_cash": 100000.0,
+        "commission": 0.002
+      },
+      "prompt": {
+        "min_length": 5,
+        "max_length": 2000
+      }
+    }
+  },
+  {
+    "id": "post-basic/main.dart.js",
+    "start_utc": "2026-09-06T09:28:01.251855+00:00",
+    "end_utc": "2026-09-06T09:28:09.868149+00:00",
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/main.dart.js",
+    "http_status": 200,
+    "bytes": 6447113,
+    "sha256": "3694cb13654ec7b69b9673ac66faa7cf2a9bc910bc15e4a7993a8f1208686318",
+    "secret_found": false,
+    "library_marker_counts": {
+      "NVIDIA_API_KEY": 0,
+      "Authorization": 0,
+      "Bearer": 0,
+      ".env": 0,
+      "localhost:8000": 0,
+      "10.0.2.2": 0
+    }
+  },
+  {
+    "id": "post-basic/flutter_bootstrap.js",
+    "start_utc": "2026-09-06T09:28:10.094423+00:00",
+    "end_utc": "2026-09-06T09:28:15.643792+00:00",
+    "url": "http://strategy-lab.denmarkeast.cloudapp.azure.com/flutter_bootstrap.js",
+    "http_status": 200,
+    "bytes": 9589,
+    "sha256": "180337f1a401984587b3e99993a2d270865c1bc2b9ae5e18f713aee0b740a197",
+    "secret_found": false,
+    "library_marker_counts": {
+      "NVIDIA_API_KEY": 0,
+      "Authorization": 0,
+      "Bearer": 0,
+      ".env": 0,
+      "localhost:8000": 0,
+      "10.0.2.2": 0
+    }
+  }
+]

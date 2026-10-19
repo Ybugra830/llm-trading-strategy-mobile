@@ -1,0 +1,33 @@
+{
+  "supported_symbols": [
+    "THYAO",
+    "ASELS",
+    "TUPRS",
+    "BIMAS",
+    "EREGL",
+    "KCHOL",
+    "GARAN",
+    "AKBNK",
+    "SISE",
+    "SAHOL",
+    "FROTO",
+    "TOASO"
+  ],
+  "supported_indicators": [
+    "SMA",
+    "EMA",
+    "RSI",
+    "MACD",
+    "Bollinger Bands",
+    "Stochastic",
+    "ATR"
+  ],
+  "defaults": {
+    "initial_cash": 100000.0,
+    "commission": 0.002
+  },
+  "prompt": {
+    "min_length": 5,
+    "max_length": 2000
+  }
+}
