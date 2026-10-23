@@ -22,10 +22,16 @@ from app.config import Settings
 from app.llm.nvidia_client import (
     NvidiaNimClient, NvidiaNimError, ProviderErrorKind, get_provider_error_details,
 )
-from app.services.strategy_service import StrategyService
 from app.llm.repair_context import RepairFailureContext
 
 TEST_API_KEY = "nvapi-test-secret-value"
+
+
+async def generate_for_provider_test(settings):
+    """Exercise provider wire/retry behavior, independently of the admission service."""
+    async with NvidiaNimClient(settings) as provider:
+        code = await provider.generate_code("test prompt")
+        return SimpleNamespace(code=code, model=provider.model)
 
 
 class FakeAsyncOpenAI:
@@ -252,9 +258,8 @@ def test_fallback_is_explicit_and_reports_actual_model(monkeypatch, status, use_
 
     client = Client()
     monkeypatch.setattr("app.llm.nvidia_client.AsyncOpenAI", lambda **kw: client)
-    service = StrategyService(NvidiaNimClient(settings))
     if use_fallback:
-        result = asyncio.run(service.generate("test prompt"))
+        result = asyncio.run(generate_for_provider_test(settings))
         assert result.code == "fallback code"
         assert result.model == "actual/fallback"
         assert [call["model"] for call in client.calls] == [primary, "tested/fallback"]
@@ -263,7 +268,7 @@ def test_fallback_is_explicit_and_reports_actual_model(monkeypatch, status, use_
         assert "extra_body" not in client.calls[1]
     else:
         with pytest.raises(NvidiaNimError):
-            asyncio.run(service.generate("test prompt"))
+            asyncio.run(generate_for_provider_test(settings))
         assert all(call["model"] == primary for call in client.calls)
 
 
@@ -376,7 +381,7 @@ def test_sdk_wire_request_uses_model_profile_and_one_owned_retry(monkeypatch):
 
     monkeypatch.setattr("app.llm.nvidia_client.AsyncOpenAI", construct)
     settings = build_settings().model_copy(update={"nvidia_model": "deepseek-ai/deepseek-v4-pro-0813"})
-    result = asyncio.run(StrategyService(NvidiaNimClient(settings)).generate("test prompt"))
+    result = asyncio.run(generate_for_provider_test(settings))
     assert result.model == "actual/deepseek"
     assert result.code == "code"
     assert len(requests) == 2

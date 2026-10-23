@@ -53,11 +53,7 @@ class ApiClient {
       final response = await send();
       final statusCode = response.statusCode ?? 0;
       if (statusCode < 200 || statusCode >= 300) {
-        throw ApiException(
-          ApiExceptionKind.http,
-          statusCode: statusCode,
-          safeDetail: _extractSafeDetail(response.data),
-        );
+        throw _httpError(statusCode, response.data);
       }
       final data = response.data;
       if (data is! Map) {
@@ -76,11 +72,7 @@ class ApiClient {
         throw const ApiException(ApiExceptionKind.timeout);
       }
       if (error.type == DioExceptionType.badResponse) {
-        throw ApiException(
-          ApiExceptionKind.http,
-          statusCode: error.response?.statusCode,
-          safeDetail: _extractSafeDetail(error.response?.data),
-        );
+        throw _httpError(error.response?.statusCode, error.response?.data);
       }
       throw const ApiException(ApiExceptionKind.network);
     } on FormatException {
@@ -94,5 +86,30 @@ class ApiClient {
       if (detail.isNotEmpty && detail.length <= 300) return detail;
     }
     return null;
+  }
+
+  static ApiException _httpError(int? status, Object? body) {
+    final data = body is Map ? body : const {};
+    final decision = data['decision'];
+    final reason = data['reason_code'];
+    final questions = data['questions'];
+    return ApiException(
+      ApiExceptionKind.http,
+      statusCode: status,
+      safeDetail: _extractSafeDetail(body),
+      decision:
+          status == 422 &&
+              (decision == 'rejected' || decision == 'needs_clarification')
+          ? decision as String
+          : null,
+      reasonCode: reason is String && reason.length <= 64 ? reason : null,
+      questions: questions is List
+          ? questions
+                .whereType<String>()
+                .where((q) => q.length <= 300)
+                .take(7)
+                .toList()
+          : const [],
+    );
   }
 }

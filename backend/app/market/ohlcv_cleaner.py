@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 
 from app.market.errors import InvalidMarketDataError
+from app.execution_trace import stage
 
 REQUIRED_OHLCV_COLUMNS = ("Open", "High", "Low", "Close", "Volume")
 _CANONICAL_COLUMNS = {column.casefold(): column for column in REQUIRED_OHLCV_COLUMNS}
@@ -93,6 +94,7 @@ def _validate_price_structure(data: pd.DataFrame) -> None:
 
 def clean_ohlcv(data: pd.DataFrame) -> pd.DataFrame:
     """Ham veriyi temizleyip doğrulanmış, kronolojik OHLCV döndür."""
+    stage('market_clean', 'clean')
     if not isinstance(data, pd.DataFrame) or data.empty:
         raise InvalidMarketDataError
 

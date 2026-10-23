@@ -32,6 +32,6 @@ void main() {
     expect(find.byKey(const Key('runProgress')), findsOneWidget);
     pendingRun.complete(StrategyRunResponse.fromJson(runResponseJson()));
     await tester.pumpAndSettle();
-    expect(find.text('Backtest Result'), findsOneWidget);
+    expect(find.text('Test sonucu'), findsOneWidget);
   });
 }

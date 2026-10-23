@@ -20,6 +20,7 @@ class StrategyLabController extends ChangeNotifier {
   StrategyRunStatus runStatus = StrategyRunStatus.idle;
   CapabilitiesResponse? capabilities;
   StrategyRunResponse? response;
+  StrategyRunRequest? submittedRequest;
   StrategyLabFailure? failure;
   StrategyInputDraft draft = const StrategyInputDraft();
   StrategyInputValidation validation = const StrategyInputValidation();
@@ -51,24 +52,41 @@ class StrategyLabController extends ChangeNotifier {
 
   void updatePrompt(String value) {
     draft = draft.copyWith(prompt: value);
-    if (validation.prompt != null) {
-      validation = const StrategyInputValidation();
-    }
+    validation = StrategyInputValidation(
+      symbol: validation.symbol,
+      initialCash: validation.initialCash,
+      commission: validation.commission,
+    );
     notifyListeners();
   }
 
   void updateSymbol(String value) {
     draft = draft.copyWith(symbol: value);
+    validation = StrategyInputValidation(
+      prompt: validation.prompt,
+      initialCash: validation.initialCash,
+      commission: validation.commission,
+    );
     notifyListeners();
   }
 
   void updateInitialCash(String value) {
     draft = draft.copyWith(initialCash: value);
+    validation = StrategyInputValidation(
+      prompt: validation.prompt,
+      symbol: validation.symbol,
+      commission: validation.commission,
+    );
     notifyListeners();
   }
 
   void updateCommissionPercent(String value) {
     draft = draft.copyWith(commissionPercent: value);
+    validation = StrategyInputValidation(
+      prompt: validation.prompt,
+      symbol: validation.symbol,
+      initialCash: validation.initialCash,
+    );
     notifyListeners();
   }
 
@@ -85,6 +103,7 @@ class StrategyLabController extends ChangeNotifier {
     final requestId = ++_requestId;
     final cancelToken = CancelToken();
     _cancelToken = cancelToken;
+    submittedRequest = request;
     runStatus = StrategyRunStatus.loading;
     response = null;
     failure = null;
@@ -134,24 +153,26 @@ class StrategyLabController extends ChangeNotifier {
   StrategyRunRequest? _buildRequest() {
     final limits = capabilities?.prompt;
     final prompt = draft.prompt.trim();
-    final cash = parseNumber(draft.initialCash);
+    final cash = parseCash(draft.initialCash);
     final commission = percentTextToDecimal(draft.commissionPercent);
     final promptError = limits == null || prompt.length < limits.minLength
-        ? 'Enter at least ${limits?.minLength ?? 5} characters.'
+        ? 'En az ${limits?.minLength ?? 1} karakter yazın.'
         : prompt.length > limits.maxLength
-        ? 'Use no more than ${limits.maxLength} characters.'
+        ? 'En fazla ${limits.maxLength} karakter yazın.'
         : null;
     final symbolError =
         capabilities?.supportedSymbols.contains(draft.symbol) == true
         ? null
-        : 'Select a supported BIST symbol.';
-    final cashError = cash != null && cash > 0
+        : 'Listeden desteklenen bir BIST hissesi seçin.';
+    final cashError = hasAmbiguousGrouping(draft.initialCash)
+        ? '100 bin TL için 100000 yazın.'
+        : cash != null && cash.isFinite && cash > 0
         ? null
-        : 'Enter a positive initial cash value.';
+        : 'Sıfırdan büyük, geçerli bir sanal tutar yazın.';
     final commissionError =
         commission != null && commission >= 0 && commission < 0.1
         ? null
-        : 'Commission must be between 0% and 10%.';
+        : '0 veya daha büyük, %10’dan küçük bir oran yazın. Örnek: 0,20';
 
     validation = StrategyInputValidation(
       prompt: promptError,
@@ -173,7 +194,8 @@ class StrategyLabController extends ChangeNotifier {
       StrategyLabFailureType.validation => StrategyRunStatus.validationError,
       StrategyLabFailureType.provider => StrategyRunStatus.providerError,
       StrategyLabFailureType.sandbox => StrategyRunStatus.sandboxError,
-      StrategyLabFailureType.backend => StrategyRunStatus.backendError,
+      StrategyLabFailureType.backend ||
+      StrategyLabFailureType.marketData => StrategyRunStatus.backendError,
       StrategyLabFailureType.network => StrategyRunStatus.networkError,
       StrategyLabFailureType.unknown ||
       StrategyLabFailureType.cancelled => StrategyRunStatus.unknownError,

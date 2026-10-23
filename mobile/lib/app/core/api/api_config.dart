@@ -7,9 +7,12 @@ class ApiConfig {
   static const _definedBaseUrl = String.fromEnvironment('API_BASE_URL');
 
   static String get resolvedBaseUrl {
-    // Web requests use the hosting origin and Nginx's /api/ proxy.
+    // An explicit local API address is supported in debug web builds.
+    // Release web builds always use the hosting origin and its /api/ proxy.
+    if (_definedBaseUrl.trim().isNotEmpty && (!kIsWeb || kDebugMode)) {
+      return _definedBaseUrl;
+    }
     if (kIsWeb) return '';
-    if (_definedBaseUrl.trim().isNotEmpty) return _definedBaseUrl;
 
     return defaultTargetPlatform == TargetPlatform.android
         ? 'http://10.0.2.2:8000'

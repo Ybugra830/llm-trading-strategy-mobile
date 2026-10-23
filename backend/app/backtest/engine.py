@@ -18,9 +18,20 @@ def run_backtest(
 ) -> pd.Series:
     """Tarihsel test penceresini çalıştırıp backtesting.py stats döndür."""
     try:
+        # Per-run subclass: never mutate a shared repository strategy class.
+        # Match the sandbox's terminal-entry policy without changing exits.
+        class EndBoundedStrategy(strategy_class):
+            def next(self):
+                super().next()
+                if len(self.data) == len(data):
+                    for order in tuple(self.orders):
+                        if order.parent_trade is None:
+                            order.cancel()
+
+        EndBoundedStrategy.__name__ = strategy_class.__name__
         backtest = Backtest(
             data,
-            strategy_class,
+            EndBoundedStrategy,
             cash=initial_cash,
             commission=commission,
             exclusive_orders=True,

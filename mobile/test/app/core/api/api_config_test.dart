@@ -4,16 +4,30 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:llm_trading_strategy_mobile/app/core/api/api_config.dart';
 
 void main() {
+  const definedBaseUrl = String.fromEnvironment('API_BASE_URL');
+  final usesDefinedUrl =
+      definedBaseUrl.trim().isNotEmpty && (!kIsWeb || kDebugMode);
+  final normalizedDefinedUrl = ApiConfig(baseUrl: definedBaseUrl).baseUrl;
   tearDown(() => debugDefaultTargetPlatformOverride = null);
 
   test('web stays same-origin and Android retains its emulator address', () {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
-    expect(ApiConfig().baseUrl, kIsWeb ? '' : 'http://10.0.2.2:8000');
+    expect(
+      ApiConfig().baseUrl,
+      usesDefinedUrl
+          ? normalizedDefinedUrl
+          : (kIsWeb ? '' : 'http://10.0.2.2:8000'),
+    );
   });
 
   test('web stays same-origin and other native platforms use localhost', () {
     debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-    expect(ApiConfig().baseUrl, kIsWeb ? '' : 'http://127.0.0.1:8000');
+    expect(
+      ApiConfig().baseUrl,
+      usesDefinedUrl
+          ? normalizedDefinedUrl
+          : (kIsWeb ? '' : 'http://127.0.0.1:8000'),
+    );
   });
 
   test('same-origin requests preserve the full API prefix', () {
@@ -25,6 +39,15 @@ void main() {
       );
       expect(options.uri.toString(), path);
     }
+  });
+
+  test('configured requests use the selected API origin and full prefix', () {
+    final baseUrl = ApiConfig().baseUrl;
+    final options = RequestOptions(
+      baseUrl: baseUrl,
+      path: '/api/v1/strategy-lab/capabilities',
+    );
+    expect(options.uri.toString(), '$baseUrl/api/v1/strategy-lab/capabilities');
   });
 
   test('explicit test configuration normalizes its trailing slash', () {

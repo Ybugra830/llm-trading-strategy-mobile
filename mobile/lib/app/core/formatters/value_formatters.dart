@@ -1,19 +1,41 @@
 import 'package:intl/intl.dart';
 
-final _money = NumberFormat('#,##0.00', 'en_US');
-final _date = DateFormat('MMM d, y', 'en_US');
+const unavailableValue = 'Hesaplanamadı';
+final _money = NumberFormat('#,##0.00', 'tr_TR');
+String _date(DateTime value) =>
+    '${value.day.toString().padLeft(2, '0')}.${value.month.toString().padLeft(2, '0')}.${value.year}';
 
-String formatMoney(double? value) =>
-    value == null ? 'N/A' : '${_money.format(value)} TRY';
+String formatMoney(double? value, {bool signed = false}) =>
+    value == null || !value.isFinite
+    ? unavailableValue
+    : '${signed && value > 0 ? '+' : ''}${_money.format(value)} TL';
 
 String formatNumber(double? value, {int digits = 2}) =>
-    value == null ? 'N/A' : value.toStringAsFixed(digits);
+    value == null || !value.isFinite
+    ? unavailableValue
+    : NumberFormat.decimalPatternDigits(
+        locale: 'tr_TR',
+        decimalDigits: digits,
+      ).format(value);
 
 String formatPercent(double? value, {bool signed = false}) {
-  if (value == null) return 'N/A';
-  final prefix = signed && value > 0 ? '+' : '';
-  return '$prefix${value.toStringAsFixed(2)}%';
+  if (value == null || !value.isFinite) return unavailableValue;
+  final prefix = value < 0
+      ? '−'
+      : signed && value > 0
+      ? '+'
+      : '';
+  return '$prefix%${formatNumber(value.abs())}';
 }
 
 String formatDateRange(DateTime start, DateTime end) =>
-    '${_date.format(start)} – ${_date.format(end)}';
+    '${_date(start)} – ${_date(end)}';
+
+String formatDuration(String? value) {
+  if (value == null) return unavailableValue;
+  final match = RegExp(
+    r'^(\d+) days? (\d{2}):(\d{2}):(\d{2})(?:\.\d+)?$',
+  ).firstMatch(value);
+  if (match == null) return unavailableValue;
+  return '${int.parse(match[1]!)} gün ${int.parse(match[2]!)} saat ${int.parse(match[3]!)} dakika';
+}

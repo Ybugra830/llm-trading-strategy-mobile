@@ -34,6 +34,7 @@ from app.schemas.strategy_lab import (
 from app.services.strategy_service import StrategyService
 from app.services.strategy_lab_observer import StrategyLabAttemptObserver
 from app.services.validation_service import ValidationService
+from app.execution_trace import stage
 
 logger = logging.getLogger(__name__)
 
@@ -214,7 +215,9 @@ class StrategyLabService:
         if result.strategy_code_hash != frozen.sha256 or result.metrics is None:
             raise SandboxUnavailableError
 
+        stage('complete')
         return StrategyLabRunResponse(
+            admission=generated.admission,
             generation=StrategyLabGeneration(
                 model=frozen.model,
                 attempt_count=frozen.attempt_count,

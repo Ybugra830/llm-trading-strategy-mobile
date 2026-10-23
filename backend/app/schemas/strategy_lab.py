@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field, field_validator, model_validator
 from app.market.bist_symbols import normalize_bist_symbol
 from app.schemas.backtest import BacktestDataSummary, BacktestMetrics
 from app.schemas.strategy import StrategyPrompt
+from app.schemas.admission import AdmissionSummary
 from app.schemas.validation import StrategyValidationResponse
 
 
@@ -61,6 +62,7 @@ class StrategyLabRunResponse(BaseModel):
     data: BacktestDataSummary
     configuration: StrategyLabConfiguration
     metrics: BacktestMetrics
+    admission: AdmissionSummary | None = None
 
 
 class StrategyLabDefaults(BaseModel):

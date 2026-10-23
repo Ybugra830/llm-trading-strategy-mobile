@@ -3,11 +3,12 @@
 from typing import Annotated
 
 from pydantic import BaseModel, StringConstraints
+from app.schemas.admission import AdmissionSummary
 
 
 StrategyPrompt = Annotated[
     str,
-    StringConstraints(strip_whitespace=True, min_length=5, max_length=2000),
+    StringConstraints(strip_whitespace=True, min_length=1, max_length=2000),
 ]
 
 
@@ -22,3 +23,4 @@ class StrategyGenerateResponse(BaseModel):
 
     code: str
     model: str
+    admission: AdmissionSummary | None = None

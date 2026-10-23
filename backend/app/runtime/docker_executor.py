@@ -21,6 +21,7 @@ from app.runtime.models import (
     SandboxStage,
 )
 from app.runtime.smoke_data import build_smoke_ohlcv
+from app.execution_trace import stage as trace_stage
 
 logger = logging.getLogger(__name__)
 
@@ -87,6 +88,7 @@ class DockerSandboxExecutor:
         commission: float,
         stage: SandboxStage,
     ) -> SandboxResult:
+        trace_stage('docker_' + stage, 'smoke' if stage == 'smoke' else 'backtest')
         container_name = f"strategy-sandbox-{uuid.uuid4().hex}"
         started = time.monotonic()
         safe_env = self._safe_docker_environment()

@@ -4,6 +4,7 @@ import 'generation_data.dart';
 import 'market_data_info.dart';
 import 'runtime_data.dart';
 import 'validation_data.dart';
+import 'admission_data.dart';
 
 class StrategyRunResponse {
   const StrategyRunResponse({
@@ -16,6 +17,7 @@ class StrategyRunResponse {
     required this.data,
     required this.configuration,
     required this.metrics,
+    this.admission,
   });
 
   factory StrategyRunResponse.fromJson(Map<String, dynamic> json) {
@@ -32,6 +34,9 @@ class StrategyRunResponse {
       data: MarketDataInfo.fromJson(object('data')),
       configuration: BacktestConfiguration.fromJson(object('configuration')),
       metrics: BacktestMetrics.fromJson(object('metrics')),
+      admission: json['admission'] == null
+          ? null
+          : AdmissionData.fromJson(object('admission')),
     );
 
     if (response.status != 'success' ||
@@ -52,4 +57,5 @@ class StrategyRunResponse {
   final MarketDataInfo data;
   final BacktestConfiguration configuration;
   final BacktestMetrics metrics;
+  final AdmissionData? admission;
 }

@@ -5,6 +5,11 @@ from typing import Any
 
 
 _MODEL_OPTIONS: dict[str, dict[str, Any]] = {
+    "openai/gpt-oss-20b": {
+        "temperature": 0.1,
+        # Reasoning shares the output budget; leave room for complete Python too.
+        "reasoning_effort": "low",
+    },
     "deepseek-ai/deepseek-v4-pro-0813": {
         "temperature": 1,
         "top_p": 0.95,

@@ -11,7 +11,7 @@ class StrategyLabScaffold extends StatelessWidget {
     required this.onStrategyLab,
     required this.onAbout,
     super.key,
-    this.title = 'Strategy Lab',
+    this.title = 'Strateji testi',
     this.onBack,
     this.showInfo = true,
   });
@@ -28,20 +28,23 @@ class StrategyLabScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          key: onBack == null
-              ? const Key('menuButton')
-              : const Key('backButton'),
-          onPressed: onBack,
-          icon: Icon(onBack == null ? Icons.menu : Icons.arrow_back),
-          color: AppColors.primary,
-          tooltip: onBack == null ? 'Menu' : 'Back',
-        ),
+        toolbarHeight: MediaQuery.textScalerOf(context).scale(70),
+        leading: onBack == null
+            ? null
+            : IconButton(
+                key: const Key('backButton'),
+                onPressed: onBack,
+                icon: const Icon(Icons.arrow_back),
+                color: AppColors.primary,
+                tooltip: 'Geri',
+              ),
+        automaticallyImplyLeading: false,
         title: Text(
           title,
+          maxLines: 2,
           style: Theme.of(
             context,
-          ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w700),
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
         ),
         actions: [
           if (showInfo)
@@ -50,7 +53,7 @@ class StrategyLabScaffold extends StatelessWidget {
               onPressed: onAbout,
               icon: const Icon(Icons.info_outline),
               color: AppColors.primary,
-              tooltip: 'About',
+              tooltip: 'Nasıl çalışır?',
             ),
           const SizedBox(width: 6),
         ],

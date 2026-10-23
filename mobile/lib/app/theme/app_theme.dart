@@ -60,8 +60,7 @@ abstract final class AppTheme {
         ),
         bodyLarge: inter.bodyLarge?.copyWith(fontSize: 16, height: 1.5),
         bodyMedium: inter.bodyMedium?.copyWith(fontSize: 14, height: 1.43),
-        labelMedium: GoogleFonts.getFont(
-          'Geist',
+        labelMedium: GoogleFonts.inter(
           fontSize: 12,
           height: 1.33,
           fontWeight: FontWeight.w500,
@@ -120,8 +119,8 @@ abstract final class AppTheme {
     );
   }
 
-  static TextStyle get codeStyle => GoogleFonts.getFont(
-    'Geist Mono',
+  static TextStyle get codeStyle => const TextStyle(
+    fontFamily: 'monospace',
     fontSize: 13,
     height: 1.38,
     color: AppColors.onSurfaceVariant,

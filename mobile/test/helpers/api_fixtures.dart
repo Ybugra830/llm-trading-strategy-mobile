@@ -5,7 +5,7 @@ Map<String, dynamic> capabilitiesJson() => {
   'supported_symbols': ['THYAO', 'ASELS'],
   'supported_indicators': ['RSI', 'MACD'],
   'defaults': {'initial_cash': 100000, 'commission': 0.002},
-  'prompt': {'min_length': 5, 'max_length': 2000},
+  'prompt': {'min_length': 1, 'max_length': 2000},
 };
 
 Map<String, dynamic> runResponseJson({bool nullableProfitFactor = false}) => {

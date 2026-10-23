@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:llm_trading_strategy_mobile/app.dart';
+import 'package:llm_trading_strategy_mobile/app/features/strategy_lab/models/strategy_examples.dart';
 import 'package:llm_trading_strategy_mobile/app/core/api/api_client.dart';
 import 'package:llm_trading_strategy_mobile/app/core/api/api_config.dart';
 import 'package:llm_trading_strategy_mobile/app/core/formatters/value_formatters.dart';
@@ -33,7 +34,7 @@ void main() {
 
       await tester.enterText(
         find.byKey(const Key('promptField')),
-        'Buy when RSI is below 35 and sell when RSI is above 70.',
+        strategyExamples.first.prompt,
       );
       await _enterNestedField(tester, const Key('initialCashField'), '100000');
       await _enterNestedField(tester, const Key('commissionField'), '0.20');

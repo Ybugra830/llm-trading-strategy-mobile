@@ -105,7 +105,7 @@ def test_capabilities_are_ordered_and_flutter_friendly() -> None:
         "Stochastic",
         "ATR",
     ]
-    assert data["prompt"] == {"min_length": 5, "max_length": 2000}
+    assert data["prompt"] == {"min_length": 1, "max_length": 2000}
     assert "sandbox" not in response.text.lower()
 
 

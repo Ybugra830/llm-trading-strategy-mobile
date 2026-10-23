@@ -66,6 +66,111 @@ void main() {
       );
     });
   }
+
+  for (final status in [422, 502]) {
+    test(
+      'market data HTTP $status is not a strategy or provider error',
+      () async {
+        final repo = _repository(
+          (_) async => _jsonResponse({
+            'detail': status == 422
+                ? 'Backtest için yeterli piyasa verisi bulunamadı.'
+                : 'Piyasa verisi şu anda kullanılamıyor.',
+          }, status),
+        );
+        await expectLater(
+          repo.run(
+            const StrategyRunRequest(
+              prompt: 'RSI',
+              symbol: 'THYAO',
+              initialCash: 100000,
+              commission: .002,
+            ),
+          ),
+          throwsA(
+            isA<StrategyLabException>().having(
+              (e) => e.failure.type,
+              'type',
+              StrategyLabFailureType.marketData,
+            ),
+          ),
+        );
+      },
+    );
+  }
+  test('unknown error body is never displayed as a safe explanation', () async {
+    final repo = _repository(
+      (_) async =>
+          _jsonResponse({'detail': 'Traceback nvapi-private-marker'}, 502),
+    );
+    await expectLater(
+      repo.run(
+        const StrategyRunRequest(
+          prompt: 'RSI',
+          symbol: 'THYAO',
+          initialCash: 100000,
+          commission: .002,
+        ),
+      ),
+      throwsA(
+        isA<StrategyLabException>().having(
+          (e) => e.failure.message,
+          'message',
+          isNot(contains('nvapi-private-marker')),
+        ),
+      ),
+    );
+  });
+  test('invalid capabilities defaults cannot enable the form', () async {
+    final body = capabilitiesJson();
+    (body['defaults'] as Map<String, dynamic>)['initial_cash'] = 0;
+    final repo = _repository((_) async => _jsonResponse(body, 200));
+    await expectLater(
+      repo.getCapabilities(),
+      throwsA(isA<StrategyLabException>()),
+    );
+  });
+  test(
+    'preserves Turkish admission decision, reason and clarification questions',
+    () async {
+      final repository = _repository(
+        (_) async => _jsonResponse({
+          'detail': 'Alım ve çıkış kurallarını belirtin.',
+          'decision': 'needs_clarification',
+          'reason_code': 'INCOMPLETE',
+          'questions': [
+            'Hangi koşulda alım yapılmalı?',
+            'Hangi koşulda pozisyon kapatılmalı?',
+          ],
+        }, 422),
+      );
+      await expectLater(
+        repository.run(
+          const StrategyRunRequest(
+            prompt: 'RSI',
+            symbol: 'THYAO',
+            initialCash: 100000,
+            commission: 0.002,
+          ),
+        ),
+        throwsA(
+          isA<StrategyLabException>()
+              .having(
+                (e) => e.failure.decision,
+                'decision',
+                'needs_clarification',
+              )
+              .having((e) => e.failure.reasonCode, 'reason', 'INCOMPLETE')
+              .having(
+                (e) => e.failure.message,
+                'message',
+                'Stratejiyi çalıştırmak için işlem kurallarını netleştirmeniz gerekiyor.',
+              )
+              .having((e) => e.failure.questions.length, 'questions', 2),
+        ),
+      );
+    },
+  );
 }
 
 HttpStrategyLabRepository _repository(

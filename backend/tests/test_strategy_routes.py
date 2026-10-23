@@ -56,7 +56,7 @@ def test_generate_strategy_returns_code_and_model() -> None:
 def test_generate_strategy_rejects_too_short_prompt() -> None:
     app.dependency_overrides[get_strategy_service] = SuccessfulStrategyService
     try:
-        response = post_generate({"prompt": "  dört  "})
+        response = post_generate({"prompt": "    "})
     finally:
         app.dependency_overrides.clear()
 

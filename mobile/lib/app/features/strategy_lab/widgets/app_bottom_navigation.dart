@@ -21,7 +21,7 @@ class AppBottomNavigation extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Container(
-        height: 70,
+        constraints: const BoxConstraints(minHeight: 70),
         decoration: const BoxDecoration(
           color: AppColors.surfaceContainer,
           border: Border(top: BorderSide(color: AppColors.outlineVariant)),
@@ -30,19 +30,23 @@ class AppBottomNavigation extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _TabButton(
-              key: const Key('strategyLabTab'),
-              active: selected == AppTab.strategyLab,
-              icon: Icons.science_outlined,
-              label: 'Strategy Lab',
-              onTap: onStrategyLab,
+            Expanded(
+              child: _TabButton(
+                key: const Key('strategyLabTab'),
+                active: selected == AppTab.strategyLab,
+                icon: Icons.science_outlined,
+                label: 'Strateji testi',
+                onTap: onStrategyLab,
+              ),
             ),
-            _TabButton(
-              key: const Key('aboutTab'),
-              active: selected == AppTab.about,
-              icon: Icons.info_outline,
-              label: 'About',
-              onTap: onAbout,
+            Expanded(
+              child: _TabButton(
+                key: const Key('aboutTab'),
+                active: selected == AppTab.about,
+                icon: Icons.info_outline,
+                label: 'Nasıl çalışır?',
+                onTap: onAbout,
+              ),
             ),
           ],
         ),
@@ -76,7 +80,7 @@ class _TabButton extends StatelessWidget {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 160),
           constraints: const BoxConstraints(minWidth: 120, minHeight: 50),
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
           decoration: BoxDecoration(
             color: active ? AppColors.secondaryContainer : Colors.transparent,
             borderRadius: BorderRadius.circular(40),
@@ -94,7 +98,7 @@ class _TabButton extends StatelessWidget {
               const SizedBox(height: 2),
               Text(
                 label,
-                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   letterSpacing: 0,
                   color: active

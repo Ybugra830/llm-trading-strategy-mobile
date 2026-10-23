@@ -165,6 +165,25 @@ def load_strategy(source_path: Path) -> type[Strategy]:
     return strategy_class
 
 
+def guard_terminal_entries(strategy_class: type[Strategy], total_bars: int) -> None:
+    """A signal at the final Close has no future Open at which to enter.
+
+    backtesting 0.6.6 repeats broker.next() to finalize trades using the last
+    bar's OHLC. Cancel unfilled entry orders before that repeat, while keeping
+    parent-trade exits and SL/TP orders. Earlier bars and signals are unchanged.
+    """
+    strategy_next = strategy_class.next
+
+    def next_without_terminal_entry(self):
+        strategy_next(self)
+        if len(self.data) == total_bars:
+            for order in tuple(self.orders):
+                if order.parent_trade is None:
+                    order.cancel()
+
+    strategy_class.next = next_without_terminal_entry
+
+
 def safe_failure_type(error: BaseException) -> str:
     """Return the deepest allowlisted exception class without its message."""
     current: BaseException | None = error
@@ -226,6 +245,7 @@ def main() -> None:
                 )
                 try:
                     strategy_class = load_strategy(source_path)
+                    guard_terminal_entries(strategy_class, len(data))
                     backtest = Backtest(
                         data,
                         strategy_class,

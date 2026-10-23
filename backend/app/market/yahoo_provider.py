@@ -9,6 +9,7 @@ import pandas as pd
 import yfinance as yf
 
 from app.market.errors import MarketDataUnavailableError
+from app.execution_trace import stage
 
 logger = logging.getLogger(__name__)
 BIST_TIMEZONE = ZoneInfo("Europe/Istanbul")
@@ -32,6 +33,7 @@ class YahooFinanceProvider:
 
     def download_daily(self, yahoo_symbol: str) -> pd.DataFrame:
         """Yaklaşık üç yıllık tamamlanmış günlük barları indir."""
+        stage('market_download', 'download')
         end_date = self._today_provider()
         start_date = (pd.Timestamp(end_date) - pd.DateOffset(years=3)).date()
 

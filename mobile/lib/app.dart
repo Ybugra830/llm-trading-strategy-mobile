@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'app/features/about/about_screen.dart';
 import 'app/features/strategy_lab/data/strategy_lab_repository.dart';
@@ -47,7 +48,10 @@ class _TradingStrategyAppState extends State<TradingStrategyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'LLM Trading Strategy',
+      title: 'Strateji testi',
+      locale: const Locale('tr', 'TR'),
+      supportedLocales: const [Locale('tr', 'TR')],
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
       theme: AppTheme.dark,
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.dark,
@@ -66,6 +70,14 @@ class _TradingStrategyAppState extends State<TradingStrategyApp> {
     }
     void showAbout() => setState(() => _showAbout = true);
 
+    if (_controller.runStatus == StrategyRunStatus.validationError &&
+        _controller.failure?.decision != null) {
+      return StrategyInputScreen(
+        controller: _controller,
+        onRun: _controller.run,
+        onAbout: showAbout,
+      );
+    }
     return switch (_controller.runStatus) {
       StrategyRunStatus.loading => StrategyRunningScreen(
         onCancel: _controller.cancelRun,
@@ -73,6 +85,7 @@ class _TradingStrategyAppState extends State<TradingStrategyApp> {
       ),
       StrategyRunStatus.success => BacktestResultScreen(
         response: _controller.response!,
+        submittedPrompt: _controller.submittedRequest?.prompt,
         onBack: _controller.returnToInput,
         onAbout: showAbout,
       ),

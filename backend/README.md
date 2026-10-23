@@ -32,6 +32,18 @@ uvicorn app.main:app --reload
 
 Sağlık kontrolü `GET http://127.0.0.1:8000/health` adresindedir.
 
+Yerel Flutter web geliştirmesi için backend'i bu klonun `.venv`'iyle başlatın:
+
+```powershell
+$env:CORS_ALLOWED_ORIGINS='["http://127.0.0.1:3005"]'
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+`CORS_ALLOWED_ORIGINS` bir JSON listesidir; varsayılanı boştur. Yalnız kullandığınız
+frontend origin'ini ekleyin ve port değişirse listeyi güncelleyip backend'i yeniden
+başlatın. CORS yalnız GET/POST ve Content-Type header'ına izin verir; credentials
+etkin değildir. Production same-origin kullanımında CORS izni gerekmez.
+
 ## Swagger ile strateji üretimini deneme
 
 Uygulama çalışırken `http://127.0.0.1:8000/docs` adresini açın. Buradaki
@@ -162,6 +174,13 @@ güvenilir repository-owned referans stratejisi çalıştırılır. LLM tarafın
 üretilen Python kodu Day 4 FastAPI sürecinde çalıştırılmaz.
 
 ## Day 5 Strategy Lab
+
+Kod üretiminden önce ortak uygunluk kontrolü çalışır: anlamlı ve desteklenen
+istekler `accepted`, belirsizler `needs_clarification`, ilgisiz/anlamsız veya
+destek dışı istekler `rejected` olur. İki üretim endpoint'i de bu kontrolü kullanır.
+Ret/açıklama 422; sağlayıcı veya bozuk karar yanıtı 502 döner. Kurallar,
+belgeli gösterge varsayılanları, hata alanları ve sınırlı gerçek test komutları
+[uygunluk kontrolü belgesinde](docs/strategy-admission.md) açıklanmıştır.
 
 `POST /api/v1/strategy-lab/run`; prompt, BIST sembolü, başlangıç bakiyesi ve
 komisyonu tek akışta işler. `GET /api/v1/strategy-lab/capabilities`, Flutter için

@@ -5,6 +5,7 @@ from collections.abc import AsyncIterator
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.responses import JSONResponse
 
 from app.config import get_settings
 from app.indicators.registry import SUPPORTED_INDICATORS
@@ -33,6 +34,9 @@ from app.schemas.strategy_lab import (
 from app.services.strategy_lab_service import StrategyLabService
 from app.services.strategy_service import StrategyService
 from app.services.validation_service import ValidationService
+from app.services.admission_service import StrategyAdmissionError
+from app.schemas.admission import AdmissionFailure
+from app.execution_trace import failure
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/v1/strategy-lab", tags=["strategy-lab"])
@@ -56,21 +60,24 @@ def get_capabilities() -> StrategyLabCapabilitiesResponse:
         supported_symbols=list(SUPPORTED_BIST_SYMBOL_ORDER),
         supported_indicators=[item.display_name for item in SUPPORTED_INDICATORS],
         defaults=StrategyLabDefaults(initial_cash=100_000, commission=0.002),
-        prompt=StrategyPromptLimits(min_length=5, max_length=2_000),
+        prompt=StrategyPromptLimits(min_length=1, max_length=2_000),
     )
 
 
 @router.post(
     "/run",
     response_model=StrategyLabRunResponse,
+    responses={422: {"model": AdmissionFailure}},
     status_code=status.HTTP_200_OK,
 )
 async def run_strategy_lab(
     request: StrategyLabRunRequest,
     service: Annotated[StrategyLabService, Depends(get_strategy_lab_service)],
-) -> StrategyLabRunResponse:
+) -> StrategyLabRunResponse | JSONResponse:
     try:
         return await service.run(request)
+    except StrategyAdmissionError as exc:
+        return JSONResponse(status_code=422, content=exc.failure.model_dump())
     except UnsupportedBistSymbolError as exc:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
@@ -92,6 +99,7 @@ async def run_strategy_lab(
             detail="Üretilen strateji gerçek test verisi üzerinde çalıştırılamadı.",
         ) from exc
     except NvidiaNimError as exc:
+        failure('NVIDIA_' + exc.kind.value.upper())
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
             detail="Strateji şu anda oluşturulamıyor.",

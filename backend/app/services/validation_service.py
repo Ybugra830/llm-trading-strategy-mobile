@@ -6,6 +6,7 @@ from app.schemas.validation import StrategyValidationResponse
 from app.validators.code_cleaner import clean_code
 from app.validators.validation_pipeline import validate_strategy_code
 from app.validators.strategy_contract import analyze_contract, ContractFinding, StrategyRequirements
+from app.execution_trace import stage
 
 
 @dataclass(frozen=True)
@@ -27,6 +28,7 @@ class ValidationService:
 
     def prepare(self, code: str, prompt: str | None = None) -> PreparedStrategyValidation:
         """Kodu temizle ve aynı temiz sürümün doğrulama sonucunu döndür."""
+        stage('ast', 'ast')
         cleaned_code = clean_code(code)
         contract = analyze_contract(cleaned_code, prompt)
         return PreparedStrategyValidation(

@@ -104,8 +104,11 @@ Strategy Lab örnek isteği:
 }
 ```
 
-`prompt`, baştaki/sondaki boşluklar temizlendikten sonra 5–2000 karakter
+`prompt`, baştaki/sondaki boşluklar temizlendikten sonra 1–2000 karakter
 olmalıdır. `symbol` zorunludur ve desteklenen BIST sembollerinden biri olmalıdır.
+Bu uzunluk kontrolü tek başına kabul anlamına gelmez: üretim öncesi uygunluk
+kontrolü belirsiz istekte açıklama ister, ilgisiz/anlamsız isteği reddeder.
+[Uygunluk kontrolü ve varsayılanlar](backend/docs/strategy-admission.md).
 `initial_cash` sıfırdan büyük olmalıdır; varsayılanı `100000` değeridir.
 `commission`, `0 <= commission < 0.1` aralığında bir orandır; varsayılan
 `0.002`, %0,2 komisyona karşılık gelir.
@@ -168,12 +171,17 @@ diğer native platformlar `http://127.0.0.1:8000` adresini kullanır. Fiziksel
 cihazlar için erişilebilir bir backend adresi gerekir. Native hedeflerde adres
 `--dart-define=API_BASE_URL=...` ile değiştirilebilir.
 
-Web sürümü `/api/` isteklerini **aynı origin** üzerinden gönderir ve
-`API_BASE_URL` tanımını kullanmaz. Yerel web kullanımı için
+Web sürümü varsayılan olarak `/api/` isteklerini **aynı origin** üzerinden gönderir.
+Debug web sürümünde yerel backend'e doğrudan bağlanmak için açıkça
+`--dart-define=API_BASE_URL=http://127.0.0.1:8000` verilebilir. Backend'de yalnız
+frontend'in yerel origin'ine CORS izni verin; kesin PowerShell komutları
+[mobile README](mobile/README.md#local-web-development-powershell) içindedir.
+Flutter geliştirme sunucusu API proxy'si sağlamaz.
+
+Release web `API_BASE_URL` tanımını yok sayar ve same-origin kullanır.
 `flutter build web --release` çıktısı, `/api/` isteklerini FastAPI'ye ileten
-bir web sunucusuyla sunulmalıdır; yalnızca Flutter geliştirme sunucusunu açmak
-API proxy'si sağlamaz. [Nginx şablonu](deploy/azure/nginx.conf) bu yönlendirmeyi
-gösterir; yerel kullanımda web root yolunu yerel build dizinine uyarlayın.
+bir web sunucusuyla sunulmalıdır. [Nginx şablonu](deploy/azure/nginx.conf) bu
+yönlendirmeyi gösterir; yerel kullanımda web root yolunu build dizinine uyarlayın.
 
 ### Tests and Build
 

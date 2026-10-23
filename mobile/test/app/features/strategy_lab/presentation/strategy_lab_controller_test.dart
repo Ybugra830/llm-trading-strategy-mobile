@@ -31,7 +31,7 @@ void main() {
     expect(controller.capabilitiesStatus, CapabilitiesStatus.ready);
     expect(controller.draft.symbol, 'THYAO');
     expect(controller.draft.initialCash, '100000');
-    expect(controller.draft.commissionPercent, '0.20');
+    expect(controller.draft.commissionPercent, '0,20');
   });
 
   test('keeps loading state and prevents duplicate submissions', () async {
@@ -63,7 +63,7 @@ void main() {
     final controller = StrategyLabController(repository);
     await controller.loadCapabilities();
     controller.updatePrompt('Buy when RSI is below 35.');
-    controller.updateCommissionPercent('0.20');
+    controller.updateCommissionPercent('0,20');
 
     await controller.run();
 
