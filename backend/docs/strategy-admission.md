@@ -11,7 +11,14 @@ The configured NVIDIA model receives a separate assessment system message and
 the user's text as JSON data in a user message. It must return a strict,
 evidence-bearing JSON assessment. The maximum output is 2048 tokens; total
 assessment time, including the existing bounded retries, is at most 30 seconds.
-Assessment does not switch models or interpret a provider failure as approval.
+Assessment can switch to an explicitly configured, verified fallback after a
+timeout or model/route-unavailable error. A provider failure is never approval.
+All three stages share one deadline per call: assessment at most 30 seconds,
+generation and each repair at most the configured 180 seconds. The primary gets
+at most half; the fallback gets the remainder of the original deadline, including
+unused primary time. Retries and backoff are inside those deadlines. Valid
+rejection/clarification never triggers a model switch. No fallback is activated
+merely because its name appears in the model catalog.
 
 Pydantic forbids extra fields and unknown enums. Backend checks also validate
 indicator IDs/outputs, registry membership, verbatim evidence, numeric evidence,

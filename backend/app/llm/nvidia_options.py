@@ -5,6 +5,12 @@ from typing import Any
 
 
 _MODEL_OPTIONS: dict[str, dict[str, Any]] = {
+    "nvidia/nemotron-3-super-120b-a12b": {
+        "temperature": 1,
+        "top_p": 0.95,
+        "extra_body": {"chat_template_kwargs": {"enable_thinking": False}},
+    },
+    "mistralai/mistral-nemotron": {"temperature": 0.6, "top_p": 0.7},
     "openai/gpt-oss-20b": {
         "temperature": 0.1,
         # Reasoning shares the output budget; leave room for complete Python too.

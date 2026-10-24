@@ -1,6 +1,7 @@
 """Stage-specific provider policy, with no external NVIDIA calls."""
 
 import asyncio
+from time import perf_counter
 from contextlib import asynccontextmanager
 from types import SimpleNamespace
 
@@ -80,7 +81,7 @@ def test_policy_for_each_stage(monkeypatch, caplog, stage, failure, retries, fal
     outcomes = ["ok"] if failure is None else [error(failure)] * (1 + retries) + ["ok"]
     boundary = Boundary(outcomes)
     monkeypatch.setattr("app.llm.nvidia_client.AsyncOpenAI", lambda **kw: boundary)
-    expected_fallback = fallback and stage != "assessment"
+    expected_fallback = fallback
 
     async def run():
         async with NvidiaNimClient(settings()) as provider:
@@ -105,7 +106,7 @@ def test_policy_for_each_stage(monkeypatch, caplog, stage, failure, retries, fal
         assert f"returned_model=actual/{'fallback' if expected_fallback else 'primary'}" in caplog.text
 
 
-@pytest.mark.parametrize("stage", ["generation", "repair"])
+@pytest.mark.parametrize("stage", ["assessment", "generation", "repair"])
 def test_both_models_fail_once_without_recursion(monkeypatch, stage):
     boundary = Boundary([error(404), error(410)])
     monkeypatch.setattr("app.llm.nvidia_client.AsyncOpenAI", lambda **kw: boundary)
@@ -121,12 +122,14 @@ def test_both_models_fail_once_without_recursion(monkeypatch, stage):
 def test_stage_deadline_cancels_calls_and_bounds_both_models(monkeypatch, stage):
     boundary = Boundary(["hang", "hang"])
     monkeypatch.setattr("app.llm.nvidia_client.AsyncOpenAI", lambda **kw: boundary)
-    configured = settings().model_copy(update={"nvidia_request_timeout_seconds": 0.015})
+    configured = settings().model_copy(update={"nvidia_request_timeout_seconds": 0.2})
+    started = perf_counter()
     with pytest.raises(NvidiaNimError) as caught:
         asyncio.run(invoke(NvidiaNimClient(configured), stage))
     assert caught.value.kind == ProviderErrorKind.TIMEOUT
-    assert len(boundary.calls) == (1 if stage == "assessment" else 2)
+    assert len(boundary.calls) == 2
     assert boundary.closed
+    assert perf_counter() - started < 0.35
 
 
 @pytest.mark.parametrize("lab", [False, True])
@@ -158,7 +161,7 @@ def test_concurrent_request_dependencies_have_independent_model_metadata(monkeyp
     assert all(c.closed for c in constructed)
 
 
-@pytest.mark.parametrize("stage", ["generation", "repair"])
+@pytest.mark.parametrize("stage", ["assessment", "generation", "repair"])
 @pytest.mark.parametrize("fallback", [None, "test/primary"])
 def test_missing_or_identical_fallback_never_repeats_primary(monkeypatch, stage, fallback):
     boundary = Boundary([error(404)])
@@ -167,3 +170,62 @@ def test_missing_or_identical_fallback_never_repeats_primary(monkeypatch, stage,
     with pytest.raises(NvidiaNimError):
         asyncio.run(invoke(NvidiaNimClient(configured), stage))
     assert len(boundary.calls) == 1
+
+
+@pytest.mark.parametrize("stage", ["assessment", "generation", "repair"])
+def test_early_failure_gives_fallback_the_original_deadline(monkeypatch, stage):
+    deadlines = []
+
+    async def complete(self, messages, model, *, deadline, max_tokens, stage):
+        deadlines.append((model, deadline, max_tokens))
+        if model == "test/primary":
+            raise NvidiaNimError("Safe", kind=ProviderErrorKind.MODEL_UNAVAILABLE)
+        return "{}"
+
+    boundary = Boundary([])
+    monkeypatch.setattr("app.llm.nvidia_client.AsyncOpenAI", lambda **kw: boundary)
+    monkeypatch.setattr(NvidiaNimClient, "_complete_model", complete)
+    configured = settings(nvidia_request_timeout_seconds=60, nvidia_max_tokens=4096)
+    assert asyncio.run(invoke(NvidiaNimClient(configured), stage)) == "{}"
+    assert deadlines[1][1] - deadlines[0][1] == pytest.approx(15 if stage == "assessment" else 30)
+    assert deadlines[1][2] == (2048 if stage == "assessment" else 4096)
+
+
+@pytest.mark.parametrize("decision", ["rejected", "needs_clarification"])
+def test_valid_nonacceptance_never_calls_fallback(monkeypatch, decision):
+    import json
+    from app.services.admission_service import StrategyAdmissionService, StrategyAdmissionError
+    from tests.test_strategy_admission import refused
+
+    class Nonacceptance(Boundary):
+        async def create(self, **kwargs):
+            self.calls.append(kwargs)
+            payload = refused(decision, "non_strategy" if decision == "rejected" else "incomplete",
+                              [] if decision == "rejected" else ["entry_rule", "exit_rule"])
+            return SimpleNamespace(model="actual/primary", choices=[
+                SimpleNamespace(message=SimpleNamespace(content=json.dumps(payload)))])
+
+    boundary = Nonacceptance([])
+    monkeypatch.setattr("app.llm.nvidia_client.AsyncOpenAI", lambda **kw: boundary)
+    with pytest.raises(StrategyAdmissionError) as caught:
+        asyncio.run(StrategyAdmissionService(NvidiaNimClient(settings())).assess("RSI"))
+    assert caught.value.failure.decision == decision
+    assert len(boundary.calls) == 1
+
+
+def test_nemotron_profiles_do_not_inherit_gpt_reasoning_parameters():
+    from app.llm.nvidia_options import get_model_options
+    for model in ("nvidia/nemotron-3-super-120b-a12b", "mistralai/mistral-nemotron"):
+        assert "reasoning_effort" not in get_model_options(model)
+
+
+@pytest.mark.parametrize("stage", ["assessment", "generation", "repair"])
+def test_timeout_retry_backoff_uses_primary_slice_then_remaining_budget(monkeypatch, stage):
+    boundary = Boundary([error("timeout"), "ok"])
+    monkeypatch.setattr("app.llm.nvidia_client.AsyncOpenAI", lambda **kw: boundary)
+    configured = settings().model_copy(update={"nvidia_request_timeout_seconds": 0.2,
+                                              "nvidia_retry_backoff_seconds": 1})
+    started = perf_counter()
+    assert asyncio.run(invoke(NvidiaNimClient(configured), stage)) == "{}"
+    assert [c["model"] for c in boundary.calls] == ["test/primary", "test/fallback"]
+    assert perf_counter() - started < 0.35

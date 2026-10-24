@@ -4,6 +4,7 @@ import asyncio
 import logging
 import re
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from enum import StrEnum
 from time import perf_counter
 
@@ -96,6 +97,7 @@ class NvidiaNimClient:
         self._client: AsyncOpenAI | None = None
         self._last_model = settings.nvidia_model
         self._managed = False
+        self.attempt_records: list[dict] = []
 
     @property
     def model(self) -> str:
@@ -135,84 +137,90 @@ class NvidiaNimClient:
         return await self._complete(build_strategy_messages(prompt))
 
     async def assess_intent(self, prompt: str) -> str:
-        """One bounded assessment, including retries; never fall back to accepting."""
-        if not self._managed:
-            async with self:
-                return await self.assess_intent(prompt)
-        if self._client is None:
-            self._open_client()
-        state: dict[str, ProviderErrorKind | None] = {"backoff_failure": None}
-        try:
-            async with asyncio.timeout(min(30, self._settings.nvidia_request_timeout_seconds)):
-                return await self._attempts(
-                    build_admission_messages(prompt), self._settings.nvidia_model, state,
-                    max_tokens=min(2048, self._settings.nvidia_max_tokens),
-                )
-        except TimeoutError as error:
-            raise NvidiaNimError(
-                "Strateji uygunluk servisi zaman aşımına uğradı.", kind=ProviderErrorKind.TIMEOUT,
-            ) from error
+        """Assessment uses the same fail-closed policy within a 30-second budget."""
+        return await self._complete(build_admission_messages(prompt), stage="assessment")
 
     async def repair_code(self, original_prompt: str, current_code: str,
                           context: RepairFailureContext) -> str:
-        return await self._complete(build_repair_messages(original_prompt, current_code, context))
+        return await self._complete(build_repair_messages(original_prompt, current_code, context), stage="repair")
 
-    async def _complete(self, messages: list) -> str:
+    async def _complete(self, messages: list, *, stage: str = "generation") -> str:
         # Standalone callers remain safe without explicitly opening a context.
         if not self._managed:
             async with self:
-                return await self._complete(messages)
+                return await self._complete(messages, stage=stage)
         if self._client is None:
             self._open_client()
         primary = self._settings.nvidia_model
+        budget = self._settings.nvidia_request_timeout_seconds
+        if stage == "assessment":
+            budget = min(30, budget)
+        loop = asyncio.get_running_loop()
+        started = loop.time()
+        deadline = started + budget
+        max_tokens = min(2048, self._settings.nvidia_max_tokens) if stage == "assessment" else self._settings.nvidia_max_tokens
         try:
-            return await self._complete_model(messages, primary)
+            return await self._complete_model(messages, primary, deadline=started + budget / 2,
+                                              max_tokens=max_tokens, stage=stage)
         except NvidiaNimError as error:
             fallback = self._settings.nvidia_fallback_model
             if (not fallback or fallback == primary or error.kind not in (
                 ProviderErrorKind.MODEL_UNAVAILABLE, ProviderErrorKind.TIMEOUT,
-            )):
+            ) or loop.time() >= deadline):
                 raise
             logger.warning("NVIDIA fallback selected primary=%s fallback=%s reason=%s",
                            primary, fallback, error.kind.value)
             # No recursive fallback. It passes through the identical prompt and pipeline.
-            return await self._complete_model(messages, fallback)
+            return await self._complete_model(messages, fallback, deadline=deadline,
+                                              max_tokens=max_tokens, stage=stage)
 
-    async def _complete_model(self, messages: list, model: str) -> str:
+    async def _complete_model(self, messages: list, model: str, *, deadline: float,
+                              max_tokens: int, stage: str) -> str:
         started = perf_counter()
         # Retain a failure while backing off so an exhausted 429/5xx budget
         # cannot accidentally make that failure eligible for model fallback.
         state: dict[str, ProviderErrorKind | None] = {"backoff_failure": None}
         try:
-            # Includes network attempts AND backoff: retries cannot reset this budget.
-            async with asyncio.timeout(self._settings.nvidia_request_timeout_seconds):
-                return await self._attempts(messages, model, state)
+            # One monotonic deadline includes requests and retry backoff.
+            async with asyncio.timeout_at(deadline):
+                return await self._attempts(messages, model, state, max_tokens=max_tokens, stage=stage)
         except TimeoutError as error:
             kind = state["backoff_failure"] or ProviderErrorKind.TIMEOUT
+            if self.attempt_records and self.attempt_records[-1]["error_kind"] == "cancelled":
+                self.attempt_records[-1]["error_kind"] = kind.value
             logger.error("NVIDIA NIM request failed model=%s category=%s duration_seconds=%.3f",
                          model, kind.value, perf_counter() - started)
             raise NvidiaNimError("NVIDIA NIM isteği zaman aşımına uğradı.",
                                  kind=kind) from error
 
     async def _attempts(self, messages: list, model: str,
-                        state: dict[str, ProviderErrorKind | None], *, max_tokens: int | None = None) -> str:
+                        state: dict[str, ProviderErrorKind | None], *, max_tokens: int,
+                        stage: str) -> str:
         assert self._client is not None
         retryable = {ProviderErrorKind.TIMEOUT, ProviderErrorKind.RATE_LIMIT, ProviderErrorKind.SERVER}
         for attempt in range(self._settings.nvidia_max_retries + 1):
             state["backoff_failure"] = None
             started = perf_counter()
+            record = dict(stage=stage, attempt=attempt + 1, requested_model=model,
+                          returned_model=None, started_utc=datetime.now(timezone.utc).isoformat(),
+                          parameters=dict(model=model, messages=messages, max_tokens=max_tokens,
+                                          stream=False, **get_model_options(model)),
+                          http_status=None, error_kind=None)
+            # Request-scoped audit only; prompts/content must never enter ordinary logs.
+            self.attempt_records.append(record)
             logger.info("NVIDIA NIM attempt started model=%s attempt=%s", model, attempt + 1)
             try:
                 completion = await self._client.chat.completions.create(
                     model=model,
                     messages=messages,
-                    max_tokens=self._settings.nvidia_max_tokens if max_tokens is None else max_tokens,
+                    max_tokens=max_tokens,
                     stream=False,
                     **get_model_options(model),
                 )
             except OpenAIError as error:
                 details = get_provider_error_details(
                     error, api_key=self._settings.nvidia_api_key.get_secret_value().strip())
+                record.update(http_status=details.status_code, error_kind=details.kind.value)
                 logger.error("NVIDIA NIM request failed model=%s attempt=%s duration_seconds=%.3f %s",
                              model, attempt + 1, perf_counter() - started, details.as_text())
                 if details.kind in retryable and attempt < self._settings.nvidia_max_retries:
@@ -220,24 +228,37 @@ class NvidiaNimClient:
                     await asyncio.sleep(self._settings.nvidia_retry_backoff_seconds)
                     continue
                 raise NvidiaNimError("NVIDIA NIM isteği başarısız oldu.", kind=details.kind) from error
+            except asyncio.CancelledError:
+                record["error_kind"] = "cancelled"
+                raise
+            finally:
+                record.update(seconds=perf_counter() - started,
+                              finished_utc=datetime.now(timezone.utc).isoformat())
+            record.update(http_status=200, returned_model=getattr(completion, "model", None))
+            usage = getattr(completion, "usage", None)
+            record["usage"] = usage.model_dump() if usage is not None and hasattr(usage, "model_dump") else None
             if not completion.choices:
+                record["error_kind"] = ProviderErrorKind.INVALID_RESPONSE.value
                 logger.warning("NVIDIA NIM empty response model=%s attempt=%s duration_seconds=%.3f",
                                model, attempt + 1, perf_counter() - started)
                 raise NvidiaNimError("NVIDIA NIM boş bir yanıt döndürdü.",
                                      kind=ProviderErrorKind.INVALID_RESPONSE)
             finish = getattr(completion.choices[0], 'finish_reason', None)
+            record.update(finish_reason=finish, response_content=completion.choices[0].message.content)
             usage = getattr(completion, 'usage', None)
             reasoning = getattr(getattr(usage, 'completion_tokens_details', None), 'reasoning_tokens', None)
             logger.info('NVIDIA response metadata model=%s output_limited=%s completion_tokens=%s '
                         'reasoning_tokens=%s duration_seconds=%.3f', model, finish == 'length',
                         getattr(usage, 'completion_tokens', None), reasoning, perf_counter() - started)
             if finish == 'length':
+                record["error_kind"] = ProviderErrorKind.INVALID_RESPONSE.value
                 failure('NVIDIA_OUTPUT_LIMIT')
                 logger.warning('NVIDIA output truncated model=%s max_tokens=%s', model,
                                self._settings.nvidia_max_tokens if max_tokens is None else max_tokens)
                 raise NvidiaNimError('NVIDIA yanıtı çıktı sınırında kesildi.', kind=ProviderErrorKind.INVALID_RESPONSE)
             content = completion.choices[0].message.content
             if not content or not content.strip():
+                record["error_kind"] = ProviderErrorKind.INVALID_RESPONSE.value
                 failure('NVIDIA_EMPTY_CONTENT')
                 logger.warning("NVIDIA NIM empty response model=%s attempt=%s duration_seconds=%.3f",
                                model, attempt + 1, perf_counter() - started)

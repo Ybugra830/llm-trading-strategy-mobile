@@ -295,8 +295,8 @@ def test_overall_deadline_cancels_hanging_provider_and_closes_client(monkeypatch
     assert client.cancelled and client.closed
 
 
-def test_fallback_after_primary_deadline_has_one_separate_bounded_budget(monkeypatch):
-    settings = build_settings().model_copy(update={"nvidia_request_timeout_seconds": 0.02,
+def test_fallback_after_primary_deadline_uses_remaining_shared_budget(monkeypatch):
+    settings = build_settings().model_copy(update={"nvidia_request_timeout_seconds": 0.2,
                                                   "nvidia_fallback_model": "tested/fallback"})
 
     class Client(FakeAsyncOpenAI):
