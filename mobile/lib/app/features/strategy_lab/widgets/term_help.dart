@@ -82,6 +82,9 @@ Future<void> showExplanation(
       Align(
         alignment: Alignment.centerRight,
         child: TextButton(
+          style: TextButton.styleFrom(
+            foregroundColor: Theme.of(context).colorScheme.onSurface,
+          ),
           onPressed: () => Navigator.pop(context),
           child: const Text('Kapat'),
         ),
