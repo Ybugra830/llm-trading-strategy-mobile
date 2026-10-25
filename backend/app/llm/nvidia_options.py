@@ -5,6 +5,21 @@ from typing import Any
 
 
 _MODEL_OPTIONS: dict[str, dict[str, Any]] = {
+    "minimaxai/minimax-m3.1-flash": {
+        "temperature": 1,
+        "top_p": 0.95,
+        "reasoning_effort": "low",
+    },
+    "nvidia/nemotron-3.5-lightning-30b-a3b": {
+        "temperature": 1,
+        "top_p": 0.95,
+        "extra_body": {"chat_template_kwargs": {"enable_thinking": False}},
+    },
+    "nvidia/nemotron-3.5-super-vl-120b-a12b": {
+        "temperature": 1,
+        "top_p": 0.95,
+        "extra_body": {"chat_template_kwargs": {"enable_thinking": False}},
+    },
     "nvidia/nemotron-3-super-120b-a12b": {
         "temperature": 1,
         "top_p": 0.95,

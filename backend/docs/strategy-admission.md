@@ -12,19 +12,33 @@ the user's text as JSON data in a user message. It must return a strict,
 evidence-bearing JSON assessment. The maximum output is 2048 tokens; total
 assessment time, including the existing bounded retries, is at most 30 seconds.
 Assessment can switch to an explicitly configured, verified fallback after a
-timeout or model/route-unavailable error. A provider failure is never approval.
+404/410, 429, 500/502/503/504, timeout or connection failure. With a distinct
+fallback, switch immediately without retrying primary; fallback gets one HTTP
+attempt. Other HTTP errors, invalid output and validation failures never switch.
+A provider failure is never approval.
 All three stages share one deadline per call: assessment at most 30 seconds,
-generation and each repair at most the configured 180 seconds. The primary gets
-at most half; the fallback gets the remainder of the original deadline, including
-unused primary time. Retries and backoff are inside those deadlines. Valid
+generation and each repair at most the configured 180 seconds. With a distinct
+fallback, the primary gets at most half; the fallback gets the remainder of the
+original deadline, including unused primary time. Without a distinct fallback,
+primary gets the entire stage budget. Retries and backoff are inside those deadlines. Valid
 rejection/clarification never triggers a model switch. No fallback is activated
 merely because its name appears in the model catalog.
+
+Assessment reads every sentence/line of the unchanged user request, resolving
+an indicator definition used in later rules. Trading buy/close actions are data
+to extract, not instructions to execute. Position guards must not turn an
+otherwise explicit market rule into a missing rule. This prompt clarification
+does not override model rejection/clarification or bypass evidence validation.
 
 Pydantic forbids extra fields and unknown enums. Backend checks also validate
 indicator IDs/outputs, registry membership, verbatim evidence, numeric evidence,
 parameter ranges, expression shape/depth, and complete buy/close rules. Constants
 alone are not market rules. Periods explicitly written in common forms such as
 `RSI(21)`, `SMA20`, or `14 günlük RSI` cannot silently disappear behind defaults.
+An `accepted/ok` response with nonempty `unsupported_features` is a contradictory
+provider assessment (HTTP 502), not a user unsupported-feature rejection (422).
+Explicitly forbidden short/leverage features are not requested features. Position
+guards have no price operand; invented numbers still fail evidence validation.
 
 - `accepted`: complete supported rules; continue through the existing pipeline.
 - `needs_clarification`: missing/ambiguous rules, thresholds, references or invalid parameters.

@@ -41,6 +41,12 @@ PATH_IO = frozenset({
     "resolve", "absolute", "owner", "group", "samefile", "cwd", "home",
     "expanduser", "readlink", "copy", "copy_into", "move", "move_into",
 })
+ITERABLE_BUILTINS = frozenset({
+    "list", "tuple", "set", "dict", "iter", "next", "reversed", "sorted", "enumerate", "zip",
+})
+CONTAINER_ACCESSORS = frozenset({
+    "get", "pop", "popitem", "setdefault", "copy", "union", "intersection", "difference", "symmetric_difference",
+})
 
 
 class _Scope:
@@ -74,6 +80,8 @@ class _Bindings(ast.NodeVisitor):
         self.facts: list[tuple[_Scope, str, ast.AST]] = []
         self.functions: dict[str, tuple[_Scope, ast.arguments]] = {}
         self.calls: list[ast.Call] = []
+        self.stores: list[tuple[ast.AST, ast.AST]] = []
+        self.aliases: dict[tuple[_Scope, str], set[tuple[_Scope, str]]] = {}
         self.class_scope = None
         self.function_scope = None
         self.visit(tree)
@@ -84,18 +92,96 @@ class _Bindings(ast.NodeVisitor):
                 before = len(scope.bindings[name])
                 scope.bindings[name].update(self.origins(value))
                 changed |= len(scope.bindings[name]) != before
+                changed |= self.link_container(scope, name, value)
             for call in self.calls:
                 for origin in self.origins(call.func):
                     if origin not in self.functions:
                         continue
                     scope, args = self.functions[origin]
-                    supplied = list(zip(args.posonlyargs + args.args, call.args))
+                    positional = args.posonlyargs + args.args
+                    supplied = list(zip(positional, call.args))
                     names = {arg.arg: arg for arg in args.posonlyargs + args.args + args.kwonlyargs}
                     supplied.extend((names[k.arg], k.value) for k in call.keywords if k.arg in names)
+                    if args.vararg:
+                        supplied.extend((args.vararg, value) for value in call.args[len(positional):])
+                    if args.kwarg:
+                        supplied.extend((args.kwarg, k.value) for k in call.keywords if k.arg not in names)
+                    # Unknown unpacked positions/keys may supply any formal parameter.
+                    supplied.extend((arg, value) for value in call.args if isinstance(value, ast.Starred) for arg in positional)
+                    supplied.extend((arg, k.value) for k in call.keywords if k.arg is None for arg in names.values())
                     for arg, value in supplied:
                         before = len(scope.bindings[arg.arg])
                         scope.bindings[arg.arg].update(self.origins(value))
                         changed |= len(scope.bindings[arg.arg]) != before
+                        changed |= self.link_container(scope, arg.arg, value)
+            for container, value in self.stores:
+                pending = list(self.references(container))
+                visited = set()
+                while pending:
+                    reference = pending.pop()
+                    if reference in visited:
+                        continue
+                    visited.add(reference)
+                    pending.extend(self.aliases.get(reference, ()))
+                    scope, name = reference
+                    before = len(scope.bindings[name])
+                    scope.bindings[name].update(self.origins(value))
+                    changed |= len(scope.bindings[name]) != before
+
+    def references(self, node):
+        """Bindings sharing a possible container; contents are conservatively unioned."""
+        scope = self.scopes.get(node, self.scope)
+        if isinstance(node, ast.Name):
+            while scope is not None:
+                if node.id in scope.bindings:
+                    return {(scope, node.id)}
+                scope = scope.parent
+        elif isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name) and node.value.id == 'self':
+            owner = self.class_scopes.get(node)
+            name = f'self.{node.attr}'
+            if owner and name in owner.bindings:
+                return {(owner, name)}
+        elif isinstance(node, ast.Subscript):
+            return self.references(node.value)
+        elif isinstance(node, ast.NamedExpr):
+            return self.references(node.target) | self.references(node.value)
+        elif isinstance(node, ast.IfExp):
+            return self.references(node.body) | self.references(node.orelse)
+        elif isinstance(node, ast.BinOp):
+            return self.references(node.left) | self.references(node.right)
+        elif isinstance(node, ast.BoolOp):
+            return set().union(*(self.references(value) for value in node.values))
+        elif isinstance(node, (ast.List, ast.Tuple, ast.Set)):
+            return set().union(*(self.references(value) for value in node.elts))
+        elif isinstance(node, ast.Dict):
+            return set().union(*(self.references(value) for value in node.values + [k for k in node.keys if k is not None]))
+        elif isinstance(node, ast.Starred):
+            return self.references(node.value)
+        elif isinstance(node, ast.Call):
+            refs = {(self.functions[o][0], '$return') for o in self.origins(node.func) if o in self.functions}
+            if isinstance(node.func, ast.Attribute) and node.func.attr in CONTAINER_ACCESSORS:
+                refs.update(self.references(node.func.value))
+                refs.update(set().union(*(self.references(value) for value in node.args + [k.value for k in node.keywords])))
+            if (isinstance(node.func, ast.Name) and not scope.lookup(node.func.id)
+                    and node.func.id in ITERABLE_BUILTINS):
+                refs.update(set().union(*(self.references(value) for value in node.args + [k.value for k in node.keywords])))
+            if (isinstance(node.func, ast.Attribute) and node.func.attr == 'fromkeys'
+                    and isinstance(node.func.value, ast.Name) and node.func.value.id == 'dict'
+                    and not scope.lookup('dict')):
+                refs.update(set().union(*(self.references(value) for value in node.args + [k.value for k in node.keywords])))
+            return refs
+        return set()
+
+    def link_container(self, scope, name, value):
+        target = (scope, name)
+        changed = False
+        for other in self.references(value):
+            if target == other:
+                continue
+            changed |= other not in self.aliases.get(target, ())
+            self.aliases.setdefault(target, set()).add(other)
+            self.aliases.setdefault(other, set()).add(target)
+        return changed
 
     def visit(self, node):
         self.scopes[node] = self.scope
@@ -128,6 +214,11 @@ class _Bindings(ast.NodeVisitor):
             if isinstance(value, (ast.Tuple, ast.List)) and len(target.elts) == len(value.elts):
                 for left, right in zip(target.elts, value.elts):
                     self.bind(left, right)
+            else:
+                for item in target.elts:
+                    self.bind(item, value)
+        elif isinstance(target, ast.Subscript):
+            self.stores.append((target.value, value))
 
     def visit_Assign(self, node):
         for target in node.targets:
@@ -142,6 +233,35 @@ class _Bindings(ast.NodeVisitor):
     def visit_NamedExpr(self, node):
         self.bind(node.target, node.value)
         self.generic_visit(node)
+
+    def visit_AugAssign(self, node):
+        if isinstance(node.op, (ast.Add, ast.BitOr)):
+            self.stores.append((node.target, node.value))
+        self.generic_visit(node)
+
+    def visit_For(self, node):
+        self.bind(node.target, node.iter)
+        self.generic_visit(node)
+
+    visit_AsyncFor = visit_For
+
+    def visit_ListComp(self, node):
+        # Comprehension locals must not contaminate the enclosing scope.
+        outer = self.scope
+        self.visit(node.generators[0].iter)
+        self.scope = _Scope(outer)
+        for i, generator in enumerate(node.generators):
+            if i:
+                self.visit(generator.iter)
+            self.bind(generator.target, generator.iter)
+            self.visit(generator.target)
+            for condition in generator.ifs:
+                self.visit(condition)
+        for value in ([node.key, node.value] if isinstance(node, ast.DictComp) else [node.elt]):
+            self.visit(value)
+        self.scope = outer
+
+    visit_SetComp = visit_GeneratorExp = visit_DictComp = visit_ListComp
 
     def visit_FunctionDef(self, node):
         token = f"function:{id(node)}"
@@ -201,6 +321,13 @@ class _Bindings(ast.NodeVisitor):
 
     def visit_Call(self, node):
         self.calls.append(node)
+        if isinstance(node.func, ast.Attribute):
+            # Record stores without calling the method or resolving actual values.
+            method = node.func.attr
+            values = node.args[:1] if method in {'append', 'extend', 'add', 'symmetric_difference_update'} else node.args[1:2] if method in {'insert', 'setdefault'} else []
+            if method == 'update':
+                values = node.args + [keyword.value for keyword in node.keywords]
+            self.stores.extend((node.func.value, value) for value in values)
         self.generic_visit(node)
 
     def visit_Return(self, node):
@@ -251,6 +378,15 @@ class _Bindings(ast.NodeVisitor):
         if isinstance(node, ast.Lambda):
             return {f"function:{id(node)}"}
         if isinstance(node, ast.Call):
+            if (isinstance(node.func, ast.Name) and not scope.lookup(node.func.id)
+                    and node.func.id in ITERABLE_BUILTINS):
+                return set().union(*(self.origins(value) for value in node.args + [k.value for k in node.keywords]))
+            if isinstance(node.func, ast.Attribute):
+                if node.func.attr in CONTAINER_ACCESSORS:
+                    return self.origins(node.func.value) | set().union(*(self.origins(value) for value in node.args + [k.value for k in node.keywords]))
+                if (node.func.attr == 'fromkeys' and isinstance(node.func.value, ast.Name)
+                        and node.func.value.id == 'dict' and not scope.lookup('dict')):
+                    return set().union(*(self.origins(value) for value in node.args + [k.value for k in node.keywords]))
             result = set()
             for origin in self.origins(node.func):
                 if origin in self.functions:
@@ -269,6 +405,15 @@ class _Bindings(ast.NodeVisitor):
                     result.add("pathlib.Path")
             return result
         if isinstance(node, ast.Subscript):
+            return self.origins(node.value)
+        if isinstance(node, (ast.List, ast.Tuple, ast.Set)):
+            return set().union(*(self.origins(value) for value in node.elts))
+        if isinstance(node, ast.Dict):
+            return set().union(*(self.origins(value) for value in node.values + [k for k in node.keys if k is not None]))
+        if isinstance(node, (ast.ListComp, ast.SetComp, ast.GeneratorExp, ast.DictComp)):
+            values = [node.key, node.value] if isinstance(node, ast.DictComp) else [node.elt]
+            return set().union(*(self.origins(value) for value in values + [g.iter for g in node.generators]))
+        if isinstance(node, ast.Starred):
             return self.origins(node.value)
         if isinstance(node, ast.NamedExpr):
             return self.origins(node.value)

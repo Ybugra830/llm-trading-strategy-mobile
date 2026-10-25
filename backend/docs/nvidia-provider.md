@@ -1,15 +1,28 @@
 # NVIDIA provider configuration and verification
 
+2026-10-25 candidate preparation: the verified local process uses Nemotron 3.5
+primary and MiniMax M3.1 Flash fallback. The security fix is loaded locally.
+Azure state has not been rechecked. See [candidate preparation](../../deploy/azure/CANDIDATE.md)
+for the current acceptance gaps and manual deployment boundary. Blank fallback
+examples below describe the default template, not the active local setting.
+
 Settings load from process environment, then `backend/.env`, then the root
 `.env`, then defaults. Paths are absolute, so changing the working directory
 does not change which files load. Settings are cached for the process lifetime;
 restart the backend after changing configuration.
 
+Direct NVIDIA connections bind the HTTP transport to `0.0.0.0` to select IPv4
+without pinning a remote IP. The hostname, SNI and certificate verification are
+unchanged. When environment proxy routing is configured, the SDK's normal
+environment-aware transport is retained; IPv4 is not forced through that proxy.
+The request-scoped owner closes both SDK and HTTP clients on exit. Transport
+selection does not change the stage deadlines or retry policy.
+
 For the requested Nemotron primary (availability must be verified separately):
 
 ```dotenv
 NVIDIA_BASE_URL=https://integrate.api.nvidia.com/v1
-NVIDIA_MODEL=nvidia/nemotron-3-super-120b-a12b
+NVIDIA_MODEL=nvidia/nemotron-3.5-super-vl-120b-a12b
 NVIDIA_MAX_TOKENS=2048
 NVIDIA_FALLBACK_MODEL=
 NVIDIA_REQUEST_TIMEOUT_SECONDS=180
@@ -33,10 +46,10 @@ upper bound of 4096. Strategy generation and repair prompts are unchanged.
 HTTP connect/write/pool timeouts are each 15 seconds; read is 180 seconds.
 HTTP read timeout limits inactivity, so an independent asyncio deadline also
 bounds the entire model operation to 180 seconds, including retries and backoff.
-Only timeouts, 429, and 5xx get at most one retry. There is no retry for 400, 401,
-403, 404, 410, 422, other 4xx, invalid content, validation errors, or generic
-network failures. A full 180-second hang exhausts the budget without a retry.
-`NVIDIA_MAX_RETRIES=0` disables provider retries for individual-attempt diagnostics.
+Without a distinct fallback, timeouts, 429 and 5xx get at most one application
+retry, within the same deadline; the existing no-fallback policy is unchanged.
+With a distinct fallback, each model gets exactly one HTTP attempt and no backoff.
+The first eligible primary failure switches immediately to the fallback.
 The SDK's own retries remain disabled to prevent additional retry layers.
 
 FastAPI dependencies own one lazy NVIDIA SDK client per API request and close it
@@ -47,20 +60,39 @@ otherwise each generation/repair call opens and closes its own client.
 
 Set `NVIDIA_FALLBACK_MODEL` only after independently testing the candidate model.
 No fallback model is supplied by default. A blank value disables fallback. It is
-eligible only after primary HTTP 404/410 or a bounded timeout policy has failed.
-It never activates for authentication, permissions, 429, 5xx, network failures,
-empty content, or strategy validation failures. If a 429/5xx consumes its budget
-during backoff, its original category is preserved and cannot trigger fallback.
-The fallback runs once through the same provider policy, with its own model profile
-and the remainder of the original stage deadline. There is no recursive fallback. A fallback equal
-to the primary is ignored. A successful response reports its actual returned model.
+eligible after primary HTTP 404/410, 429, 500/502/503/504, timeout or connection
+failure. Other HTTP statuses (including 400/401/403), invalid/empty content and
+strategy validation failures do not switch models. Authentication, permission and
+invalid-request failures are reported as safe configuration/provider categories,
+not user strategy rejection. The fallback gets one attempt through the identical
+prompt and security pipeline, using the remainder of the original stage deadline.
+It has no retry or recursive fallback. A fallback equal to the primary is ignored.
+A successful response reports its actual returned model.
+
+`nvidia/nemotron-3.5-lightning-30b-a3b` has an explicit candidate profile:
+temperature 1, top_p 0.95, and `chat_template_kwargs.enable_thinking=false` under
+`extra_body`, following NVIDIA's Data Designer model defaults. Adding this profile
+does not enable fallback. The 2026-10-24 local candidate test failed Docker smoke
+after both bounded repairs; that candidate remains inactive.
+
+MiniMax candidate `minimaxai/minimax-m3.1-flash` uses its own profile:
+temperature 1, top_p 0.95 and reasoning_effort low. It does not inherit Nemotron's
+thinking flag. The 2026-10-24 candidate and controlled-timeout integration checks
+passed, including the existing independent RSI calculation. The local env fallback
+was set to MiniMax after a private backup. At the time of that experiment the
+already-running backend had not been restarted; it was subsequently restarted
+and checked locally on 2026-10-25. The experiment's real/mock records remain in
+`verification/minimax/20261024-m31-flash/README.md` outside the release commit.
+A file setting alone does not prove activation in an existing process.
 
 Assessment has a shared budget of at most 30 seconds; each generation/repair has
 a shared budget of at most 180 seconds (or a lower configured limit). The primary
-gets at most half; fallback gets the remaining time, including unused primary time.
+gets at most half when a distinct fallback is configured; fallback gets the
+remaining time, including unused primary time. Without a distinct fallback,
+primary can use the entire stage budget (30/180 seconds).
 Requests, retries and backoff share the deadline; valid rejection/clarification
-does not trigger fallback. With no verified fallback, a primary timeout ends at
-its half-budget. At most three strategy versions can consume 540 seconds plus
+does not trigger fallback. Attempt audit records separate request and retry
+backoff durations. At most three strategy versions can consume 540 seconds plus
 assessment, market data and bounded sandbox execution. Any deployment proxy/client deadline must
 account for the full synchronous request. These are upper bounds, not latency
 targets or availability guarantees.

@@ -10,6 +10,8 @@ from time import perf_counter
 
 import httpx
 from openai import APIConnectionError, APITimeoutError, AsyncOpenAI, OpenAIError
+from openai import DefaultAsyncHttpxClient, DEFAULT_CONNECTION_LIMITS
+from httpx._utils import get_environment_proxies
 
 from app.config import Settings
 from app.llm.nvidia_options import get_model_options
@@ -37,9 +39,11 @@ class ProviderErrorKind(StrEnum):
 class NvidiaNimError(RuntimeError):
     """Safe public message plus an internal, structured failure category."""
 
-    def __init__(self, message: str, *, kind: ProviderErrorKind = ProviderErrorKind.UNKNOWN):
+    def __init__(self, message: str, *, kind: ProviderErrorKind = ProviderErrorKind.UNKNOWN,
+                 status_code: int | None = None):
         super().__init__(message)
         self.kind = kind
+        self.status_code = status_code
 
 
 @dataclass(frozen=True)
@@ -95,6 +99,7 @@ class NvidiaNimClient:
     def __init__(self, settings: Settings) -> None:
         self._settings = settings
         self._client: AsyncOpenAI | None = None
+        self._http_client: httpx.AsyncClient | None = None
         self._last_model = settings.nvidia_model
         self._managed = False
         self.attempt_records: list[dict] = []
@@ -114,15 +119,24 @@ class NvidiaNimClient:
         if not api_key:
             raise NvidiaNimError("NVIDIA API anahtarı yapılandırılmamış.",
                                  kind=ProviderErrorKind.AUTHENTICATION)
+        timeout = httpx.Timeout(
+            connect=self._settings.nvidia_connect_timeout_seconds,
+            read=self._settings.nvidia_read_timeout_seconds,
+            write=self._settings.nvidia_write_timeout_seconds,
+            pool=self._settings.nvidia_pool_timeout_seconds,
+        )
+        # A custom transport disables HTTPX's environment proxy discovery.
+        # Preserve proxy routing when configured; force IPv4 only on direct connections.
+        options = {} if any(get_environment_proxies().values()) else {
+            "transport": httpx.AsyncHTTPTransport(local_address="0.0.0.0", retries=0,
+                                                 limits=DEFAULT_CONNECTION_LIMITS),
+        }
+        self._http_client = DefaultAsyncHttpxClient(timeout=timeout, **options)
         self._client = AsyncOpenAI(
             api_key=api_key,
             base_url=self._settings.nvidia_base_url,
-            timeout=httpx.Timeout(
-                connect=self._settings.nvidia_connect_timeout_seconds,
-                read=self._settings.nvidia_read_timeout_seconds,
-                write=self._settings.nvidia_write_timeout_seconds,
-                pool=self._settings.nvidia_pool_timeout_seconds,
-            ),
+            timeout=timeout,
+            http_client=self._http_client,
             # SDK retries include statuses outside our policy; own them here.
             max_retries=0,
         )
@@ -130,8 +144,13 @@ class NvidiaNimClient:
     async def __aexit__(self, exc_type, exc, traceback) -> None:
         client, self._client = self._client, None
         self._managed = False
-        if client is not None:
-            await client.close()
+        try:
+            if client is not None:
+                await client.close()
+        finally:
+            http, self._http_client = self._http_client, None
+            if http is not None and not http.is_closed:
+                await http.aclose()
 
     async def generate_code(self, prompt: str) -> str:
         return await self._complete(build_strategy_messages(prompt))
@@ -152,6 +171,8 @@ class NvidiaNimClient:
         if self._client is None:
             self._open_client()
         primary = self._settings.nvidia_model
+        fallback = self._settings.nvidia_fallback_model
+        has_fallback = bool(fallback and fallback != primary)
         budget = self._settings.nvidia_request_timeout_seconds
         if stage == "assessment":
             budget = min(30, budget)
@@ -160,13 +181,13 @@ class NvidiaNimClient:
         deadline = started + budget
         max_tokens = min(2048, self._settings.nvidia_max_tokens) if stage == "assessment" else self._settings.nvidia_max_tokens
         try:
-            return await self._complete_model(messages, primary, deadline=started + budget / 2,
+            return await self._complete_model(messages, primary, deadline=started + budget / 2 if has_fallback else deadline,
                                               max_tokens=max_tokens, stage=stage)
         except NvidiaNimError as error:
-            fallback = self._settings.nvidia_fallback_model
-            if (not fallback or fallback == primary or error.kind not in (
-                ProviderErrorKind.MODEL_UNAVAILABLE, ProviderErrorKind.TIMEOUT,
-            ) or loop.time() >= deadline):
+            eligible = error.status_code in {404, 410, 429, 500, 502, 503, 504} or (
+                error.status_code is None and error.kind in (ProviderErrorKind.TIMEOUT, ProviderErrorKind.NETWORK)
+            )
+            if not has_fallback or not eligible or loop.time() >= deadline:
                 raise
             logger.warning("NVIDIA fallback selected primary=%s fallback=%s reason=%s",
                            primary, fallback, error.kind.value)
@@ -198,14 +219,17 @@ class NvidiaNimClient:
                         stage: str) -> str:
         assert self._client is not None
         retryable = {ProviderErrorKind.TIMEOUT, ProviderErrorKind.RATE_LIMIT, ProviderErrorKind.SERVER}
-        for attempt in range(self._settings.nvidia_max_retries + 1):
+        fallback = self._settings.nvidia_fallback_model
+        # With a distinct fallback, spend the next attempt on it, never retry either model.
+        retries = 0 if fallback and fallback != self._settings.nvidia_model else self._settings.nvidia_max_retries
+        for attempt in range(retries + 1):
             state["backoff_failure"] = None
             started = perf_counter()
             record = dict(stage=stage, attempt=attempt + 1, requested_model=model,
                           returned_model=None, started_utc=datetime.now(timezone.utc).isoformat(),
                           parameters=dict(model=model, messages=messages, max_tokens=max_tokens,
                                           stream=False, **get_model_options(model)),
-                          http_status=None, error_kind=None)
+                          http_status=None, error_kind=None, backoff_seconds=0.0)
             # Request-scoped audit only; prompts/content must never enter ordinary logs.
             self.attempt_records.append(record)
             logger.info("NVIDIA NIM attempt started model=%s attempt=%s", model, attempt + 1)
@@ -220,20 +244,27 @@ class NvidiaNimClient:
             except OpenAIError as error:
                 details = get_provider_error_details(
                     error, api_key=self._settings.nvidia_api_key.get_secret_value().strip())
-                record.update(http_status=details.status_code, error_kind=details.kind.value)
+                record.update(http_status=details.status_code, error_kind=details.kind.value,
+                              request_seconds=perf_counter() - started)
                 logger.error("NVIDIA NIM request failed model=%s attempt=%s duration_seconds=%.3f %s",
                              model, attempt + 1, perf_counter() - started, details.as_text())
-                if details.kind in retryable and attempt < self._settings.nvidia_max_retries:
+                if details.kind in retryable and attempt < retries:
                     state["backoff_failure"] = details.kind
-                    await asyncio.sleep(self._settings.nvidia_retry_backoff_seconds)
+                    backoff_started = perf_counter()
+                    try:
+                        await asyncio.sleep(self._settings.nvidia_retry_backoff_seconds)
+                    finally:
+                        record["backoff_seconds"] = perf_counter() - backoff_started
                     continue
-                raise NvidiaNimError("NVIDIA NIM isteği başarısız oldu.", kind=details.kind) from error
+                raise NvidiaNimError("NVIDIA NIM isteği başarısız oldu.", kind=details.kind,
+                                     status_code=details.status_code) from error
             except asyncio.CancelledError:
                 record["error_kind"] = "cancelled"
                 raise
             finally:
                 record.update(seconds=perf_counter() - started,
                               finished_utc=datetime.now(timezone.utc).isoformat())
+                record.setdefault("request_seconds", record["seconds"] - record["backoff_seconds"])
             record.update(http_status=200, returned_model=getattr(completion, "model", None))
             usage = getattr(completion, "usage", None)
             record["usage"] = usage.model_dump() if usage is not None and hasattr(usage, "model_dump") else None

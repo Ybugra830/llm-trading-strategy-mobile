@@ -27,6 +27,84 @@ from app.llm.repair_context import RepairFailureContext
 TEST_API_KEY = "nvapi-test-secret-value"
 
 
+@pytest.mark.parametrize('exit_kind', ['success', 'error', 'cancel', 'sdk_close_error', 'sdk_init_error'])
+def test_ipv4_transport_preserves_limits_and_closes_on_every_exit(monkeypatch, exit_kind):
+    from openai import DEFAULT_CONNECTION_LIMITS
+    monkeypatch.setattr('app.llm.nvidia_client.get_environment_proxies', lambda: {})
+    seen = {}
+    class SDK:
+        async def close(self):
+            if exit_kind == 'sdk_close_error':
+                raise RuntimeError('safe close failure')
+    def factory(**kwargs):
+        seen.update(kwargs)
+        if exit_kind == 'sdk_init_error':
+            raise RuntimeError('safe init failure')
+        return SDK()
+    monkeypatch.setattr('app.llm.nvidia_client.AsyncOpenAI', factory)
+    async def run():
+        try:
+            async with NvidiaNimClient(Settings(_env_file=None, nvidia_api_key=TEST_API_KEY)) as client:
+                client._open_client()
+                http = seen['http_client']
+                assert http._transport._pool._local_address == '0.0.0.0'
+                assert http._transport._pool._retries == 0
+                assert http._transport._pool._max_connections == DEFAULT_CONNECTION_LIMITS.max_connections
+                assert http._transport._pool._ssl_context.check_hostname is True
+                assert http.timeout == seen['timeout']
+                assert seen['max_retries'] == 0
+                if exit_kind == 'error': raise RuntimeError('safe failure')
+                if exit_kind == 'cancel': raise asyncio.CancelledError()
+        except (RuntimeError, asyncio.CancelledError):
+            if exit_kind == 'success': raise
+        assert seen['http_client'].is_closed
+    asyncio.run(run())
+
+
+def test_ipv4_change_does_not_bypass_configured_proxy(monkeypatch):
+    monkeypatch.setenv('HTTPS_PROXY', 'http://proxy.example.invalid:8080')
+    monkeypatch.delenv('NO_PROXY', raising=False)
+    monkeypatch.delenv('no_proxy', raising=False)
+    async def run():
+        async with NvidiaNimClient(Settings(_env_file=None, nvidia_api_key=TEST_API_KEY)) as client:
+            client._open_client()
+            http = client._http_client
+            assert http._transport_for_url(httpx.URL('https://integrate.api.nvidia.com/v1')) is not http._transport
+        assert http.is_closed
+    asyncio.run(run())
+
+
+def test_nemotron35_assessment_serializes_thinking_flag_at_body_root(monkeypatch):
+    import json
+    from openai import AsyncOpenAI
+    captured = []
+
+    def transport(request):
+        captured.append(json.loads(request.content))
+        return httpx.Response(200, json={
+            "id": "wire-test", "object": "chat.completion", "created": 0,
+            "model": "wire-test", "choices": [{"index": 0, "finish_reason": "stop",
+            "message": {"role": "assistant", "content": "{}"}}]})
+
+    def factory(**kwargs):
+        supplied = kwargs.pop('http_client')
+        supplied._transport = httpx.MockTransport(transport)
+        return AsyncOpenAI(**kwargs, http_client=supplied)
+
+    monkeypatch.setattr("app.llm.nvidia_client.AsyncOpenAI", factory)
+    settings = Settings(_env_file=None, nvidia_api_key=TEST_API_KEY,
+                        nvidia_model="nvidia/nemotron-3.5-super-vl-120b-a12b",
+                        nvidia_fallback_model=None)
+    assert asyncio.run(NvidiaNimClient(settings).assess_intent("wire test")) == "{}"
+    assert len(captured) == 1
+    body = captured[0]
+    assert body["chat_template_kwargs"] == {"enable_thinking": False}
+    assert not {"extra_body", "reasoning_effort", "response_format"} & body.keys()
+    assert body["stream"] is False
+    assert body["max_tokens"] == 2048
+    assert body["model"] == settings.nvidia_model
+
+
 async def generate_for_provider_test(settings):
     """Exercise provider wire/retry behavior, independently of the admission service."""
     async with NvidiaNimClient(settings) as provider:
@@ -106,7 +184,9 @@ def test_generate_code_uses_expected_nvidia_parameters(monkeypatch) -> None:
         "base_url": "https://integrate.api.nvidia.com/v1",
         "timeout": httpx.Timeout(connect=15, read=180, write=15, pool=15),
         "max_retries": 0,
+        "http_client": fake_client.client_kwargs['http_client'],
     }
+    assert fake_client.client_kwargs['http_client'].is_closed
     assert fake_client.create_kwargs["model"] == "openai/gpt-oss-20b"
     assert fake_client.create_kwargs["temperature"] == 0.1
     assert fake_client.create_kwargs["max_tokens"] == 2048
@@ -241,7 +321,7 @@ def test_transport_timeout_retries_once_and_network_failure_does_not(monkeypatch
 
 
 @pytest.mark.parametrize("status,use_fallback", [(404, True), (410, True), (400, False),
-    (401, False), (403, False), (422, False), (429, False), (503, False)])
+    (401, False), (403, False), (422, False), (429, True), (503, True)])
 def test_fallback_is_explicit_and_reports_actual_model(monkeypatch, status, use_fallback):
     primary = "deepseek-ai/deepseek-v4-pro-0813"
     settings = build_settings().model_copy(update={
@@ -315,10 +395,10 @@ def test_fallback_after_primary_deadline_uses_remaining_shared_budget(monkeypatc
 
 
 @pytest.mark.parametrize("status,kind", [(429, ProviderErrorKind.RATE_LIMIT), (503, ProviderErrorKind.SERVER)])
-def test_retry_backoff_cannot_extend_overall_budget_or_trigger_fallback(monkeypatch, status, kind):
+def test_without_fallback_retry_backoff_cannot_extend_overall_budget(monkeypatch, status, kind):
     settings = build_settings().model_copy(update={"nvidia_request_timeout_seconds": 0.02,
                                                   "nvidia_retry_backoff_seconds": 1,
-                                                  "nvidia_fallback_model": "tested/fallback"})
+                                                  "nvidia_fallback_model": None})
     client = FakeAsyncOpenAI(error=build_status_error(APIStatusError, status))
     monkeypatch.setattr("app.llm.nvidia_client.AsyncOpenAI", lambda **kw: client)
     with pytest.raises(NvidiaNimError) as captured:
@@ -377,7 +457,9 @@ def test_sdk_wire_request_uses_model_profile_and_one_owned_retry(monkeypatch):
         })
 
     def construct(**kwargs):
-        return AsyncOpenAI(**kwargs, http_client=httpx.AsyncClient(transport=httpx.MockTransport(respond)))
+        supplied = kwargs.pop('http_client')
+        supplied._transport = httpx.MockTransport(respond)
+        return AsyncOpenAI(**kwargs, http_client=supplied)
 
     monkeypatch.setattr("app.llm.nvidia_client.AsyncOpenAI", construct)
     settings = build_settings().model_copy(update={"nvidia_model": "deepseek-ai/deepseek-v4-pro-0813"})

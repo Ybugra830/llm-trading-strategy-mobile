@@ -42,7 +42,7 @@ class Settings(BaseSettings):
     nvidia_api_key: SecretStr = SecretStr("")
     cors_allowed_origins: list[str] = Field(default_factory=list)
     nvidia_base_url: str = "https://integrate.api.nvidia.com/v1"
-    nvidia_model: str = "nvidia/nemotron-3-super-120b-a12b"
+    nvidia_model: str = "nvidia/nemotron-3.5-super-vl-120b-a12b"
     nvidia_fallback_model: str | None = None
     nvidia_max_tokens: int = Field(default=2048, gt=0, le=4096)
     nvidia_request_timeout_seconds: float = Field(default=180, ge=5, le=300)

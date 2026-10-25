@@ -1,0 +1,99 @@
+{
+  "prompt": "Günlük kapanış fiyatlarından 14 periyotluk RSI hesapla.\nRSI 30'un altındaysa ve açık pozisyon yoksa al.\nRSI 70'in üzerindeyse açık pozisyonu kapat.\nAçık pozisyon varken yeni alım yapma.",
+  "assessment": {
+    "decision": "accepted",
+    "reason_code": "ok",
+    "entry": {
+      "action": "buy",
+      "evidence": "RSI 30'un altındaysa ve açık pozisyon yoksa al.",
+      "condition": {
+        "operator": "and",
+        "left": {
+          "kind": "indicator",
+          "reference": "rsi.value",
+          "value": null,
+          "evidence": "RSI",
+          "arguments": []
+        },
+        "right": {
+          "kind": "constant",
+          "reference": null,
+          "value": 30,
+          "evidence": "30",
+          "arguments": []
+        },
+        "children": [
+          {
+            "operator": "lt",
+            "left": {
+              "kind": "indicator",
+              "reference": "rsi.value",
+              "value": null,
+              "evidence": "RSI",
+              "arguments": []
+            },
+            "right": {
+              "kind": "constant",
+              "reference": null,
+              "value": 30,
+              "evidence": "30",
+              "arguments": []
+            },
+            "children": []
+          },
+          {
+            "operator": "not",
+            "left": {
+              "kind": "indicator",
+              "reference": "position.value",
+              "value": null,
+              "evidence": "açık pozisyon yoksa",
+              "arguments": []
+            },
+            "right": null,
+            "children": []
+          }
+        ]
+      }
+    },
+    "exit": {
+      "action": "close",
+      "evidence": "RSI 70'in üzerindeyse açık pozisyonu kapat.",
+      "condition": {
+        "operator": "gt",
+        "left": {
+          "kind": "indicator",
+          "reference": "rsi.value",
+          "value": null,
+          "evidence": "RSI",
+          "arguments": []
+        },
+        "right": {
+          "kind": "constant",
+          "reference": null,
+          "value": 70,
+          "evidence": "70",
+          "arguments": []
+        },
+        "children": []
+      }
+    },
+    "indicators": [
+      {
+        "id": "rsi",
+        "family": "rsi",
+        "role": "single",
+        "evidence": "RSI",
+        "parameters": {
+          "window": 14
+        },
+        "parameter_evidence": {
+          "window": "14"
+        }
+      }
+    ],
+    "missing_fields": [],
+    "unsupported_features": [],
+    "trailing_stop": null
+  }
+}

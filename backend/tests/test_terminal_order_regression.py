@@ -2,12 +2,13 @@
 
 import hashlib
 import os
+from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
 
 from app.config import get_settings
-from scripts.verify_calculations import AuditExecutor, OUTPUT, dataframe, read_data
+from scripts.verify_calculations import AuditExecutor, dataframe, read_data
 from sandbox.worker import guard_terminal_entries
 from backtesting import Strategy
 from app.backtest.engine import run_backtest
@@ -59,7 +60,7 @@ def test_guard_cancels_only_terminal_entries_and_preserves_exits(current_bars):
 
 @pytest.mark.skipif(os.environ.get('RUN_CALCULATION_DOCKER_TESTS') != '1', reason='Explicit real Docker opt-in')
 def test_terminal_buy_cannot_open_without_a_future_bar():
-    folder = OUTPUT / 'edges' / 'terminal_pending_buy'
+    folder = Path(__file__).parent / 'fixtures' / 'terminal_pending_buy'
     code = (folder / 'strategy.py').read_text(encoding='utf-8')
     executor = AuditExecutor(get_settings())
     result = executor.run_backtest(code, hashlib.sha256(code.encode()).hexdigest(),

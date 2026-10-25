@@ -128,7 +128,7 @@ class StrategyAdmissionService:
         if item.missing_fields or not item.entry or not item.exit:
             raise invalid_assessment('accepted_missing_rules')
         if item.unsupported_features:
-            raise StrategyAdmissionError("rejected", "unsupported")
+            raise invalid_assessment('accepted_unsupported_features')
         if item.entry.action != "buy" or item.exit.action != "close":
             raise invalid_assessment('rule_action')
 

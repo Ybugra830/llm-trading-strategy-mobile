@@ -21,6 +21,29 @@ from app.services.strategy_service import StrategyService
 from app.services.validation_service import ValidationService
 
 TR = "14 günlük RSI 30'un altındaysa al, 70'in üzerindeyse pozisyonu kapat."
+
+
+def test_saved_nemotron_invalid_logical_tree_is_still_rejected():
+    from pathlib import Path
+    fixture = json.loads((Path(__file__).parent / 'fixtures/nemotron35_invalid_assessment.json').read_text(encoding='utf-8'))
+    client = provider(fixture['assessment'])
+    with pytest.raises(NvidiaNimError) as error:
+        asyncio.run(StrategyService(client).generate(fixture['prompt']))
+    assert error.value.kind == ProviderErrorKind.INVALID_RESPONSE
+    client.generate_code.assert_not_awaited()
+
+
+def test_system_logical_example_passes_actual_schema_and_semantics():
+    from app.llm.admission_prompt import build_admission_messages
+    text = build_admission_messages('test')[0]['content']
+    example = json.loads(text.split('(structure only):\n', 1)[1].split('\n', 1)[0])
+    prompt = 'Buy when Close > 10 AND NOT (Volume = 0); close when Close > 10.'
+    payload = accepted(prompt)
+    payload['indicators'] = []
+    payload['entry']['condition'] = example
+    payload['exit']['condition'] = copy.deepcopy(example['children'][0])
+    response = asyncio.run(StrategyService(provider(payload)).generate(prompt))
+    assert response.admission.decision == 'accepted'
 EN = "Buy when 14-day RSI is below 30, close the position when it is above 70."
 SMA = "20 günlük SMA 50 günlük SMA'yı yukarı keserse al, aşağı keserse pozisyonu kapat."
 DEFAULT = "RSI 30 altındaysa al, 70 üzerindeyse pozisyonu kapat."
@@ -112,6 +135,32 @@ def test_acceptance_generates_only_after_evidence_checks_and_applies_defaults(pr
     normalized = json.loads(client.generate_code.await_args.args[0])
     assert normalized["original_request"] == prompt
     assert normalized["approved_interpretation"]["entry"]["action"] == "buy"
+
+
+@pytest.mark.parametrize("sma", [False, True])
+@pytest.mark.parametrize("allow", [False, True])
+def test_multiline_rules_with_execution_guards_still_require_model_approval(sma, allow):
+    prompt = ("Günlük kapanış fiyatlarından 20 günlük SMA ve 50 günlük SMA hesapla.\n"
+              "20 günlük SMA 50 günlük SMA'yı yukarı keserse ve pozisyon yoksa al.\n"
+              "Aşağı keserse açık pozisyonu kapat.\nAçık pozisyona ekleme yapma." if sma else
+              "Günlük kapanış fiyatlarından 14 periyotluk RSI hesapla.\n"
+              "RSI 30'un altındaysa ve açık pozisyon yoksa al.\n"
+              "RSI 70'in üzerindeyse açık pozisyonu kapat.\nAçık pozisyon varken yeni alım yapma.")
+    payload = accepted(prompt, sma=sma) if allow else refused(
+        "needs_clarification", "incomplete", ["entry_rule", "exit_rule"])
+    client = provider(payload)
+    if allow:
+        asyncio.run(StrategyService(client).generate(prompt))
+        sent = json.loads(client.generate_code.await_args.args[0])
+        assert sent["original_request"] == prompt
+        assert sent["approved_interpretation"]["entry"]["condition"]["left"]["reference"] == (
+            "fast.value" if sma else "rsi.value")
+    else:
+        with pytest.raises(StrategyAdmissionError) as error:
+            asyncio.run(StrategyService(client).generate(prompt))
+        assert error.value.failure.decision == "needs_clarification"
+        client.generate_code.assert_not_awaited()
+    client.assess_intent.assert_awaited_once_with(prompt)
 
 
 @pytest.mark.parametrize("raw", ["not json", "{}", '{"decision":"maybe"}', '```json\n{}\n```'])

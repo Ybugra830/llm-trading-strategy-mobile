@@ -1,0 +1,106 @@
+{
+  "source": "verification/nemotron35/20261024-130819Z-closure/requests/F1/provider-attempts.json",
+  "prompt": "Günlük kapanışlardan Bollinger(20,2) hesapla. Close alt bandın kesin altındaysa ve pozisyon yoksa al (Close < alt bant); Close üst bandın kesin üzerindeyse açık pozisyonu kapat (Close > üst bant). Açık pozisyona ekleme yapma. Açığa satış ve kaldıraç kullanma.",
+  "assessment": {
+    "decision": "accepted",
+    "reason_code": "ok",
+    "entry": {
+      "action": "buy",
+      "evidence": "Close alt bandın kesin altındaysa ve pozisyon yoksa al (Close < alt bant)",
+      "condition": {
+        "operator": "and",
+        "left": null,
+        "right": null,
+        "children": [
+          {
+            "operator": "lt",
+            "left": {
+              "kind": "price",
+              "reference": "close",
+              "value": null,
+              "evidence": "Close",
+              "arguments": []
+            },
+            "right": {
+              "kind": "indicator",
+              "reference": "bollinger.lower",
+              "value": null,
+              "evidence": "alt bant",
+              "arguments": []
+            },
+            "children": []
+          },
+          {
+            "operator": "not",
+            "left": null,
+            "right": null,
+            "children": [
+              {
+                "operator": "eq",
+                "left": {
+                  "kind": "price",
+                  "reference": "close",
+                  "value": null,
+                  "evidence": "Close alt bandın kesin altındaysa ve pozisyon yoksa al (Close < alt bant)",
+                  "arguments": []
+                },
+                "right": {
+                  "kind": "constant",
+                  "reference": null,
+                  "value": 0,
+                  "evidence": "pozisyon yoksa",
+                  "arguments": []
+                },
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "exit": {
+      "action": "close",
+      "evidence": "Close üst bandın kesin üzerindeyse açık pozisyonu kapat (Close > üst bant)",
+      "condition": {
+        "operator": "gt",
+        "left": {
+          "kind": "price",
+          "reference": "close",
+          "value": null,
+          "evidence": "Close",
+          "arguments": []
+        },
+        "right": {
+          "kind": "indicator",
+          "reference": "bollinger.upper",
+          "value": null,
+          "evidence": "üst bant",
+          "arguments": []
+        },
+        "children": []
+      }
+    },
+    "indicators": [
+      {
+        "id": "bollinger",
+        "family": "bollinger",
+        "role": "single",
+        "evidence": "Bollinger(20,2)",
+        "parameters": {
+          "window": 20,
+          "deviation": 2
+        },
+        "parameter_evidence": {
+          "window": "20",
+          "deviation": "2"
+        }
+      }
+    ],
+    "missing_fields": [],
+    "unsupported_features": [
+      "short selling",
+      "leverage"
+    ],
+    "trailing_stop": null
+  }
+}
